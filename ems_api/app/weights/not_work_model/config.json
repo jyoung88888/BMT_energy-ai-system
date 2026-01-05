@@ -1,0 +1,36 @@
+{
+    "input_chunk_length": 144,
+    "output_chunk_length": 54,
+    "hidden_size": 32,
+    "lstm_layers": 3,
+    "num_attention_heads": 3,
+    "dropout": 0.1,
+    "batch_size": 16,
+    "n_epochs": 500,
+    "random_state": 42,
+    "add_relative_index": true,
+    "early_stop_monitor": "val_loss",
+    "early_stop_patience": 100,
+    "early_stop_min_delta": 0.0001,
+    "accelerator": "auto",
+    "precision": null,
+    "gradient_clip_val": null,
+    "enable_progress_bar": true,
+    "save_checkpoints": false,
+    "checkpoint_dirpath": "./model_checkpoints/",
+    "checkpoint_filename": "tft-{epoch:02d}-{val_loss:.4f}",
+    "save_top_k": 3,
+    "use_quantile": true,
+    "quantiles": [
+        0.1,
+        0.5,
+        0.9
+    ],
+    "past_cols": [
+        "사용량(kWh)"
+    ],
+    "future_cols": [
+        "is_weekend",
+        "dayofweek"
+    ]
+}

@@ -1,0 +1,426 @@
+2025-12-17 16:03:02,586 - __main__ - INFO - [LOG SETUP] Log file initialized: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\logs\ems_AI_scheduler_2025-12-17.log
+2025-12-17 16:03:02,587 - app.main - INFO - [날짜 설정] 입력된 날짜 사용: 2025-12-15
+2025-12-17 16:03:02,587 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:02,588 - __main__ - INFO - EMS Prediction Scheduler Started
+2025-12-17 16:03:02,588 - __main__ - INFO - Execution Time: 2025-12-17 16:03:02
+2025-12-17 16:03:02,588 - __main__ - INFO - Split Date: 2025-12-15 (입력된 날짜)
+2025-12-17 16:03:02,588 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:02,589 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:02,589 - __main__ - INFO - Initializing EMS Prediction Components...
+2025-12-17 16:03:02,589 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:02,589 - __main__ - INFO - [Init] Setting global random seed to 42...
+2025-12-17 16:03:02,592 - __main__ - INFO - [Init]  Global random seed fixed to 42
+2025-12-17 16:03:02,593 - __main__ - INFO - [Init] Initializing Database manager...
+2025-12-17 16:03:02,593 - __main__ - INFO - [Init]  Database manager initialized
+2025-12-17 16:03:02,593 - __main__ - INFO - [Init] Testing database connection...
+2025-12-17 16:03:02,593 - app.core.db - INFO - [DB 연결] 데이터베이스 연결 시도 중...
+2025-12-17 16:03:02,593 - app.core.db - INFO - [DB 연결] Host: 192.168.213.250
+2025-12-17 16:03:02,594 - app.core.db - INFO - [DB 연결] Port: 3306
+2025-12-17 16:03:02,594 - app.core.db - INFO - [DB 연결] User: root
+2025-12-17 16:03:02,594 - app.core.db - INFO - [DB 연결] Database: db_energy
+2025-12-17 16:03:02,680 - app.core.db - INFO - [DB 연결] ✅ db_energy 데이터베이스 연결 성공
+2025-12-17 16:03:03,210 - app.core.db - INFO - [DB 연결]  연결 테스트 통과
+2025-12-17 16:03:03,210 - __main__ - INFO - [Init]  Database connection test passed
+2025-12-17 16:03:03,211 - __main__ - INFO - [Init] Initializing ForecastSaver...
+2025-12-17 16:03:03,211 - __main__ - INFO - [Init]  ForecastSaver initialized
+2025-12-17 16:03:03,211 - __main__ - INFO - [Init] Loading model components...
+2025-12-17 16:03:03,211 - app.utils.model_loader - INFO - [ModelLoader] 캘린더 데이터 포함: True
+2025-12-17 16:03:03,211 - app.utils.model_loader - INFO - [ModelLoader] 모델 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt
+2025-12-17 16:03:03,607 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt에서 모델 로드 성공
+2025-12-17 16:03:03,607 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\scalers.pkl에서 스케일러 로드 성공
+2025-12-17 16:03:03,608 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\config.json에서 설정 로드 성공
+2025-12-17 16:03:03,608 - app.utils.model_loader - INFO - 모든 모델 구성 요소 로드 성공
+2025-12-17 16:03:03,608 - __main__ - INFO - [Init]  Model components loaded successfully
+2025-12-17 16:03:03,608 - __main__ - INFO - [Init] Initializing PowerPredictor...
+2025-12-17 16:03:03,609 - __main__ - INFO - [Init]  PowerPredictor initialized
+2025-12-17 16:03:03,609 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:03,609 - __main__ - INFO - [Init]  All components initialized successfully
+2025-12-17 16:03:03,609 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:03,609 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:03,610 - __main__ - INFO - [PREDICT START] split_date: 2025-12-15 (입력된 날짜)
+2025-12-17 16:03:03,610 - app.core.prediction_pipeline - INFO - [Pipeline] Calculating split_timestamp for split_date: 2025-12-15
+2025-12-17 16:03:03,610 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] split_date  : 2025-12-15
+2025-12-17 16:03:03,610 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] 마지막 날짜 : 2025-12-17 00:00:00
+2025-12-17 16:03:03,610 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] output_chunk_length=54, split_timestamp=2025-12-15 21:30:00
+2025-12-17 16:03:03,611 - app.core.prediction_pipeline - INFO - [DB Fetch] Starting parallel database queries
+2025-12-17 16:03:03,611 - app.core.db - INFO - [데이터 조회] 조회 테이블: tb_kepco_pwr_consum_minutes
+2025-12-17 16:03:03,612 - app.core.db - INFO - [데이터 조회] end_date: 2025-12-15 21:30:00까지 모든 데이터 조회
+2025-12-17 16:03:03,612 - app.core.db - INFO - [달력 데이터 조회] 조회 테이블: tb_calendar_work
+2025-12-17 16:03:03,612 - app.core.db - INFO - [데이터 조회] SQL 쿼리: WHERE use_dt < '2025-12-15 21:30:00'
+2025-12-17 16:03:03,612 - app.core.db - INFO - [달력 데이터 조회] 2025-12-17 00:00:00까지 모든 달력 데이터 조회
+2025-12-17 16:03:03,613 - app.core.db - INFO - [데이터 조회] 쿼리 실행 중...
+2025-12-17 16:03:03,868 - app.core.db - INFO - [달력 데이터 조회] 쿼리 결과: 2908개 행 반환
+2025-12-17 16:03:03,868 - app.core.db - INFO - [달력 데이터 조회] 데이터 조회 완료: 2908개 레코드
+2025-12-17 16:03:03,868 - app.core.db - INFO - [달력 데이터 조회] 변경 전 컬럼: ['DATE', 'WEEK_DAY', 'HOLI_TYPE', 'REMARK', 'REG_DT']
+2025-12-17 16:03:03,868 - app.core.db - INFO - [달력 데이터 조회] DB 형식에서 모델 형식으로 컬럼명 변경 중...
+2025-12-17 16:03:03,869 - app.core.db - INFO - [달력 데이터 조회] 변경 후 컬럼: ['ymdhms', 'WEEK_DAY', 'HOLI_TYPE', 'REMARK', 'REG_DT']
+2025-12-17 16:03:03,870 - app.core.db - INFO - [달력 데이터 조회] DateTime 변환 완료
+2025-12-17 16:03:04,390 - app.core.db - INFO - [데이터 조회] 쿼리 결과: 22074개 행 반환
+2025-12-17 16:03:04,390 - app.core.db - INFO - [데이터 조회]  22074개 레코드 발견
+2025-12-17 16:03:04,390 - app.core.db - INFO - [데이터 조회] DB 형식에서 모델 형식으로 컬럼명 변경 중...
+2025-12-17 16:03:04,390 - app.core.db - INFO - [데이터 조회] 변경 전 컬럼: ['use_dt', 'pwr_usage', 'max_demand', 'react_pwr', 'real_react_pwr', 'co_amt', 'pwr_factor', 'leading_pwr_factor']
+2025-12-17 16:03:04,391 - app.core.db - INFO - [데이터 조회] 변경 후 컬럼: ['ymdhms', '사용량(kWh)', '최대수요(kW)', '무효전력(지상)', '무효전력(진상)', 'CO2(tCO2)', '역률(%)_지상', '역률(%)_진상']
+2025-12-17 16:03:04,396 - app.core.db - INFO - [데이터 조회] DateTime 변환 완료
+2025-12-17 16:03:04,397 - app.core.db - INFO - [데이터 조회]  데이터 조회 완료: 2025-12-15 21:30:00 이전 22074개 레코드
+2025-12-17 16:03:04,397 - app.core.db - INFO - [데이터 조회]  날짜 범위: 2024-09-12 00:30:00 ~ 2025-12-15 21:00:00
+2025-12-17 16:03:04,398 - app.core.prediction_pipeline - INFO - [DB Fetch] 22074 power records, 2908 calendar records | Period: 2024-09-12 00:30:00 ~ 2025-12-15 21:00:00
+2025-12-17 16:03:04,398 - app.core.prediction_pipeline - INFO - [Preprocess] Starting data preprocessing
+2025-12-17 16:03:04,405 - app.core.preprocess - INFO - [전처리] 전력 원본 데이터: 2024-09-12 00:30:00부터 2025-12-15 21:00:00까지 22074개 레코드
+2025-12-17 16:03:04,405 - app.core.preprocess - INFO - [타임스탬프 생성] 미래 데이터 범위: 2025-12-15 21:30:00 ~ 2025-12-17 00:00:00 (54개)
+2025-12-17 16:03:04,407 - app.core.preprocess - INFO - [전처리] 데이터 결합 완료: 22128개 레코드 (과거 + 미래, output_chunk_length=54)
+2025-12-17 16:03:04,410 - app.core.preprocess - INFO - split_date :2025-12-15, split_timestamp : 2025-12-15 21:30:00, two_days_later : 2025-12-17 00:00:00
+2025-12-17 16:03:04,410 - app.core.preprocess - INFO - [전처리] 캘린더 원본 데이터: 2018-01-01 00:00:00부터 2025-12-17 00:00:00까지 2908개 레코드
+2025-12-17 16:03:04,411 - app.core.preprocess - INFO - [전처리] ✅ two_days_later(2025-12-17)가 캘린더 데이터에 포함됨 → 30분 단위 확장 수행
+2025-12-17 16:03:04,726 - app.core.preprocess - INFO - [전처리] 캘린더 30분 단위 확장 완료: 139584개 레코드 (벡터화 방식)
+2025-12-17 16:03:04,731 - app.core.preprocess - INFO - [전처리] 전력 데이터와 캘린더 데이터 병합 완료: 22128개 레코드
+2025-12-17 16:03:04,747 - app.core.preprocess - INFO - [Holiday Cache] 공휴일 데이터 계산 및 캐싱: (2024, 2025)
+2025-12-17 16:03:04,954 - app.core.preprocess - INFO - [특성생성] 입력 데이터: 22128개 레코드
+2025-12-17 16:03:04,965 - app.core.preprocess - INFO - [특성생성] 특성 생성 완료: 22128개 레코드
+2025-12-17 16:03:04,966 - app.core.preprocess - INFO - [특성생성] 추가된 컬럼: hour, dayofweek, month, quarter, day, weekofyear, is_weekend, is_business_hour, is_night, hour_sin, hour_cos, day_sin, day_cos, month_sin, month_cos, power_quality, reactive_ratio, power_factor_avg
+2025-12-17 16:03:04,966 - app.core.preprocess - INFO - [전처리] 전처리 완료: 22128개 레코드
+2025-12-17 16:03:04,967 - app.core.preprocess - INFO - [전처리] ✅ ymdhms 중복 없음 (전체 22128개 행)
+2025-12-17 16:03:04,968 - app.core.prediction_pipeline - INFO - [Preprocess] Data preprocessing completed | split_timestamp: 2025-12-15 21:30:00
+2025-12-17 16:03:04,968 - app.core.prediction_pipeline - INFO - ================================================================================
+2025-12-17 16:03:04,968 - app.core.prediction_pipeline - INFO - [Model Selection] HOLI_TYPE_NUM 필드 존재: True
+2025-12-17 16:03:04,968 - app.core.prediction_pipeline - INFO - [Model Cache] 💾 새 모델 로드 및 캐싱: work_model
+2025-12-17 16:03:04,968 - app.utils.model_loader - INFO - [ModelLoader] 캘린더 데이터 포함: True
+2025-12-17 16:03:04,969 - app.utils.model_loader - INFO - [ModelLoader] 모델 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt
+2025-12-17 16:03:05,042 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt에서 모델 로드 성공
+2025-12-17 16:03:05,042 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\scalers.pkl에서 스케일러 로드 성공
+2025-12-17 16:03:05,042 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\config.json에서 설정 로드 성공
+2025-12-17 16:03:05,043 - app.utils.model_loader - INFO - 모든 모델 구성 요소 로드 성공
+2025-12-17 16:03:05,043 - app.core.prediction_pipeline - INFO - [Model Selection] 사용 모델: work_model
+2025-12-17 16:03:05,043 - app.core.prediction_pipeline - INFO - ================================================================================
+2025-12-17 16:03:05,043 - app.core.prediction_pipeline - INFO - [Prediction] Starting prediction
+2025-12-17 16:03:05,043 - app.models.predictor - INFO - [예측] 시작: 22128개 레코드, 날짜 범위: 2024-09-12 00:30:00 ~ 2025-12-17 00:00:00
+2025-12-17 16:03:05,044 - app.models.predictor - INFO -   [시계열 준비] Split timestamp: 2025-12-15 21:30:00
+2025-12-17 16:03:05,044 - app.models.predictor - INFO -   [시계열 준비] 전체 데이터: 22128개 레코드 (2024-09-12 00:30:00 ~ 2025-12-17 00:00:00)
+2025-12-17 16:03:05,070 - app.models.predictor - INFO -   [시계열 준비] TimeSeries 생성 완료 (series: 22128, past: 22128, future: 22128)
+2025-12-17 16:03:05,070 - app.models.predictor - INFO -   [시계열 준비] 모델 설정:
+2025-12-17 16:03:05,070 - app.models.predictor - INFO -     - past_cols: ['사용량(kWh)']
+2025-12-17 16:03:05,071 - app.models.predictor - INFO -     - future_cols: ['HOLI_TYPE_NUM', 'is_weekend', 'dayofweek']
+2025-12-17 16:03:05,071 - app.models.predictor - INFO -   [시계열 준비] 정규화 전 NaN 확인:
+2025-12-17 16:03:05,071 - app.models.predictor - INFO -     - series NaN: 0 / 22128
+2025-12-17 16:03:05,071 - app.models.predictor - INFO -     - past NaN: 0 / 22128
+2025-12-17 16:03:05,071 - app.models.predictor - INFO -     - future NaN: 0 / 66384
+2025-12-17 16:03:05,073 - app.models.predictor - INFO -   [시계열 준비] 정규화 완료
+2025-12-17 16:03:05,073 - app.models.predictor - INFO -   [시계열 준비] 정규화 후 NaN 확인:
+2025-12-17 16:03:05,073 - app.models.predictor - INFO -     - series NaN: 0 / 22128
+2025-12-17 16:03:05,074 - app.models.predictor - INFO -     - past NaN: 0 / 22128
+2025-12-17 16:03:05,074 - app.models.predictor - INFO -     - future NaN: 0 / 66384
+2025-12-17 16:03:05,075 - app.models.predictor - INFO -   [시계열 준비] 슬라이싱 완료
+2025-12-17 16:03:05,075 - app.models.predictor - INFO -     - series: 144 (from 2025-12-12 21:30:00 to 2025-12-15 21:00:00)
+2025-12-17 16:03:05,075 - app.models.predictor - INFO -     - past: 144 (from 2025-12-12 21:30:00 to 2025-12-15 21:00:00)
+2025-12-17 16:03:05,075 - app.models.predictor - INFO -     - future: 22128 (from 2024-09-12 00:30:00 to 2025-12-17 00:00:00)
+2025-12-17 16:03:05,076 - app.models.predictor - INFO - [예측] 모델 예측 실행 중...
+2025-12-17 16:03:05,077 - app.models.predictor - INFO -   [분할 예측] 모델 예측 시작 (output_length=54)
+2025-12-17 16:03:05,077 - app.models.predictor - INFO -     - series 길이: 144
+2025-12-17 16:03:05,077 - app.models.predictor - INFO -     - past 길이: 144
+2025-12-17 16:03:05,077 - app.models.predictor - INFO -     - future 길이: 22128
+2025-12-17 16:03:05,164 - app.models.predictor - INFO -   [분할 예측] 모델 예측 완료
+2025-12-17 16:03:05,244 - app.models.predictor - INFO -   [분할 예측] 역정규화 완료
+2025-12-17 16:03:05,245 - app.models.predictor - INFO - [예측] 예측 결과 추출: 길이 54 → 뒤에서부터 48개만 추출
+2025-12-17 16:03:05,245 - app.models.predictor - INFO - [예측] 추출 완료: 최종 길이 48
+2025-12-17 16:03:05,246 - app.core.prediction_pipeline - INFO - [Prediction] 48 records | Period: 2025-12-16 00:30:00 ~ 2025-12-17 00:00:00
+2025-12-17 16:03:05,246 - app.core.prediction_pipeline - INFO - [Hourly Save] Starting hourly aggregation and save
+2025-12-17 16:03:05,248 - app.core.db - INFO - [DB 연결] 데이터베이스 연결 시도 중...
+2025-12-17 16:03:05,248 - app.core.db - INFO - [DB 연결] Host: 192.168.213.250
+2025-12-17 16:03:05,248 - app.core.db - INFO - [DB 연결] Port: 3306
+2025-12-17 16:03:05,248 - app.core.db - INFO - [DB 연결] User: root
+2025-12-17 16:03:05,248 - app.core.db - INFO - [DB 연결] Database: db_energy
+2025-12-17 16:03:05,249 - app.core.db - INFO - [DB 연결] ✅ db_energy 데이터베이스 연결 성공
+2025-12-17 16:03:05,894 - app.core.db_saver - INFO - [DB 저장 - 시간별] tb_aggregate_smarteye_hour: INSERT=0, UPDATE=24 | 기간: 2025-12-16 01:00:00 ~ 2025-12-17 00:00:00 | reg_dt: 2025-12-17 16:03:05.249266+09:00
+2025-12-17 16:03:05,911 - app.core.prediction_pipeline - INFO - [Hourly Save] 48 records saved
+2025-12-17 16:03:05,911 - app.core.prediction_pipeline - INFO - [Daily Save] Starting daily aggregation and save
+2025-12-17 16:03:05,966 - app.core.db_saver - INFO - [DB 저장 - 일별] tb_aggregate_smarteye_day: INSERT=0, UPDATE=1 | 기간: 2025-12-16 00:00:00 ~ 2025-12-16 00:00:00 | reg_dt: 2025-12-17 16:03:05.912307+09:00
+2025-12-17 16:03:05,983 - app.core.prediction_pipeline - INFO - [Daily Save] 2 records saved
+2025-12-17 16:03:05,983 - app.core.prediction_pipeline - INFO - [Pipeline] SUCCESS - Hourly: 48 records, Daily: 2 records saved
+2025-12-17 16:03:05,983 - __main__ - INFO - [PREDICT END] SUCCESS - Hourly: 48 records, Daily: 2 records saved
+2025-12-17 16:03:05,984 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:05,984 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:05,984 - __main__ - INFO - EMS Prediction Scheduler Completed Successfully
+2025-12-17 16:03:05,984 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:24,533 - __main__ - INFO - [LOG SETUP] Log file initialized: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\logs\ems_AI_scheduler_2025-12-17.log
+2025-12-17 16:03:24,534 - app.main - INFO - [날짜 설정] 입력된 날짜 사용: 2025-12-14
+2025-12-17 16:03:24,534 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:24,534 - __main__ - INFO - EMS Prediction Scheduler Started
+2025-12-17 16:03:24,534 - __main__ - INFO - Execution Time: 2025-12-17 16:03:24
+2025-12-17 16:03:24,534 - __main__ - INFO - Split Date: 2025-12-14 (입력된 날짜)
+2025-12-17 16:03:24,535 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:24,535 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:24,535 - __main__ - INFO - Initializing EMS Prediction Components...
+2025-12-17 16:03:24,535 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:24,535 - __main__ - INFO - [Init] Setting global random seed to 42...
+2025-12-17 16:03:24,537 - __main__ - INFO - [Init]  Global random seed fixed to 42
+2025-12-17 16:03:24,537 - __main__ - INFO - [Init] Initializing Database manager...
+2025-12-17 16:03:24,537 - __main__ - INFO - [Init]  Database manager initialized
+2025-12-17 16:03:24,537 - __main__ - INFO - [Init] Testing database connection...
+2025-12-17 16:03:24,537 - app.core.db - INFO - [DB 연결] 데이터베이스 연결 시도 중...
+2025-12-17 16:03:24,537 - app.core.db - INFO - [DB 연결] Host: 192.168.213.250
+2025-12-17 16:03:24,537 - app.core.db - INFO - [DB 연결] Port: 3306
+2025-12-17 16:03:24,538 - app.core.db - INFO - [DB 연결] User: root
+2025-12-17 16:03:24,538 - app.core.db - INFO - [DB 연결] Database: db_energy
+2025-12-17 16:03:24,579 - app.core.db - INFO - [DB 연결] ✅ db_energy 데이터베이스 연결 성공
+2025-12-17 16:03:24,820 - app.core.db - INFO - [DB 연결]  연결 테스트 통과
+2025-12-17 16:03:24,820 - __main__ - INFO - [Init]  Database connection test passed
+2025-12-17 16:03:24,820 - __main__ - INFO - [Init] Initializing ForecastSaver...
+2025-12-17 16:03:24,820 - __main__ - INFO - [Init]  ForecastSaver initialized
+2025-12-17 16:03:24,820 - __main__ - INFO - [Init] Loading model components...
+2025-12-17 16:03:24,820 - app.utils.model_loader - INFO - [ModelLoader] 캘린더 데이터 포함: True
+2025-12-17 16:03:24,821 - app.utils.model_loader - INFO - [ModelLoader] 모델 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt
+2025-12-17 16:03:25,067 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt에서 모델 로드 성공
+2025-12-17 16:03:25,068 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\scalers.pkl에서 스케일러 로드 성공
+2025-12-17 16:03:25,068 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\config.json에서 설정 로드 성공
+2025-12-17 16:03:25,068 - app.utils.model_loader - INFO - 모든 모델 구성 요소 로드 성공
+2025-12-17 16:03:25,068 - __main__ - INFO - [Init]  Model components loaded successfully
+2025-12-17 16:03:25,069 - __main__ - INFO - [Init] Initializing PowerPredictor...
+2025-12-17 16:03:25,069 - __main__ - INFO - [Init]  PowerPredictor initialized
+2025-12-17 16:03:25,069 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:25,069 - __main__ - INFO - [Init]  All components initialized successfully
+2025-12-17 16:03:25,069 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:25,069 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:25,069 - __main__ - INFO - [PREDICT START] split_date: 2025-12-14 (입력된 날짜)
+2025-12-17 16:03:25,069 - app.core.prediction_pipeline - INFO - [Pipeline] Calculating split_timestamp for split_date: 2025-12-14
+2025-12-17 16:03:25,071 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] split_date  : 2025-12-14
+2025-12-17 16:03:25,071 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] 마지막 날짜 : 2025-12-16 00:00:00
+2025-12-17 16:03:25,071 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] output_chunk_length=54, split_timestamp=2025-12-14 21:30:00
+2025-12-17 16:03:25,071 - app.core.prediction_pipeline - INFO - [DB Fetch] Starting parallel database queries
+2025-12-17 16:03:25,071 - app.core.db - INFO - [데이터 조회] 조회 테이블: tb_kepco_pwr_consum_minutes
+2025-12-17 16:03:25,072 - app.core.db - INFO - [데이터 조회] end_date: 2025-12-14 21:30:00까지 모든 데이터 조회
+2025-12-17 16:03:25,072 - app.core.db - INFO - [데이터 조회] SQL 쿼리: WHERE use_dt < '2025-12-14 21:30:00'
+2025-12-17 16:03:25,072 - app.core.db - INFO - [달력 데이터 조회] 조회 테이블: tb_calendar_work
+2025-12-17 16:03:25,072 - app.core.db - INFO - [데이터 조회] 쿼리 실행 중...
+2025-12-17 16:03:25,072 - app.core.db - INFO - [달력 데이터 조회] 2025-12-16 00:00:00까지 모든 달력 데이터 조회
+2025-12-17 16:03:25,375 - app.core.db - INFO - [달력 데이터 조회] 쿼리 결과: 2907개 행 반환
+2025-12-17 16:03:25,375 - app.core.db - INFO - [달력 데이터 조회] 데이터 조회 완료: 2907개 레코드
+2025-12-17 16:03:25,375 - app.core.db - INFO - [달력 데이터 조회] 변경 전 컬럼: ['DATE', 'WEEK_DAY', 'HOLI_TYPE', 'REMARK', 'REG_DT']
+2025-12-17 16:03:25,377 - app.core.db - INFO - [달력 데이터 조회] DB 형식에서 모델 형식으로 컬럼명 변경 중...
+2025-12-17 16:03:25,378 - app.core.db - INFO - [달력 데이터 조회] 변경 후 컬럼: ['ymdhms', 'WEEK_DAY', 'HOLI_TYPE', 'REMARK', 'REG_DT']
+2025-12-17 16:03:25,379 - app.core.db - INFO - [달력 데이터 조회] DateTime 변환 완료
+2025-12-17 16:03:25,526 - app.core.db - INFO - [데이터 조회] 쿼리 결과: 22026개 행 반환
+2025-12-17 16:03:25,526 - app.core.db - INFO - [데이터 조회]  22026개 레코드 발견
+2025-12-17 16:03:25,526 - app.core.db - INFO - [데이터 조회] DB 형식에서 모델 형식으로 컬럼명 변경 중...
+2025-12-17 16:03:25,526 - app.core.db - INFO - [데이터 조회] 변경 전 컬럼: ['use_dt', 'pwr_usage', 'max_demand', 'react_pwr', 'real_react_pwr', 'co_amt', 'pwr_factor', 'leading_pwr_factor']
+2025-12-17 16:03:25,527 - app.core.db - INFO - [데이터 조회] 변경 후 컬럼: ['ymdhms', '사용량(kWh)', '최대수요(kW)', '무효전력(지상)', '무효전력(진상)', 'CO2(tCO2)', '역률(%)_지상', '역률(%)_진상']
+2025-12-17 16:03:25,532 - app.core.db - INFO - [데이터 조회] DateTime 변환 완료
+2025-12-17 16:03:25,532 - app.core.db - INFO - [데이터 조회]  데이터 조회 완료: 2025-12-14 21:30:00 이전 22026개 레코드
+2025-12-17 16:03:25,533 - app.core.db - INFO - [데이터 조회]  날짜 범위: 2024-09-12 00:30:00 ~ 2025-12-14 21:00:00
+2025-12-17 16:03:25,533 - app.core.prediction_pipeline - INFO - [DB Fetch] 22026 power records, 2907 calendar records | Period: 2024-09-12 00:30:00 ~ 2025-12-14 21:00:00
+2025-12-17 16:03:25,533 - app.core.prediction_pipeline - INFO - [Preprocess] Starting data preprocessing
+2025-12-17 16:03:25,539 - app.core.preprocess - INFO - [전처리] 전력 원본 데이터: 2024-09-12 00:30:00부터 2025-12-14 21:00:00까지 22026개 레코드
+2025-12-17 16:03:25,540 - app.core.preprocess - INFO - [타임스탬프 생성] 미래 데이터 범위: 2025-12-14 21:30:00 ~ 2025-12-16 00:00:00 (54개)
+2025-12-17 16:03:25,542 - app.core.preprocess - INFO - [전처리] 데이터 결합 완료: 22080개 레코드 (과거 + 미래, output_chunk_length=54)
+2025-12-17 16:03:25,544 - app.core.preprocess - INFO - split_date :2025-12-14, split_timestamp : 2025-12-14 21:30:00, two_days_later : 2025-12-16 00:00:00
+2025-12-17 16:03:25,544 - app.core.preprocess - INFO - [전처리] 캘린더 원본 데이터: 2018-01-01 00:00:00부터 2025-12-16 00:00:00까지 2907개 레코드
+2025-12-17 16:03:25,545 - app.core.preprocess - INFO - [전처리] ✅ two_days_later(2025-12-16)가 캘린더 데이터에 포함됨 → 30분 단위 확장 수행
+2025-12-17 16:03:25,818 - app.core.preprocess - INFO - [전처리] 캘린더 30분 단위 확장 완료: 139536개 레코드 (벡터화 방식)
+2025-12-17 16:03:25,823 - app.core.preprocess - INFO - [전처리] 전력 데이터와 캘린더 데이터 병합 완료: 22080개 레코드
+2025-12-17 16:03:25,837 - app.core.preprocess - INFO - [Holiday Cache] 공휴일 데이터 계산 및 캐싱: (2024, 2025)
+2025-12-17 16:03:25,992 - app.core.preprocess - INFO - [특성생성] 입력 데이터: 22080개 레코드
+2025-12-17 16:03:26,001 - app.core.preprocess - INFO - [특성생성] 특성 생성 완료: 22080개 레코드
+2025-12-17 16:03:26,001 - app.core.preprocess - INFO - [특성생성] 추가된 컬럼: hour, dayofweek, month, quarter, day, weekofyear, is_weekend, is_business_hour, is_night, hour_sin, hour_cos, day_sin, day_cos, month_sin, month_cos, power_quality, reactive_ratio, power_factor_avg
+2025-12-17 16:03:26,001 - app.core.preprocess - INFO - [전처리] 전처리 완료: 22080개 레코드
+2025-12-17 16:03:26,002 - app.core.preprocess - INFO - [전처리] ✅ ymdhms 중복 없음 (전체 22080개 행)
+2025-12-17 16:03:26,003 - app.core.prediction_pipeline - INFO - [Preprocess] Data preprocessing completed | split_timestamp: 2025-12-14 21:30:00
+2025-12-17 16:03:26,003 - app.core.prediction_pipeline - INFO - ================================================================================
+2025-12-17 16:03:26,003 - app.core.prediction_pipeline - INFO - [Model Selection] HOLI_TYPE_NUM 필드 존재: True
+2025-12-17 16:03:26,003 - app.core.prediction_pipeline - INFO - [Model Cache] 💾 새 모델 로드 및 캐싱: work_model
+2025-12-17 16:03:26,003 - app.utils.model_loader - INFO - [ModelLoader] 캘린더 데이터 포함: True
+2025-12-17 16:03:26,003 - app.utils.model_loader - INFO - [ModelLoader] 모델 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt
+2025-12-17 16:03:26,064 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt에서 모델 로드 성공
+2025-12-17 16:03:26,064 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\scalers.pkl에서 스케일러 로드 성공
+2025-12-17 16:03:26,064 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\config.json에서 설정 로드 성공
+2025-12-17 16:03:26,064 - app.utils.model_loader - INFO - 모든 모델 구성 요소 로드 성공
+2025-12-17 16:03:26,065 - app.core.prediction_pipeline - INFO - [Model Selection] 사용 모델: work_model
+2025-12-17 16:03:26,065 - app.core.prediction_pipeline - INFO - ================================================================================
+2025-12-17 16:03:26,065 - app.core.prediction_pipeline - INFO - [Prediction] Starting prediction
+2025-12-17 16:03:26,065 - app.models.predictor - INFO - [예측] 시작: 22080개 레코드, 날짜 범위: 2024-09-12 00:30:00 ~ 2025-12-16 00:00:00
+2025-12-17 16:03:26,065 - app.models.predictor - INFO -   [시계열 준비] Split timestamp: 2025-12-14 21:30:00
+2025-12-17 16:03:26,066 - app.models.predictor - INFO -   [시계열 준비] 전체 데이터: 22080개 레코드 (2024-09-12 00:30:00 ~ 2025-12-16 00:00:00)
+2025-12-17 16:03:26,085 - app.models.predictor - INFO -   [시계열 준비] TimeSeries 생성 완료 (series: 22080, past: 22080, future: 22080)
+2025-12-17 16:03:26,085 - app.models.predictor - INFO -   [시계열 준비] 모델 설정:
+2025-12-17 16:03:26,085 - app.models.predictor - INFO -     - past_cols: ['사용량(kWh)']
+2025-12-17 16:03:26,085 - app.models.predictor - INFO -     - future_cols: ['HOLI_TYPE_NUM', 'is_weekend', 'dayofweek']
+2025-12-17 16:03:26,085 - app.models.predictor - INFO -   [시계열 준비] 정규화 전 NaN 확인:
+2025-12-17 16:03:26,086 - app.models.predictor - INFO -     - series NaN: 0 / 22080
+2025-12-17 16:03:26,086 - app.models.predictor - INFO -     - past NaN: 0 / 22080
+2025-12-17 16:03:26,086 - app.models.predictor - INFO -     - future NaN: 0 / 66240
+2025-12-17 16:03:26,087 - app.models.predictor - INFO -   [시계열 준비] 정규화 완료
+2025-12-17 16:03:26,087 - app.models.predictor - INFO -   [시계열 준비] 정규화 후 NaN 확인:
+2025-12-17 16:03:26,087 - app.models.predictor - INFO -     - series NaN: 0 / 22080
+2025-12-17 16:03:26,087 - app.models.predictor - INFO -     - past NaN: 0 / 22080
+2025-12-17 16:03:26,088 - app.models.predictor - INFO -     - future NaN: 0 / 66240
+2025-12-17 16:03:26,088 - app.models.predictor - INFO -   [시계열 준비] 슬라이싱 완료
+2025-12-17 16:03:26,088 - app.models.predictor - INFO -     - series: 144 (from 2025-12-11 21:30:00 to 2025-12-14 21:00:00)
+2025-12-17 16:03:26,089 - app.models.predictor - INFO -     - past: 144 (from 2025-12-11 21:30:00 to 2025-12-14 21:00:00)
+2025-12-17 16:03:26,089 - app.models.predictor - INFO -     - future: 22080 (from 2024-09-12 00:30:00 to 2025-12-16 00:00:00)
+2025-12-17 16:03:26,089 - app.models.predictor - INFO - [예측] 모델 예측 실행 중...
+2025-12-17 16:03:26,090 - app.models.predictor - INFO -   [분할 예측] 모델 예측 시작 (output_length=54)
+2025-12-17 16:03:26,090 - app.models.predictor - INFO -     - series 길이: 144
+2025-12-17 16:03:26,090 - app.models.predictor - INFO -     - past 길이: 144
+2025-12-17 16:03:26,090 - app.models.predictor - INFO -     - future 길이: 22080
+2025-12-17 16:03:26,161 - app.models.predictor - INFO -   [분할 예측] 모델 예측 완료
+2025-12-17 16:03:26,162 - app.models.predictor - INFO -   [분할 예측] 역정규화 완료
+2025-12-17 16:03:26,163 - app.models.predictor - INFO - [예측] 예측 결과 추출: 길이 54 → 뒤에서부터 48개만 추출
+2025-12-17 16:03:26,163 - app.models.predictor - INFO - [예측] 추출 완료: 최종 길이 48
+2025-12-17 16:03:26,163 - app.core.prediction_pipeline - INFO - [Prediction] 48 records | Period: 2025-12-15 00:30:00 ~ 2025-12-16 00:00:00
+2025-12-17 16:03:26,163 - app.core.prediction_pipeline - INFO - [Hourly Save] Starting hourly aggregation and save
+2025-12-17 16:03:26,165 - app.core.db - INFO - [DB 연결] 데이터베이스 연결 시도 중...
+2025-12-17 16:03:26,165 - app.core.db - INFO - [DB 연결] Host: 192.168.213.250
+2025-12-17 16:03:26,165 - app.core.db - INFO - [DB 연결] Port: 3306
+2025-12-17 16:03:26,166 - app.core.db - INFO - [DB 연결] User: root
+2025-12-17 16:03:26,166 - app.core.db - INFO - [DB 연결] Database: db_energy
+2025-12-17 16:03:26,166 - app.core.db - INFO - [DB 연결] ✅ db_energy 데이터베이스 연결 성공
+2025-12-17 16:03:26,804 - app.core.db_saver - INFO - [DB 저장 - 시간별] tb_aggregate_smarteye_hour: INSERT=0, UPDATE=24 | 기간: 2025-12-15 01:00:00 ~ 2025-12-16 00:00:00 | reg_dt: 2025-12-17 16:03:26.166236+09:00
+2025-12-17 16:03:26,820 - app.core.prediction_pipeline - INFO - [Hourly Save] 48 records saved
+2025-12-17 16:03:26,821 - app.core.prediction_pipeline - INFO - [Daily Save] Starting daily aggregation and save
+2025-12-17 16:03:26,874 - app.core.db_saver - INFO - [DB 저장 - 일별] tb_aggregate_smarteye_day: INSERT=0, UPDATE=1 | 기간: 2025-12-15 00:00:00 ~ 2025-12-15 00:00:00 | reg_dt: 2025-12-17 16:03:26.822406+09:00
+2025-12-17 16:03:26,891 - app.core.prediction_pipeline - INFO - [Daily Save] 2 records saved
+2025-12-17 16:03:26,891 - app.core.prediction_pipeline - INFO - [Pipeline] SUCCESS - Hourly: 48 records, Daily: 2 records saved
+2025-12-17 16:03:26,891 - __main__ - INFO - [PREDICT END] SUCCESS - Hourly: 48 records, Daily: 2 records saved
+2025-12-17 16:03:26,891 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:26,892 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:26,892 - __main__ - INFO - EMS Prediction Scheduler Completed Successfully
+2025-12-17 16:03:26,892 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:47,022 - __main__ - INFO - [LOG SETUP] Log file initialized: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\logs\ems_AI_scheduler_2025-12-17.log
+2025-12-17 16:03:47,022 - app.main - INFO - [날짜 설정] 입력된 날짜 사용: 2025-12-08
+2025-12-17 16:03:47,023 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:47,023 - __main__ - INFO - EMS Prediction Scheduler Started
+2025-12-17 16:03:47,023 - __main__ - INFO - Execution Time: 2025-12-17 16:03:47
+2025-12-17 16:03:47,023 - __main__ - INFO - Split Date: 2025-12-08 (입력된 날짜)
+2025-12-17 16:03:47,023 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:47,023 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:47,024 - __main__ - INFO - Initializing EMS Prediction Components...
+2025-12-17 16:03:47,024 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:47,024 - __main__ - INFO - [Init] Setting global random seed to 42...
+2025-12-17 16:03:47,027 - __main__ - INFO - [Init]  Global random seed fixed to 42
+2025-12-17 16:03:47,027 - __main__ - INFO - [Init] Initializing Database manager...
+2025-12-17 16:03:47,027 - __main__ - INFO - [Init]  Database manager initialized
+2025-12-17 16:03:47,027 - __main__ - INFO - [Init] Testing database connection...
+2025-12-17 16:03:47,028 - app.core.db - INFO - [DB 연결] 데이터베이스 연결 시도 중...
+2025-12-17 16:03:47,028 - app.core.db - INFO - [DB 연결] Host: 192.168.213.250
+2025-12-17 16:03:47,028 - app.core.db - INFO - [DB 연결] Port: 3306
+2025-12-17 16:03:47,028 - app.core.db - INFO - [DB 연결] User: root
+2025-12-17 16:03:47,028 - app.core.db - INFO - [DB 연결] Database: db_energy
+2025-12-17 16:03:47,076 - app.core.db - INFO - [DB 연결] ✅ db_energy 데이터베이스 연결 성공
+2025-12-17 16:03:47,318 - app.core.db - INFO - [DB 연결]  연결 테스트 통과
+2025-12-17 16:03:47,318 - __main__ - INFO - [Init]  Database connection test passed
+2025-12-17 16:03:47,319 - __main__ - INFO - [Init] Initializing ForecastSaver...
+2025-12-17 16:03:47,319 - __main__ - INFO - [Init]  ForecastSaver initialized
+2025-12-17 16:03:47,319 - __main__ - INFO - [Init] Loading model components...
+2025-12-17 16:03:47,319 - app.utils.model_loader - INFO - [ModelLoader] 캘린더 데이터 포함: True
+2025-12-17 16:03:47,319 - app.utils.model_loader - INFO - [ModelLoader] 모델 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt
+2025-12-17 16:03:47,575 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt에서 모델 로드 성공
+2025-12-17 16:03:47,575 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\scalers.pkl에서 스케일러 로드 성공
+2025-12-17 16:03:47,576 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\config.json에서 설정 로드 성공
+2025-12-17 16:03:47,576 - app.utils.model_loader - INFO - 모든 모델 구성 요소 로드 성공
+2025-12-17 16:03:47,576 - __main__ - INFO - [Init]  Model components loaded successfully
+2025-12-17 16:03:47,576 - __main__ - INFO - [Init] Initializing PowerPredictor...
+2025-12-17 16:03:47,576 - __main__ - INFO - [Init]  PowerPredictor initialized
+2025-12-17 16:03:47,576 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:47,576 - __main__ - INFO - [Init]  All components initialized successfully
+2025-12-17 16:03:47,577 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:47,577 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:47,577 - __main__ - INFO - [PREDICT START] split_date: 2025-12-08 (입력된 날짜)
+2025-12-17 16:03:47,577 - app.core.prediction_pipeline - INFO - [Pipeline] Calculating split_timestamp for split_date: 2025-12-08
+2025-12-17 16:03:47,577 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] split_date  : 2025-12-08
+2025-12-17 16:03:47,577 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] 마지막 날짜 : 2025-12-10 00:00:00
+2025-12-17 16:03:47,577 - app.core.prediction_pipeline - INFO - [타임스탬프 생성] output_chunk_length=54, split_timestamp=2025-12-08 21:30:00
+2025-12-17 16:03:47,578 - app.core.prediction_pipeline - INFO - [DB Fetch] Starting parallel database queries
+2025-12-17 16:03:47,578 - app.core.db - INFO - [데이터 조회] 조회 테이블: tb_kepco_pwr_consum_minutes
+2025-12-17 16:03:47,578 - app.core.db - INFO - [데이터 조회] end_date: 2025-12-08 21:30:00까지 모든 데이터 조회
+2025-12-17 16:03:47,579 - app.core.db - INFO - [달력 데이터 조회] 조회 테이블: tb_calendar_work
+2025-12-17 16:03:47,579 - app.core.db - INFO - [데이터 조회] SQL 쿼리: WHERE use_dt < '2025-12-08 21:30:00'
+2025-12-17 16:03:47,579 - app.core.db - INFO - [달력 데이터 조회] 2025-12-10 00:00:00까지 모든 달력 데이터 조회
+2025-12-17 16:03:47,579 - app.core.db - INFO - [데이터 조회] 쿼리 실행 중...
+2025-12-17 16:03:47,725 - app.core.db - INFO - [달력 데이터 조회] 쿼리 결과: 2901개 행 반환
+2025-12-17 16:03:47,725 - app.core.db - INFO - [달력 데이터 조회] 데이터 조회 완료: 2901개 레코드
+2025-12-17 16:03:47,726 - app.core.db - INFO - [달력 데이터 조회] 변경 전 컬럼: ['DATE', 'WEEK_DAY', 'HOLI_TYPE', 'REMARK', 'REG_DT']
+2025-12-17 16:03:47,726 - app.core.db - INFO - [달력 데이터 조회] DB 형식에서 모델 형식으로 컬럼명 변경 중...
+2025-12-17 16:03:47,726 - app.core.db - INFO - [달력 데이터 조회] 변경 후 컬럼: ['ymdhms', 'WEEK_DAY', 'HOLI_TYPE', 'REMARK', 'REG_DT']
+2025-12-17 16:03:47,728 - app.core.db - INFO - [달력 데이터 조회] DateTime 변환 완료
+2025-12-17 16:03:48,091 - app.core.db - INFO - [데이터 조회] 쿼리 결과: 21738개 행 반환
+2025-12-17 16:03:48,091 - app.core.db - INFO - [데이터 조회]  21738개 레코드 발견
+2025-12-17 16:03:48,091 - app.core.db - INFO - [데이터 조회] DB 형식에서 모델 형식으로 컬럼명 변경 중...
+2025-12-17 16:03:48,091 - app.core.db - INFO - [데이터 조회] 변경 전 컬럼: ['use_dt', 'pwr_usage', 'max_demand', 'react_pwr', 'real_react_pwr', 'co_amt', 'pwr_factor', 'leading_pwr_factor']
+2025-12-17 16:03:48,092 - app.core.db - INFO - [데이터 조회] 변경 후 컬럼: ['ymdhms', '사용량(kWh)', '최대수요(kW)', '무효전력(지상)', '무효전력(진상)', 'CO2(tCO2)', '역률(%)_지상', '역률(%)_진상']
+2025-12-17 16:03:48,102 - app.core.db - INFO - [데이터 조회] DateTime 변환 완료
+2025-12-17 16:03:48,102 - app.core.db - INFO - [데이터 조회]  데이터 조회 완료: 2025-12-08 21:30:00 이전 21738개 레코드
+2025-12-17 16:03:48,102 - app.core.db - INFO - [데이터 조회]  날짜 범위: 2024-09-12 00:30:00 ~ 2025-12-08 21:00:00
+2025-12-17 16:03:48,103 - app.core.prediction_pipeline - INFO - [DB Fetch] 21738 power records, 2901 calendar records | Period: 2024-09-12 00:30:00 ~ 2025-12-08 21:00:00
+2025-12-17 16:03:48,103 - app.core.prediction_pipeline - INFO - [Preprocess] Starting data preprocessing
+2025-12-17 16:03:48,109 - app.core.preprocess - INFO - [전처리] 전력 원본 데이터: 2024-09-12 00:30:00부터 2025-12-08 21:00:00까지 21738개 레코드
+2025-12-17 16:03:48,110 - app.core.preprocess - INFO - [타임스탬프 생성] 미래 데이터 범위: 2025-12-08 21:30:00 ~ 2025-12-10 00:00:00 (54개)
+2025-12-17 16:03:48,112 - app.core.preprocess - INFO - [전처리] 데이터 결합 완료: 21792개 레코드 (과거 + 미래, output_chunk_length=54)
+2025-12-17 16:03:48,115 - app.core.preprocess - INFO - split_date :2025-12-08, split_timestamp : 2025-12-08 21:30:00, two_days_later : 2025-12-10 00:00:00
+2025-12-17 16:03:48,115 - app.core.preprocess - INFO - [전처리] 캘린더 원본 데이터: 2018-01-01 00:00:00부터 2025-12-10 00:00:00까지 2901개 레코드
+2025-12-17 16:03:48,116 - app.core.preprocess - INFO - [전처리] ✅ two_days_later(2025-12-10)가 캘린더 데이터에 포함됨 → 30분 단위 확장 수행
+2025-12-17 16:03:48,460 - app.core.preprocess - INFO - [전처리] 캘린더 30분 단위 확장 완료: 139248개 레코드 (벡터화 방식)
+2025-12-17 16:03:48,466 - app.core.preprocess - INFO - [전처리] 전력 데이터와 캘린더 데이터 병합 완료: 21792개 레코드
+2025-12-17 16:03:48,482 - app.core.preprocess - INFO - [Holiday Cache] 공휴일 데이터 계산 및 캐싱: (2024, 2025)
+2025-12-17 16:03:48,649 - app.core.preprocess - INFO - [특성생성] 입력 데이터: 21792개 레코드
+2025-12-17 16:03:48,658 - app.core.preprocess - INFO - [특성생성] 특성 생성 완료: 21792개 레코드
+2025-12-17 16:03:48,658 - app.core.preprocess - INFO - [특성생성] 추가된 컬럼: hour, dayofweek, month, quarter, day, weekofyear, is_weekend, is_business_hour, is_night, hour_sin, hour_cos, day_sin, day_cos, month_sin, month_cos, power_quality, reactive_ratio, power_factor_avg
+2025-12-17 16:03:48,658 - app.core.preprocess - INFO - [전처리] 전처리 완료: 21792개 레코드
+2025-12-17 16:03:48,659 - app.core.preprocess - INFO - [전처리] ✅ ymdhms 중복 없음 (전체 21792개 행)
+2025-12-17 16:03:48,660 - app.core.prediction_pipeline - INFO - [Preprocess] Data preprocessing completed | split_timestamp: 2025-12-08 21:30:00
+2025-12-17 16:03:48,660 - app.core.prediction_pipeline - INFO - ================================================================================
+2025-12-17 16:03:48,660 - app.core.prediction_pipeline - INFO - [Model Selection] HOLI_TYPE_NUM 필드 존재: True
+2025-12-17 16:03:48,661 - app.core.prediction_pipeline - INFO - [Model Cache] 💾 새 모델 로드 및 캐싱: work_model
+2025-12-17 16:03:48,661 - app.utils.model_loader - INFO - [ModelLoader] 캘린더 데이터 포함: True
+2025-12-17 16:03:48,661 - app.utils.model_loader - INFO - [ModelLoader] 모델 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt
+2025-12-17 16:03:48,725 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\tft_model.pt에서 모델 로드 성공
+2025-12-17 16:03:48,726 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\scalers.pkl에서 스케일러 로드 성공
+2025-12-17 16:03:48,726 - app.utils.model_loader - INFO - F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\ems_api\app\weights/work_model\config.json에서 설정 로드 성공
+2025-12-17 16:03:48,726 - app.utils.model_loader - INFO - 모든 모델 구성 요소 로드 성공
+2025-12-17 16:03:48,726 - app.core.prediction_pipeline - INFO - [Model Selection] 사용 모델: work_model
+2025-12-17 16:03:48,726 - app.core.prediction_pipeline - INFO - ================================================================================
+2025-12-17 16:03:48,726 - app.core.prediction_pipeline - INFO - [Prediction] Starting prediction
+2025-12-17 16:03:48,727 - app.models.predictor - INFO - [예측] 시작: 21792개 레코드, 날짜 범위: 2024-09-12 00:30:00 ~ 2025-12-10 00:00:00
+2025-12-17 16:03:48,727 - app.models.predictor - INFO -   [시계열 준비] Split timestamp: 2025-12-08 21:30:00
+2025-12-17 16:03:48,728 - app.models.predictor - INFO -   [시계열 준비] 전체 데이터: 21792개 레코드 (2024-09-12 00:30:00 ~ 2025-12-10 00:00:00)
+2025-12-17 16:03:48,748 - app.models.predictor - INFO -   [시계열 준비] TimeSeries 생성 완료 (series: 21792, past: 21792, future: 21792)
+2025-12-17 16:03:48,748 - app.models.predictor - INFO -   [시계열 준비] 모델 설정:
+2025-12-17 16:03:48,748 - app.models.predictor - INFO -     - past_cols: ['사용량(kWh)']
+2025-12-17 16:03:48,748 - app.models.predictor - INFO -     - future_cols: ['HOLI_TYPE_NUM', 'is_weekend', 'dayofweek']
+2025-12-17 16:03:48,749 - app.models.predictor - INFO -   [시계열 준비] 정규화 전 NaN 확인:
+2025-12-17 16:03:48,749 - app.models.predictor - INFO -     - series NaN: 0 / 21792
+2025-12-17 16:03:48,749 - app.models.predictor - INFO -     - past NaN: 0 / 21792
+2025-12-17 16:03:48,749 - app.models.predictor - INFO -     - future NaN: 0 / 65376
+2025-12-17 16:03:48,751 - app.models.predictor - INFO -   [시계열 준비] 정규화 완료
+2025-12-17 16:03:48,751 - app.models.predictor - INFO -   [시계열 준비] 정규화 후 NaN 확인:
+2025-12-17 16:03:48,751 - app.models.predictor - INFO -     - series NaN: 0 / 21792
+2025-12-17 16:03:48,751 - app.models.predictor - INFO -     - past NaN: 0 / 21792
+2025-12-17 16:03:48,752 - app.models.predictor - INFO -     - future NaN: 0 / 65376
+2025-12-17 16:03:48,752 - app.models.predictor - INFO -   [시계열 준비] 슬라이싱 완료
+2025-12-17 16:03:48,753 - app.models.predictor - INFO -     - series: 144 (from 2025-12-05 21:30:00 to 2025-12-08 21:00:00)
+2025-12-17 16:03:48,753 - app.models.predictor - INFO -     - past: 144 (from 2025-12-05 21:30:00 to 2025-12-08 21:00:00)
+2025-12-17 16:03:48,753 - app.models.predictor - INFO -     - future: 21792 (from 2024-09-12 00:30:00 to 2025-12-10 00:00:00)
+2025-12-17 16:03:48,753 - app.models.predictor - INFO - [예측] 모델 예측 실행 중...
+2025-12-17 16:03:48,754 - app.models.predictor - INFO -   [분할 예측] 모델 예측 시작 (output_length=54)
+2025-12-17 16:03:48,754 - app.models.predictor - INFO -     - series 길이: 144
+2025-12-17 16:03:48,754 - app.models.predictor - INFO -     - past 길이: 144
+2025-12-17 16:03:48,755 - app.models.predictor - INFO -     - future 길이: 21792
+2025-12-17 16:03:48,837 - app.models.predictor - INFO -   [분할 예측] 모델 예측 완료
+2025-12-17 16:03:48,838 - app.models.predictor - INFO -   [분할 예측] 역정규화 완료
+2025-12-17 16:03:48,838 - app.models.predictor - INFO - [예측] 예측 결과 추출: 길이 54 → 뒤에서부터 48개만 추출
+2025-12-17 16:03:48,839 - app.models.predictor - INFO - [예측] 추출 완료: 최종 길이 48
+2025-12-17 16:03:48,839 - app.core.prediction_pipeline - INFO - [Prediction] 48 records | Period: 2025-12-09 00:30:00 ~ 2025-12-10 00:00:00
+2025-12-17 16:03:48,839 - app.core.prediction_pipeline - INFO - [Hourly Save] Starting hourly aggregation and save
+2025-12-17 16:03:48,841 - app.core.db - INFO - [DB 연결] 데이터베이스 연결 시도 중...
+2025-12-17 16:03:48,841 - app.core.db - INFO - [DB 연결] Host: 192.168.213.250
+2025-12-17 16:03:48,841 - app.core.db - INFO - [DB 연결] Port: 3306
+2025-12-17 16:03:48,842 - app.core.db - INFO - [DB 연결] User: root
+2025-12-17 16:03:48,842 - app.core.db - INFO - [DB 연결] Database: db_energy
+2025-12-17 16:03:48,842 - app.core.db - INFO - [DB 연결] ✅ db_energy 데이터베이스 연결 성공
+2025-12-17 16:03:49,490 - app.core.db_saver - INFO - [DB 저장 - 시간별] tb_aggregate_smarteye_hour: INSERT=0, UPDATE=24 | 기간: 2025-12-09 01:00:00 ~ 2025-12-10 00:00:00 | reg_dt: 2025-12-17 16:03:48.843876+09:00
+2025-12-17 16:03:49,522 - app.core.prediction_pipeline - INFO - [Hourly Save] 48 records saved
+2025-12-17 16:03:49,522 - app.core.prediction_pipeline - INFO - [Daily Save] Starting daily aggregation and save
+2025-12-17 16:03:49,576 - app.core.db_saver - INFO - [DB 저장 - 일별] tb_aggregate_smarteye_day: INSERT=0, UPDATE=1 | 기간: 2025-12-09 00:00:00 ~ 2025-12-09 00:00:00 | reg_dt: 2025-12-17 16:03:49.523603+09:00
+2025-12-17 16:03:49,593 - app.core.prediction_pipeline - INFO - [Daily Save] 2 records saved
+2025-12-17 16:03:49,593 - app.core.prediction_pipeline - INFO - [Pipeline] SUCCESS - Hourly: 48 records, Daily: 2 records saved
+2025-12-17 16:03:49,593 - __main__ - INFO - [PREDICT END] SUCCESS - Hourly: 48 records, Daily: 2 records saved
+2025-12-17 16:03:49,594 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:49,594 - __main__ - INFO - ================================================================================
+2025-12-17 16:03:49,594 - __main__ - INFO - EMS Prediction Scheduler Completed Successfully
+2025-12-17 16:03:49,594 - __main__ - INFO - ================================================================================
