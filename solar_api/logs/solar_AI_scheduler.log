@@ -1,0 +1,492 @@
+2025-11-24 10:12:47,562 - __main__ - INFO - ================================================================================
+2025-11-24 10:12:47,563 - __main__ - INFO - Solar Prediction Scheduler Started
+2025-11-24 10:12:47,563 - __main__ - INFO - Execution Time: 2025-11-24 10:12:47
+2025-11-24 10:12:47,563 - __main__ - INFO - ================================================================================
+2025-11-24 10:12:47,572 - __main__ - INFO - 📅 입력 날짜: 2025-11-01
+2025-11-24 10:12:47,572 - __main__ - INFO - ================================================================================
+2025-11-24 10:12:47,572 - __main__ - INFO - 🌞 태양광 예측 자동 실행 시작 (동기식)
+2025-11-24 10:12:47,573 - __main__ - INFO - 📅 실행 시간: 2025-11-24 10:12:47
+2025-11-24 10:12:47,573 - __main__ - INFO - 📅 날짜 소스: 입력된 날짜
+2025-11-24 10:12:47,573 - __main__ - INFO - 📅 지정 날짜: 2025-11-01
+2025-11-24 10:12:47,573 - __main__ - INFO - ================================================================================
+2025-11-24 10:12:48,189 - __main__ - INFO - 🔮 예측 로직 실행 중...
+2025-11-24 10:12:48,214 - app.core.prediction_pipeline - INFO - 📅 입력 날짜 사용: 2025-11-01
+2025-11-24 10:12:48,215 - app.core.prediction_pipeline - INFO - 🌞 앙상블 태양광 발전량 예측 시작: 2025-11-01
+2025-11-24 10:12:48,403 - app.core.config - WARNING - config7.json not found at F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\weights\config7.json. Using default values.
+2025-11-24 10:12:48,407 - app.core.config - WARNING - config7.json not found at F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\weights\config7.json. Using default values.
+2025-11-24 10:12:49,228 - app.core.prediction_pipeline - INFO - 📅 날짜 객체 생성 완료: 2025-11-01 00:00:00
+2025-11-24 10:12:49,229 - app.core.prediction_pipeline - INFO - 🎯 목표 시간대(미래 24h): 2025-11-01 23:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:12:49,229 - app.core.prediction_pipeline - INFO - 🔎 조회 범위 계산 | Solar: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00 , Weather: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:12:49,229 - app.core.database - INFO - 🔍 Solar SQL 조회 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:12:49,229 - app.core.database - INFO - 🔍 Weather SQL 조회 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:12:49,306 - app.core.database - INFO - 📊 앙상블용 태양광 데이터 조회: 0건
+2025-11-24 10:12:49,307 - app.core.database - WARNING -    ⚠️ 태양광 데이터가 비어있습니다!
+2025-11-24 10:12:49,310 - app.core.database - INFO - 🔍 예상 Weather 조회 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00 (총 47개 시간대)
+2025-11-24 10:12:49,315 - app.core.database - INFO - 📊 앙상블용 기상 데이터 조회: 47건
+2025-11-24 10:12:49,315 - app.core.database - INFO -    🔍 Weather 데이터 NaN 체크: 86개
+2025-11-24 10:12:49,316 - app.core.database - INFO -    시간 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:12:49,316 - app.core.database - INFO -    📊 조회된 데이터 개수: 47개 (기대: 47개)
+2025-11-24 10:12:49,316 - app.core.database - INFO -    📊 조회된 시간대 샘플 (처음 3개):
+2025-11-24 10:12:49,316 - app.core.database - INFO -       [0] 2025-11-01 00:00:00
+2025-11-24 10:12:49,316 - app.core.database - INFO -       [1] 2025-11-01 01:00:00
+2025-11-24 10:12:49,316 - app.core.database - INFO -       [2] 2025-11-01 02:00:00
+2025-11-24 10:12:49,318 - app.core.database - INFO -    ✅ Weather 시간 연속성 OK: 47시간 (기대: 47시간)
+2025-11-24 10:12:49,318 - app.core.prediction_pipeline - ERROR - ❌ 앙상블 예측을 위한 충분한 데이터가 없습니다
+2025-11-24 10:12:49,319 - __main__ - ERROR - ❌ 예상치 못한 오류 발생: cannot access local variable 'e' where it is not associated with a value
+Traceback (most recent call last):
+  File "F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\prediction_pipeline.py", line 53, in run_solar_prediction_pipeline
+    result = asyncio.run(_run_async_prediction(target_date_str, today, kst))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\asyncio\runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\asyncio\base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\prediction_pipeline.py", line 131, in _run_async_prediction
+    raise ValueError("앙상블 예측을 위한 충분한 데이터가 없습니다")
+ValueError: 앙상블 예측을 위한 충분한 데이터가 없습니다
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\schedule_solar_AI.py", line 80, in run_prediction
+    result = run_solar_prediction_pipeline(target_date_str=target_date)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\prediction_pipeline.py", line 60, in run_solar_prediction_pipeline
+    logger.error(f"[Pipeline] ValueError: {str(e)}")
+                                               ^
+UnboundLocalError: cannot access local variable 'e' where it is not associated with a value
+2025-11-24 10:12:49,321 - __main__ - INFO - ================================================================================
+2025-11-24 10:12:49,321 - __main__ - ERROR - ================================================================================
+2025-11-24 10:12:49,321 - __main__ - ERROR - Solar Prediction Scheduler Failed
+2025-11-24 10:12:49,322 - __main__ - ERROR - ================================================================================
+2025-11-24 10:14:51,820 - __main__ - INFO - ================================================================================
+2025-11-24 10:14:51,820 - __main__ - INFO - Solar Prediction Scheduler Started
+2025-11-24 10:14:51,820 - __main__ - INFO - Execution Time: 2025-11-24 10:14:51
+2025-11-24 10:14:51,820 - __main__ - INFO - ================================================================================
+2025-11-24 10:14:51,830 - __main__ - INFO - 📅 입력 날짜: 2025-11-01
+2025-11-24 10:14:51,830 - __main__ - INFO - ================================================================================
+2025-11-24 10:14:51,831 - __main__ - INFO - 🌞 태양광 예측 자동 실행 시작 (동기식)
+2025-11-24 10:14:51,831 - __main__ - INFO - 📅 실행 시간: 2025-11-24 10:14:51
+2025-11-24 10:14:51,831 - __main__ - INFO - 📅 날짜 소스: 입력된 날짜
+2025-11-24 10:14:51,831 - __main__ - INFO - 📅 지정 날짜: 2025-11-01
+2025-11-24 10:14:51,831 - __main__ - INFO - ================================================================================
+2025-11-24 10:14:52,247 - __main__ - INFO - 🔮 예측 로직 실행 중...
+2025-11-24 10:14:52,270 - app.core.prediction_pipeline - INFO - 📅 입력 날짜 사용: 2025-11-01
+2025-11-24 10:14:52,270 - app.core.prediction_pipeline - INFO - 🌞 앙상블 태양광 발전량 예측 시작: 2025-11-01
+2025-11-24 10:14:52,428 - app.core.config - WARNING - config7.json not found at F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\weights\config7.json. Using default values.
+2025-11-24 10:14:52,430 - app.core.config - WARNING - config7.json not found at F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\weights\config7.json. Using default values.
+2025-11-24 10:14:53,157 - app.core.prediction_pipeline - INFO - 📅 날짜 객체 생성 완료: 2025-11-01 00:00:00
+2025-11-24 10:14:53,157 - app.core.prediction_pipeline - INFO - 🎯 목표 시간대(미래 24h): 2025-11-01 23:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:14:53,157 - app.core.prediction_pipeline - INFO - 🔎 조회 범위 계산 | Solar: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00 , Weather: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:14:53,157 - app.core.database - INFO - 🔍 Solar SQL 조회 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:14:53,157 - app.core.database - INFO - 🔍 Weather SQL 조회 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:14:53,967 - app.core.database - INFO - 📊 앙상블용 태양광 데이터 조회: 3438건
+2025-11-24 10:14:53,967 - app.core.database - INFO -    시간 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:14:53,968 - app.core.database - INFO -    🔍 Solar 데이터 NaN 체크: 0개
+2025-11-24 10:14:53,971 - app.core.database - INFO -    ✅ Solar 시간 연속성 OK: 191시간 연속
+2025-11-24 10:14:53,974 - app.core.database - INFO - 🔍 예상 Weather 조회 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00 (총 47개 시간대)
+2025-11-24 10:14:54,953 - app.core.database - INFO - 📊 앙상블용 기상 데이터 조회: 47건
+2025-11-24 10:14:54,953 - app.core.database - INFO -    🔍 Weather 데이터 NaN 체크: 86개
+2025-11-24 10:14:54,954 - app.core.database - INFO -    시간 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:14:54,954 - app.core.database - INFO -    📊 조회된 데이터 개수: 47개 (기대: 47개)
+2025-11-24 10:14:54,954 - app.core.database - INFO -    📊 조회된 시간대 샘플 (처음 3개):
+2025-11-24 10:14:54,954 - app.core.database - INFO -       [0] 2025-11-01 00:00:00
+2025-11-24 10:14:54,954 - app.core.database - INFO -       [1] 2025-11-01 01:00:00
+2025-11-24 10:14:54,954 - app.core.database - INFO -       [2] 2025-11-01 02:00:00
+2025-11-24 10:14:54,955 - app.core.database - INFO -    ✅ Weather 시간 연속성 OK: 47시간 (기대: 47시간)
+2025-11-24 10:14:54,955 - app.core.prediction_pipeline - INFO - ✅ 데이터 조회 완료 - 태양광: 3438건, 기상: 47건
+2025-11-24 10:14:54,955 - app.core.preprocess - INFO - 🔍 공장 A 스케일러 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_solar_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:14:54,956 - app.core.preprocess - INFO - ✅ 공장 A 태양광 스케일러 로드 완료
+2025-11-24 10:14:54,956 - app.core.preprocess - INFO - 🔍 공장 B 스케일러 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_solar_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:14:54,957 - app.core.preprocess - INFO - ✅ 공장 B 태양광 스케일러 로드 완료
+2025-11-24 10:14:54,957 - app.core.preprocess - INFO - 🔍 공장 C 스케일러 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_solar_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:14:54,957 - app.core.preprocess - INFO - ✅ 공장 C 태양광 스케일러 로드 완료
+2025-11-24 10:14:54,957 - app.core.preprocess - INFO - 🔍 기상 스케일러 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_weather_scaler_e500_b8_p10_v7.pkl
+2025-11-24 10:14:54,958 - app.core.preprocess - INFO - ✅ 기상 스케일러 로드 완료
+2025-11-24 10:14:54,958 - app.core.preprocess - INFO - 📊 Scaler에서 추출한 Solar features: ['generate_gap', 'PV_Amp']
+2025-11-24 10:14:54,958 - app.core.preprocess - INFO - 📊 Scaler에서 추출한 Weather features: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:54,995 - app.core.preprocess - INFO - 숫자형 컬럼 데이터 타입 변환 완료
+2025-11-24 10:14:55,001 - app.core.preprocess - INFO - 🏭 ID별 공장 분류 결과:
+2025-11-24 10:14:55,002 - app.core.preprocess - INFO -   A공장 (ID 1-12): 2292건, 고유 ID: [np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12)]
+2025-11-24 10:14:55,002 - app.core.preprocess - INFO -   B공장 (ID 13-15): 573건, 고유 ID: [np.int64(13), np.int64(14), np.int64(15)]
+2025-11-24 10:14:55,002 - app.core.preprocess - INFO -   C공장 (ID 16-18): 573건, 고유 ID: [np.int64(16), np.int64(17), np.int64(18)]
+2025-11-24 10:14:55,005 - app.core.preprocess - INFO - 📊 집계 전 데이터: 2292건, 시간 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:14:55,005 - app.core.preprocess - INFO - 📊 실제 집계할 컬럼: ['PV_Volt', 'PV_Amp', 'Volt_R', 'Volt_S', 'Volt_T', 'Ampe_R', 'Ampe_S', 'Ampe_T', 'Frequency', 'Today_Generation', 'generate_gap', 'Accum_Generation']
+2025-11-24 10:14:55,007 - app.core.preprocess - INFO - 📊 집계 후 데이터: 191건
+2025-11-24 10:14:55,008 - app.core.preprocess - INFO - 📊 집계 전 데이터: 573건, 시간 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:14:55,008 - app.core.preprocess - INFO - 📊 실제 집계할 컬럼: ['PV_Volt', 'PV_Amp', 'Volt_R', 'Volt_S', 'Volt_T', 'Ampe_R', 'Ampe_S', 'Ampe_T', 'Frequency', 'Today_Generation', 'generate_gap', 'Accum_Generation']
+2025-11-24 10:14:55,011 - app.core.preprocess - INFO - 📊 집계 후 데이터: 191건
+2025-11-24 10:14:55,012 - app.core.preprocess - INFO - 📊 집계 전 데이터: 573건, 시간 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:14:55,012 - app.core.preprocess - INFO - 📊 실제 집계할 컬럼: ['PV_Volt', 'PV_Amp', 'Volt_R', 'Volt_S', 'Volt_T', 'Ampe_R', 'Ampe_S', 'Ampe_T', 'Frequency', 'Today_Generation', 'generate_gap', 'Accum_Generation']
+2025-11-24 10:14:55,014 - app.core.preprocess - INFO - 📊 집계 후 데이터: 191건
+2025-11-24 10:14:55,014 - app.core.preprocess - INFO - 공장별 집계 완료
+2025-11-24 10:14:55,017 - app.core.preprocess - INFO - 태양광 데이터 품질 체크 완료 - 총 3438건, 결측치 비율: 0.00%
+2025-11-24 10:14:55,017 - app.core.preprocess - INFO - A 공장 전처리 완료: 191건
+2025-11-24 10:14:55,017 - app.core.preprocess - INFO - B 공장 전처리 완료: 191건
+2025-11-24 10:14:55,017 - app.core.preprocess - INFO - C 공장 전처리 완료: 191건
+2025-11-24 10:14:55,021 - app.core.preprocess - INFO - 기상 데이터 숫자형 컬럼 타입 변환 완료
+2025-11-24 10:14:55,022 - app.core.preprocess - INFO - 컬럼명 매핑 완료: ['tmp', 'pop', 'reh', 'wsd', 'sky', 'apparent_elevation'] → ['1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation']
+2025-11-24 10:14:55,034 - app.core.preprocess - INFO - 📊 전처리된 기상 데이터 샘플 (처음 5개):
+2025-11-24 10:14:55,035 - app.core.preprocess - INFO - 기상 데이터 전처리 완료: 47건
+2025-11-24 10:14:55,035 - app.core.preprocess - INFO - 기상 데이터 전처리 완료: (47, 35)
+2025-11-24 10:14:55,035 - app.core.preprocess - INFO - 전처리 후 컬럼: ['tm', 'pop', 'pty', 'pcp', 'reh', 'sno', 'sky', 'tmp', 'tmn', 'tmx', 'uuu', 'vvv', 'wav', 'vec', 'wsd', 'ics', 'apparent_zenith', 'apparent_elevation', 'azimuth', 'reg_dt', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'hour', 'hour_sin', 'hour_cos', 'peak_hours', 'is_daylight', 'weekday', 'sin_week', 'cos_week', 'sin_day', 'cos_day']
+2025-11-24 10:14:55,035 - app.core.prediction_pipeline - INFO - 🏭 FactoryA 시퀀스 생성 중...
+2025-11-24 10:14:55,036 - app.core.preprocess - INFO - 🔍 개별 시퀀스 생성 시작
+2025-11-24 10:14:55,037 - app.core.preprocess - INFO -    Solar 데이터: 191건, features: ['generate_gap', 'PV_Amp']
+2025-11-24 10:14:55,037 - app.core.preprocess - INFO -    Solar 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:14:55,037 - app.core.preprocess - INFO -    Scaler에서 추출한 Weather features 사용: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,037 - app.core.preprocess - INFO -    Weather DataFrame columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,038 - app.core.preprocess - INFO -    Scaler feature names: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,038 - app.core.preprocess - INFO -    Scaler 순서에 맞춰 정렬된 X_weather columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,039 - app.core.preprocess - INFO -    Weather 데이터: 47건, features: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,039 - app.core.preprocess - INFO -    Weather 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:14:55,039 - app.core.preprocess - INFO -    Solar 최대 시퀀스: 24개
+2025-11-24 10:14:55,039 - app.core.preprocess - INFO -    Weather 최대 시퀀스: 24개
+2025-11-24 10:14:55,039 - app.core.preprocess - INFO -    생성 가능 시퀀스: 24개
+2025-11-24 10:14:55,039 - app.core.preprocess - INFO -    ✅ 시퀀스 생성 완료: 24개
+2025-11-24 10:14:55,040 - app.core.preprocess - INFO -    X_solar shape: (24, 168, 2)
+2025-11-24 10:14:55,040 - app.core.preprocess - INFO -    X_weather shape: (24, 24, 9)
+2025-11-24 10:14:55,040 - app.core.preprocess - INFO -    🔍 첫 시퀀스 미래: 2025-11-01T00:00:00.000000000 ~ 2025-11-01T23:00:00.000000000
+2025-11-24 10:14:55,040 - app.core.preprocess - INFO -    🔍 마지막 시퀀스 미래: 2025-11-01T23:00:00.000000000 ~ 2025-11-02T22:00:00.000000000
+2025-11-24 10:14:55,040 - app.core.prediction_pipeline - INFO -    ✅ 24개 시퀀스 생성
+2025-11-24 10:14:55,040 - app.core.prediction_pipeline - INFO - 🏭 FactoryB 시퀀스 생성 중...
+2025-11-24 10:14:55,041 - app.core.preprocess - INFO - 🔍 개별 시퀀스 생성 시작
+2025-11-24 10:14:55,041 - app.core.preprocess - INFO -    Solar 데이터: 191건, features: ['generate_gap', 'PV_Amp']
+2025-11-24 10:14:55,041 - app.core.preprocess - INFO -    Solar 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:14:55,042 - app.core.preprocess - INFO -    Scaler에서 추출한 Weather features 사용: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,042 - app.core.preprocess - INFO -    Weather DataFrame columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,042 - app.core.preprocess - INFO -    Scaler feature names: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,042 - app.core.preprocess - INFO -    Scaler 순서에 맞춰 정렬된 X_weather columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,043 - app.core.preprocess - INFO -    Weather 데이터: 47건, features: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,043 - app.core.preprocess - INFO -    Weather 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:14:55,043 - app.core.preprocess - INFO -    Solar 최대 시퀀스: 24개
+2025-11-24 10:14:55,044 - app.core.preprocess - INFO -    Weather 최대 시퀀스: 24개
+2025-11-24 10:14:55,044 - app.core.preprocess - INFO -    생성 가능 시퀀스: 24개
+2025-11-24 10:14:55,044 - app.core.preprocess - INFO -    ✅ 시퀀스 생성 완료: 24개
+2025-11-24 10:14:55,044 - app.core.preprocess - INFO -    X_solar shape: (24, 168, 2)
+2025-11-24 10:14:55,044 - app.core.preprocess - INFO -    X_weather shape: (24, 24, 9)
+2025-11-24 10:14:55,044 - app.core.preprocess - INFO -    🔍 첫 시퀀스 미래: 2025-11-01T00:00:00.000000000 ~ 2025-11-01T23:00:00.000000000
+2025-11-24 10:14:55,044 - app.core.preprocess - INFO -    🔍 마지막 시퀀스 미래: 2025-11-01T23:00:00.000000000 ~ 2025-11-02T22:00:00.000000000
+2025-11-24 10:14:55,044 - app.core.prediction_pipeline - INFO -    ✅ 24개 시퀀스 생성
+2025-11-24 10:14:55,044 - app.core.prediction_pipeline - INFO - 🏭 FactoryC 시퀀스 생성 중...
+2025-11-24 10:14:55,045 - app.core.preprocess - INFO - 🔍 개별 시퀀스 생성 시작
+2025-11-24 10:14:55,046 - app.core.preprocess - INFO -    Solar 데이터: 191건, features: ['generate_gap', 'PV_Amp']
+2025-11-24 10:14:55,046 - app.core.preprocess - INFO -    Solar 범위: 2025-10-25 00:00:00 ~ 2025-11-01 22:00:00
+2025-11-24 10:14:55,046 - app.core.preprocess - INFO -    Scaler에서 추출한 Weather features 사용: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,046 - app.core.preprocess - INFO -    Weather DataFrame columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,046 - app.core.preprocess - INFO -    Scaler feature names: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,047 - app.core.preprocess - INFO -    Scaler 순서에 맞춰 정렬된 X_weather columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,047 - app.core.preprocess - INFO -    Weather 데이터: 47건, features: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    Weather 범위: 2025-11-01 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    Solar 최대 시퀀스: 24개
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    Weather 최대 시퀀스: 24개
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    생성 가능 시퀀스: 24개
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    ✅ 시퀀스 생성 완료: 24개
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    X_solar shape: (24, 168, 2)
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    X_weather shape: (24, 24, 9)
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    🔍 첫 시퀀스 미래: 2025-11-01T00:00:00.000000000 ~ 2025-11-01T23:00:00.000000000
+2025-11-24 10:14:55,048 - app.core.preprocess - INFO -    🔍 마지막 시퀀스 미래: 2025-11-01T23:00:00.000000000 ~ 2025-11-02T22:00:00.000000000
+2025-11-24 10:14:55,049 - app.core.prediction_pipeline - INFO -    ✅ 24개 시퀀스 생성
+2025-11-24 10:14:55,049 - app.models.predictor - INFO - 예측 서비스 초기화 시작...
+2025-11-24 10:14:58,741 - app.models.predictor - INFO - C공장 모델 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_multimodal_solar_model_e500_b8_p100_v7.keras
+2025-11-24 10:14:58,742 - app.models.predictor - INFO - B공장 모델 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_multimodal_solar_model_e500_b8_p100_v7.keras
+2025-11-24 10:14:58,744 - app.models.predictor - INFO - A공장 모델 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_multimodal_solar_model_e500_b8_p100_v7.keras
+2025-11-24 10:14:58,745 - app.models.predictor - INFO - ✅ 모든 공장 모델 로드 완료 (A, B, C)
+2025-11-24 10:14:58,745 - app.models.predictor - WARNING - 메타데이터 파일이 없어 기본값으로 설정했습니다. (찾는 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_multimodal_solar_model_e500_b8_p100_v6_metadata.json)
+2025-11-24 10:14:58,745 - app.models.predictor - INFO - ✅ 예측 서비스 초기화 완료
+2025-11-24 10:14:58,745 - app.core.postprocess - INFO - 후처리기 초기화 시작...
+2025-11-24 10:14:58,746 - app.core.postprocess - INFO - A동 출력 스케일러 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_target_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:14:58,746 - app.core.postprocess - INFO - B동 출력 스케일러 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_target_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:14:58,747 - app.core.postprocess - INFO - C동 출력 스케일러 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_target_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:14:58,747 - app.core.postprocess - INFO - ✅ 후처리기 초기화 완료
+2025-11-24 10:14:58,747 - app.core.prediction_pipeline - INFO - 🔮 A동: 24개 시퀀스 배치 예측 중...
+2025-11-24 10:14:58,747 - app.models.predictor - INFO - 🔮 AI 모델 예측 시작 (FactoryA)...
+2025-11-24 10:14:59,789 - app.models.predictor - INFO - ✅ 예측 완료: (24, 24, 1), 처리시간: 1.04초
+2025-11-24 10:14:59,789 - app.core.prediction_pipeline - INFO -    예측 완료: (24, 24, 1)
+2025-11-24 10:14:59,789 - app.core.prediction_pipeline - INFO -    ✅ A동 예측 데이터 준비 완료: 24개 시퀀스
+2025-11-24 10:14:59,789 - app.core.prediction_pipeline - INFO - 🔮 B동: 24개 시퀀스 배치 예측 중...
+2025-11-24 10:14:59,789 - app.models.predictor - INFO - 🔮 AI 모델 예측 시작 (FactoryB)...
+2025-11-24 10:15:00,797 - app.models.predictor - INFO - ✅ 예측 완료: (24, 24, 1), 처리시간: 1.01초
+2025-11-24 10:15:00,798 - app.core.prediction_pipeline - INFO -    예측 완료: (24, 24, 1)
+2025-11-24 10:15:00,798 - app.core.prediction_pipeline - INFO -    ✅ B동 예측 데이터 준비 완료: 24개 시퀀스
+2025-11-24 10:15:00,798 - app.core.prediction_pipeline - INFO - 🔮 C동: 24개 시퀀스 배치 예측 중...
+2025-11-24 10:15:00,798 - app.models.predictor - INFO - 🔮 AI 모델 예측 시작 (FactoryC)...
+2025-11-24 10:15:01,802 - app.models.predictor - INFO - ✅ 예측 완료: (24, 24, 1), 처리시간: 1.00초
+2025-11-24 10:15:01,802 - app.core.prediction_pipeline - INFO -    예측 완료: (24, 24, 1)
+2025-11-24 10:15:01,803 - app.core.prediction_pipeline - INFO -    ✅ C동 예측 데이터 준비 완료: 24개 시퀀스
+2025-11-24 10:15:01,803 - app.core.prediction_pipeline - INFO - 🔄 앙상블 평균 시작...
+2025-11-24 10:15:01,805 - app.core.postprocess - INFO - 🔄 앙상블 평균 시작: 2025-11-01 23:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:15:01,805 - app.core.postprocess - INFO -    A동: 24개 시퀀스, shape=(24, 24)
+2025-11-24 10:15:01,805 - app.core.postprocess - INFO -    역정규화 완료: (24, 24)
+2025-11-24 10:15:01,839 - app.core.postprocess - INFO - ✅ A동 앙상블 완료: 24개 시간대, 평균 147.31
+2025-11-24 10:15:01,839 - app.core.postprocess - INFO -    B동: 24개 시퀀스, shape=(24, 24)
+2025-11-24 10:15:01,840 - app.core.postprocess - INFO -    역정규화 완료: (24, 24)
+2025-11-24 10:15:01,863 - app.core.postprocess - INFO - ✅ B동 앙상블 완료: 24개 시간대, 평균 71.18
+2025-11-24 10:15:01,863 - app.core.postprocess - INFO -    C동: 24개 시퀀스, shape=(24, 24)
+2025-11-24 10:15:01,863 - app.core.postprocess - INFO -    역정규화 완료: (24, 24)
+2025-11-24 10:15:01,886 - app.core.postprocess - INFO - ✅ C동 앙상블 완료: 24개 시간대, 평균 71.19
+2025-11-24 10:15:01,886 - app.core.postprocess - INFO - ✅ 앙상블 평균 완료
+2025-11-24 10:15:01,886 - app.core.prediction_pipeline - INFO - ✅ 3개 공장, 앙상블 예측 완료
+2025-11-24 10:15:01,886 - app.core.prediction_pipeline - INFO - 💾 예측 결과 데이터베이스 저장 시작...
+2025-11-24 10:15:01,887 - app.core.db_saver - INFO - 💾 시간별 예측 결과 저장 시작...
+2025-11-24 10:15:01,887 - app.core.db_saver - INFO - 📊 저장 테이블: tb_solar_hour
+2025-11-24 10:15:01,887 - app.core.db_saver - INFO - 📊 ID 매핑: {'FactoryA': 1, 'A': 1, 'FactoryB': 13, 'B': 13, 'FactoryC': 16, 'C': 16}
+2025-11-24 10:15:01,887 - app.core.db_saver - INFO - 📊 등록 시간 (reg_dt): 2025-11-24 10:15:01.887631
+2025-11-24 10:15:01,887 - app.core.db_saver - INFO - 📊 A 데이터: 시간 24개, 예측값 24개
+2025-11-24 10:15:01,895 - app.core.db_saver - INFO - 📊 레코드 생성 완료: 24건 (ID=1)
+2025-11-24 10:15:02,036 - app.core.db_saver - INFO - ✅ A: 24건 UPSERT 완료 (ID=1)
+2025-11-24 10:15:02,036 - app.core.db_saver - INFO - 📊 B 데이터: 시간 24개, 예측값 24개
+2025-11-24 10:15:02,044 - app.core.db_saver - INFO - 📊 레코드 생성 완료: 24건 (ID=13)
+2025-11-24 10:15:02,176 - app.core.db_saver - INFO - ✅ B: 24건 UPSERT 완료 (ID=13)
+2025-11-24 10:15:02,176 - app.core.db_saver - INFO - 📊 C 데이터: 시간 24개, 예측값 24개
+2025-11-24 10:15:02,184 - app.core.db_saver - INFO - 📊 레코드 생성 완료: 24건 (ID=16)
+2025-11-24 10:15:02,315 - app.core.db_saver - INFO - ✅ C: 24건 UPSERT 완료 (ID=16)
+2025-11-24 10:15:02,315 - app.core.db_saver - INFO - 📊 시간별 전체 저장 완료: 72건 (공장별: {'A': 24, 'B': 24, 'C': 24})
+2025-11-24 10:15:02,315 - app.core.prediction_pipeline - INFO - ✅ 시간별 데이터 저장 완료: {'A': 24, 'B': 24, 'C': 24}
+2025-11-24 10:15:02,315 - app.core.prediction_pipeline - INFO - 💾 일간 합계 tb_solar_day 저장 시작...
+2025-11-24 10:15:02,316 - app.core.db_saver - INFO - 📊 일간 합계 계산 시작...
+2025-11-24 10:15:02,316 - app.core.db_saver - INFO - 📊 저장 테이블: tb_solar_day
+2025-11-24 10:15:02,316 - app.core.db_saver - INFO - 📊 ID 매핑: {'FactoryA': 1, 'A': 1, 'FactoryB': 13, 'B': 13, 'FactoryC': 16, 'C': 16}
+2025-11-24 10:15:02,316 - app.core.db_saver - INFO - 📊 기준 날짜: 2025-11-02 00:00:00
+2025-11-24 10:15:02,316 - app.core.db_saver - INFO - 📊 등록 시간 (reg_dt): 2025-11-24 10:15:02.316322
+2025-11-24 10:15:02,317 - app.core.db_saver - INFO - 📊 레코드 생성: ID=1, ymdhms=2025-11-02 00:00:00, YEAR=2025, forecast_quantity=3535.51, reg_dt=2025-11-24 10:15:02.316322
+2025-11-24 10:15:02,317 - app.core.db_saver - INFO - 📊 레코드 생성: ID=13, ymdhms=2025-11-02 00:00:00, YEAR=2025, forecast_quantity=1708.38, reg_dt=2025-11-24 10:15:02.316322
+2025-11-24 10:15:02,317 - app.core.db_saver - INFO - 📊 레코드 생성: ID=16, ymdhms=2025-11-02 00:00:00, YEAR=2025, forecast_quantity=1708.54, reg_dt=2025-11-24 10:15:02.316322
+2025-11-24 10:15:02,446 - app.core.db_saver - INFO - ✅ 일간 합계 저장 완료: 3건 @ 2025-11-02 00:00:00 | reg_dt: 2025-11-24 10:15:02.316322
+2025-11-24 10:15:02,447 - app.core.prediction_pipeline - INFO - ✅ 일간 합계 저장 완료: {'A': 3535.51, 'B': 1708.38, 'C': 1708.54}
+2025-11-24 10:15:02,448 - app.core.prediction_pipeline - INFO - ✅ 앙상블 태양광 발전량 예측 완료
+2025-11-24 10:15:02,449 - __main__ - INFO - ✅ 예측 실행 성공!
+2025-11-24 10:15:02,449 - __main__ - INFO - 📊 예측 날짜: 2025-11-01 00:00:00
+2025-11-24 10:15:02,449 - __main__ - INFO - 📊 예측 범위: 2025-11-01 23:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:15:02,449 - __main__ - INFO - 💾 시간별 데이터 저장: 72건
+2025-11-24 10:15:02,449 - __main__ - INFO -    - A: 24건
+2025-11-24 10:15:02,449 - __main__ - INFO -    - B: 24건
+2025-11-24 10:15:02,449 - __main__ - INFO -    - C: 24건
+2025-11-24 10:15:02,449 - __main__ - INFO - 💾 일간 합계 저장:
+2025-11-24 10:15:02,449 - __main__ - INFO -    - A: 3535.51
+2025-11-24 10:15:02,449 - __main__ - INFO -    - B: 1708.38
+2025-11-24 10:15:02,449 - __main__ - INFO -    - C: 1708.54
+2025-11-24 10:15:02,449 - __main__ - INFO - ================================================================================
+2025-11-24 10:15:02,449 - __main__ - INFO - 🎉 예측 완료 및 데이터베이스 저장 성공!
+2025-11-24 10:15:02,450 - __main__ - INFO - ================================================================================
+2025-11-24 10:15:02,450 - __main__ - INFO - ================================================================================
+2025-11-24 10:15:02,450 - __main__ - INFO - Solar Prediction Scheduler Completed Successfully
+2025-11-24 10:15:02,450 - __main__ - INFO - ================================================================================
+2025-11-24 10:16:37,122 - __main__ - INFO - ================================================================================
+2025-11-24 10:16:37,122 - __main__ - INFO - Solar Prediction Scheduler Started
+2025-11-24 10:16:37,122 - __main__ - INFO - Execution Time: 2025-11-24 10:16:37
+2025-11-24 10:16:37,122 - __main__ - INFO - ================================================================================
+2025-11-24 10:16:37,131 - __main__ - INFO - 📅 입력 날짜: 2025-11-02
+2025-11-24 10:16:37,131 - __main__ - INFO - ================================================================================
+2025-11-24 10:16:37,131 - __main__ - INFO - 🌞 태양광 예측 자동 실행 시작 (동기식)
+2025-11-24 10:16:37,131 - __main__ - INFO - 📅 실행 시간: 2025-11-24 10:16:37
+2025-11-24 10:16:37,131 - __main__ - INFO - 📅 날짜 소스: 입력된 날짜
+2025-11-24 10:16:37,131 - __main__ - INFO - 📅 지정 날짜: 2025-11-02
+2025-11-24 10:16:37,131 - __main__ - INFO - ================================================================================
+2025-11-24 10:16:37,516 - __main__ - INFO - 🔮 예측 로직 실행 중...
+2025-11-24 10:16:37,542 - app.core.prediction_pipeline - INFO - 📅 입력 날짜 사용: 2025-11-02
+2025-11-24 10:16:37,542 - app.core.prediction_pipeline - INFO - 🌞 앙상블 태양광 발전량 예측 시작: 2025-11-02
+2025-11-24 10:16:37,707 - app.core.config - WARNING - config7.json not found at F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\weights\config7.json. Using default values.
+2025-11-24 10:16:37,709 - app.core.config - WARNING - config7.json not found at F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\core\weights\config7.json. Using default values.
+2025-11-24 10:16:38,459 - app.core.prediction_pipeline - INFO - 📅 날짜 객체 생성 완료: 2025-11-02 00:00:00
+2025-11-24 10:16:38,459 - app.core.prediction_pipeline - INFO - 🎯 목표 시간대(미래 24h): 2025-11-02 23:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:38,459 - app.core.prediction_pipeline - INFO - 🔎 조회 범위 계산 | Solar: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00 , Weather: 2025-11-02 00:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:38,460 - app.core.database - INFO - 🔍 Solar SQL 조회 범위: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:16:38,460 - app.core.database - INFO - 🔍 Weather SQL 조회 범위: 2025-11-02 00:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:39,022 - app.core.database - INFO - 📊 앙상블용 태양광 데이터 조회: 3438건
+2025-11-24 10:16:39,022 - app.core.database - INFO -    시간 범위: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:16:39,023 - app.core.database - INFO -    🔍 Solar 데이터 NaN 체크: 0개
+2025-11-24 10:16:39,027 - app.core.database - INFO -    ✅ Solar 시간 연속성 OK: 191시간 연속
+2025-11-24 10:16:39,029 - app.core.database - INFO - 🔍 예상 Weather 조회 범위: 2025-11-02 00:00:00 ~ 2025-11-03 22:00:00 (총 47개 시간대)
+2025-11-24 10:16:39,313 - app.core.database - INFO - 📊 앙상블용 기상 데이터 조회: 47건
+2025-11-24 10:16:39,313 - app.core.database - INFO -    🔍 Weather 데이터 NaN 체크: 86개
+2025-11-24 10:16:39,313 - app.core.database - INFO -    시간 범위: 2025-11-02 00:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:39,313 - app.core.database - INFO -    📊 조회된 데이터 개수: 47개 (기대: 47개)
+2025-11-24 10:16:39,313 - app.core.database - INFO -    📊 조회된 시간대 샘플 (처음 3개):
+2025-11-24 10:16:39,315 - app.core.database - INFO -       [0] 2025-11-02 00:00:00
+2025-11-24 10:16:39,315 - app.core.database - INFO -       [1] 2025-11-02 01:00:00
+2025-11-24 10:16:39,315 - app.core.database - INFO -       [2] 2025-11-02 02:00:00
+2025-11-24 10:16:39,316 - app.core.database - INFO -    ✅ Weather 시간 연속성 OK: 47시간 (기대: 47시간)
+2025-11-24 10:16:39,316 - app.core.prediction_pipeline - INFO - ✅ 데이터 조회 완료 - 태양광: 3438건, 기상: 47건
+2025-11-24 10:16:39,316 - app.core.preprocess - INFO - 🔍 공장 A 스케일러 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_solar_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:16:39,317 - app.core.preprocess - INFO - ✅ 공장 A 태양광 스케일러 로드 완료
+2025-11-24 10:16:39,317 - app.core.preprocess - INFO - 🔍 공장 B 스케일러 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_solar_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:16:39,318 - app.core.preprocess - INFO - ✅ 공장 B 태양광 스케일러 로드 완료
+2025-11-24 10:16:39,318 - app.core.preprocess - INFO - 🔍 공장 C 스케일러 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_solar_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:16:39,318 - app.core.preprocess - INFO - ✅ 공장 C 태양광 스케일러 로드 완료
+2025-11-24 10:16:39,318 - app.core.preprocess - INFO - 🔍 기상 스케일러 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_weather_scaler_e500_b8_p10_v7.pkl
+2025-11-24 10:16:39,318 - app.core.preprocess - INFO - ✅ 기상 스케일러 로드 완료
+2025-11-24 10:16:39,319 - app.core.preprocess - INFO - 📊 Scaler에서 추출한 Solar features: ['generate_gap', 'PV_Amp']
+2025-11-24 10:16:39,319 - app.core.preprocess - INFO - 📊 Scaler에서 추출한 Weather features: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,355 - app.core.preprocess - INFO - 숫자형 컬럼 데이터 타입 변환 완료
+2025-11-24 10:16:39,363 - app.core.preprocess - INFO - 🏭 ID별 공장 분류 결과:
+2025-11-24 10:16:39,363 - app.core.preprocess - INFO -   A공장 (ID 1-12): 2292건, 고유 ID: [np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9), np.int64(10), np.int64(11), np.int64(12)]
+2025-11-24 10:16:39,363 - app.core.preprocess - INFO -   B공장 (ID 13-15): 573건, 고유 ID: [np.int64(13), np.int64(14), np.int64(15)]
+2025-11-24 10:16:39,363 - app.core.preprocess - INFO -   C공장 (ID 16-18): 573건, 고유 ID: [np.int64(16), np.int64(17), np.int64(18)]
+2025-11-24 10:16:39,365 - app.core.preprocess - INFO - 📊 집계 전 데이터: 2292건, 시간 범위: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:16:39,366 - app.core.preprocess - INFO - 📊 실제 집계할 컬럼: ['PV_Volt', 'PV_Amp', 'Volt_R', 'Volt_S', 'Volt_T', 'Ampe_R', 'Ampe_S', 'Ampe_T', 'Frequency', 'Today_Generation', 'generate_gap', 'Accum_Generation']
+2025-11-24 10:16:39,368 - app.core.preprocess - INFO - 📊 집계 후 데이터: 191건
+2025-11-24 10:16:39,369 - app.core.preprocess - INFO - 📊 집계 전 데이터: 573건, 시간 범위: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:16:39,369 - app.core.preprocess - INFO - 📊 실제 집계할 컬럼: ['PV_Volt', 'PV_Amp', 'Volt_R', 'Volt_S', 'Volt_T', 'Ampe_R', 'Ampe_S', 'Ampe_T', 'Frequency', 'Today_Generation', 'generate_gap', 'Accum_Generation']
+2025-11-24 10:16:39,371 - app.core.preprocess - INFO - 📊 집계 후 데이터: 191건
+2025-11-24 10:16:39,372 - app.core.preprocess - INFO - 📊 집계 전 데이터: 573건, 시간 범위: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:16:39,373 - app.core.preprocess - INFO - 📊 실제 집계할 컬럼: ['PV_Volt', 'PV_Amp', 'Volt_R', 'Volt_S', 'Volt_T', 'Ampe_R', 'Ampe_S', 'Ampe_T', 'Frequency', 'Today_Generation', 'generate_gap', 'Accum_Generation']
+2025-11-24 10:16:39,375 - app.core.preprocess - INFO - 📊 집계 후 데이터: 191건
+2025-11-24 10:16:39,375 - app.core.preprocess - INFO - 공장별 집계 완료
+2025-11-24 10:16:39,377 - app.core.preprocess - INFO - 태양광 데이터 품질 체크 완료 - 총 3438건, 결측치 비율: 0.00%
+2025-11-24 10:16:39,377 - app.core.preprocess - INFO - A 공장 전처리 완료: 191건
+2025-11-24 10:16:39,377 - app.core.preprocess - INFO - B 공장 전처리 완료: 191건
+2025-11-24 10:16:39,377 - app.core.preprocess - INFO - C 공장 전처리 완료: 191건
+2025-11-24 10:16:39,381 - app.core.preprocess - INFO - 기상 데이터 숫자형 컬럼 타입 변환 완료
+2025-11-24 10:16:39,383 - app.core.preprocess - INFO - 컬럼명 매핑 완료: ['tmp', 'pop', 'reh', 'wsd', 'sky', 'apparent_elevation'] → ['1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation']
+2025-11-24 10:16:39,386 - app.core.preprocess - INFO - 📊 전처리된 기상 데이터 샘플 (처음 5개):
+2025-11-24 10:16:39,386 - app.core.preprocess - INFO - 기상 데이터 전처리 완료: 47건
+2025-11-24 10:16:39,386 - app.core.preprocess - INFO - 기상 데이터 전처리 완료: (47, 35)
+2025-11-24 10:16:39,386 - app.core.preprocess - INFO - 전처리 후 컬럼: ['tm', 'pop', 'pty', 'pcp', 'reh', 'sno', 'sky', 'tmp', 'tmn', 'tmx', 'uuu', 'vvv', 'wav', 'vec', 'wsd', 'ics', 'apparent_zenith', 'apparent_elevation', 'azimuth', 'reg_dt', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'hour', 'hour_sin', 'hour_cos', 'peak_hours', 'is_daylight', 'weekday', 'sin_week', 'cos_week', 'sin_day', 'cos_day']
+2025-11-24 10:16:39,386 - app.core.prediction_pipeline - INFO - 🏭 FactoryA 시퀀스 생성 중...
+2025-11-24 10:16:39,387 - app.core.preprocess - INFO - 🔍 개별 시퀀스 생성 시작
+2025-11-24 10:16:39,388 - app.core.preprocess - INFO -    Solar 데이터: 191건, features: ['generate_gap', 'PV_Amp']
+2025-11-24 10:16:39,388 - app.core.preprocess - INFO -    Solar 범위: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:16:39,389 - app.core.preprocess - INFO -    Scaler에서 추출한 Weather features 사용: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,389 - app.core.preprocess - INFO -    Weather DataFrame columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,389 - app.core.preprocess - INFO -    Scaler feature names: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,389 - app.core.preprocess - INFO -    Scaler 순서에 맞춰 정렬된 X_weather columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,390 - app.core.preprocess - INFO -    Weather 데이터: 47건, features: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    Weather 범위: 2025-11-02 00:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    Solar 최대 시퀀스: 24개
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    Weather 최대 시퀀스: 24개
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    생성 가능 시퀀스: 24개
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    ✅ 시퀀스 생성 완료: 24개
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    X_solar shape: (24, 168, 2)
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    X_weather shape: (24, 24, 9)
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    🔍 첫 시퀀스 미래: 2025-11-02T00:00:00.000000000 ~ 2025-11-02T23:00:00.000000000
+2025-11-24 10:16:39,391 - app.core.preprocess - INFO -    🔍 마지막 시퀀스 미래: 2025-11-02T23:00:00.000000000 ~ 2025-11-03T22:00:00.000000000
+2025-11-24 10:16:39,391 - app.core.prediction_pipeline - INFO -    ✅ 24개 시퀀스 생성
+2025-11-24 10:16:39,391 - app.core.prediction_pipeline - INFO - 🏭 FactoryB 시퀀스 생성 중...
+2025-11-24 10:16:39,392 - app.core.preprocess - INFO - 🔍 개별 시퀀스 생성 시작
+2025-11-24 10:16:39,393 - app.core.preprocess - INFO -    Solar 데이터: 191건, features: ['generate_gap', 'PV_Amp']
+2025-11-24 10:16:39,393 - app.core.preprocess - INFO -    Solar 범위: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:16:39,393 - app.core.preprocess - INFO -    Scaler에서 추출한 Weather features 사용: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,394 - app.core.preprocess - INFO -    Weather DataFrame columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,394 - app.core.preprocess - INFO -    Scaler feature names: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,394 - app.core.preprocess - INFO -    Scaler 순서에 맞춰 정렬된 X_weather columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,395 - app.core.preprocess - INFO -    Weather 데이터: 47건, features: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,395 - app.core.preprocess - INFO -    Weather 범위: 2025-11-02 00:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:39,395 - app.core.preprocess - INFO -    Solar 최대 시퀀스: 24개
+2025-11-24 10:16:39,395 - app.core.preprocess - INFO -    Weather 최대 시퀀스: 24개
+2025-11-24 10:16:39,395 - app.core.preprocess - INFO -    생성 가능 시퀀스: 24개
+2025-11-24 10:16:39,395 - app.core.preprocess - INFO -    ✅ 시퀀스 생성 완료: 24개
+2025-11-24 10:16:39,395 - app.core.preprocess - INFO -    X_solar shape: (24, 168, 2)
+2025-11-24 10:16:39,396 - app.core.preprocess - INFO -    X_weather shape: (24, 24, 9)
+2025-11-24 10:16:39,396 - app.core.preprocess - INFO -    🔍 첫 시퀀스 미래: 2025-11-02T00:00:00.000000000 ~ 2025-11-02T23:00:00.000000000
+2025-11-24 10:16:39,396 - app.core.preprocess - INFO -    🔍 마지막 시퀀스 미래: 2025-11-02T23:00:00.000000000 ~ 2025-11-03T22:00:00.000000000
+2025-11-24 10:16:39,396 - app.core.prediction_pipeline - INFO -    ✅ 24개 시퀀스 생성
+2025-11-24 10:16:39,396 - app.core.prediction_pipeline - INFO - 🏭 FactoryC 시퀀스 생성 중...
+2025-11-24 10:16:39,396 - app.core.preprocess - INFO - 🔍 개별 시퀀스 생성 시작
+2025-11-24 10:16:39,397 - app.core.preprocess - INFO -    Solar 데이터: 191건, features: ['generate_gap', 'PV_Amp']
+2025-11-24 10:16:39,397 - app.core.preprocess - INFO -    Solar 범위: 2025-10-26 00:00:00 ~ 2025-11-02 22:00:00
+2025-11-24 10:16:39,398 - app.core.preprocess - INFO -    Scaler에서 추출한 Weather features 사용: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,398 - app.core.preprocess - INFO -    Weather DataFrame columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,398 - app.core.preprocess - INFO -    Scaler feature names: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,398 - app.core.preprocess - INFO -    Scaler 순서에 맞춰 정렬된 X_weather columns: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,399 - app.core.preprocess - INFO -    Weather 데이터: 47건, features: ['hour_cos', 'peak_hours', '1시간기온', '강수확률', '습도', '풍속', '하늘상태', 'apparent_elevation', 'is_daylight']
+2025-11-24 10:16:39,399 - app.core.preprocess - INFO -    Weather 범위: 2025-11-02 00:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:39,399 - app.core.preprocess - INFO -    Solar 최대 시퀀스: 24개
+2025-11-24 10:16:39,399 - app.core.preprocess - INFO -    Weather 최대 시퀀스: 24개
+2025-11-24 10:16:39,399 - app.core.preprocess - INFO -    생성 가능 시퀀스: 24개
+2025-11-24 10:16:39,400 - app.core.preprocess - INFO -    ✅ 시퀀스 생성 완료: 24개
+2025-11-24 10:16:39,400 - app.core.preprocess - INFO -    X_solar shape: (24, 168, 2)
+2025-11-24 10:16:39,400 - app.core.preprocess - INFO -    X_weather shape: (24, 24, 9)
+2025-11-24 10:16:39,400 - app.core.preprocess - INFO -    🔍 첫 시퀀스 미래: 2025-11-02T00:00:00.000000000 ~ 2025-11-02T23:00:00.000000000
+2025-11-24 10:16:39,400 - app.core.preprocess - INFO -    🔍 마지막 시퀀스 미래: 2025-11-02T23:00:00.000000000 ~ 2025-11-03T22:00:00.000000000
+2025-11-24 10:16:39,400 - app.core.prediction_pipeline - INFO -    ✅ 24개 시퀀스 생성
+2025-11-24 10:16:39,400 - app.models.predictor - INFO - 예측 서비스 초기화 시작...
+2025-11-24 10:16:42,868 - app.models.predictor - INFO - C공장 모델 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_multimodal_solar_model_e500_b8_p100_v7.keras
+2025-11-24 10:16:42,876 - app.models.predictor - INFO - B공장 모델 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_multimodal_solar_model_e500_b8_p100_v7.keras
+2025-11-24 10:16:42,876 - app.models.predictor - INFO - A공장 모델 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_multimodal_solar_model_e500_b8_p100_v7.keras
+2025-11-24 10:16:42,877 - app.models.predictor - INFO - ✅ 모든 공장 모델 로드 완료 (A, B, C)
+2025-11-24 10:16:42,877 - app.models.predictor - WARNING - 메타데이터 파일이 없어 기본값으로 설정했습니다. (찾는 경로: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_multimodal_solar_model_e500_b8_p100_v6_metadata.json)
+2025-11-24 10:16:42,877 - app.models.predictor - INFO - ✅ 예측 서비스 초기화 완료
+2025-11-24 10:16:42,877 - app.core.postprocess - INFO - 후처리기 초기화 시작...
+2025-11-24 10:16:42,878 - app.core.postprocess - INFO - A동 출력 스케일러 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_target_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:16:42,878 - app.core.postprocess - INFO - B동 출력 스케일러 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_target_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:16:42,879 - app.core.postprocess - INFO - C동 출력 스케일러 로드 완료: F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\solar_api\app\weights\test_model\A_target_scaler_e500_b8_p100_v7.pkl
+2025-11-24 10:16:42,879 - app.core.postprocess - INFO - ✅ 후처리기 초기화 완료
+2025-11-24 10:16:42,879 - app.core.prediction_pipeline - INFO - 🔮 A동: 24개 시퀀스 배치 예측 중...
+2025-11-24 10:16:42,879 - app.models.predictor - INFO - 🔮 AI 모델 예측 시작 (FactoryA)...
+2025-11-24 10:16:43,906 - app.models.predictor - INFO - ✅ 예측 완료: (24, 24, 1), 처리시간: 1.03초
+2025-11-24 10:16:43,907 - app.core.prediction_pipeline - INFO -    예측 완료: (24, 24, 1)
+2025-11-24 10:16:43,907 - app.core.prediction_pipeline - INFO -    ✅ A동 예측 데이터 준비 완료: 24개 시퀀스
+2025-11-24 10:16:43,907 - app.core.prediction_pipeline - INFO - 🔮 B동: 24개 시퀀스 배치 예측 중...
+2025-11-24 10:16:43,907 - app.models.predictor - INFO - 🔮 AI 모델 예측 시작 (FactoryB)...
+2025-11-24 10:16:44,933 - app.models.predictor - INFO - ✅ 예측 완료: (24, 24, 1), 처리시간: 1.03초
+2025-11-24 10:16:44,933 - app.core.prediction_pipeline - INFO -    예측 완료: (24, 24, 1)
+2025-11-24 10:16:44,933 - app.core.prediction_pipeline - INFO -    ✅ B동 예측 데이터 준비 완료: 24개 시퀀스
+2025-11-24 10:16:44,933 - app.core.prediction_pipeline - INFO - 🔮 C동: 24개 시퀀스 배치 예측 중...
+2025-11-24 10:16:44,933 - app.models.predictor - INFO - 🔮 AI 모델 예측 시작 (FactoryC)...
+2025-11-24 10:16:45,911 - app.models.predictor - INFO - ✅ 예측 완료: (24, 24, 1), 처리시간: 0.98초
+2025-11-24 10:16:45,911 - app.core.prediction_pipeline - INFO -    예측 완료: (24, 24, 1)
+2025-11-24 10:16:45,911 - app.core.prediction_pipeline - INFO -    ✅ C동 예측 데이터 준비 완료: 24개 시퀀스
+2025-11-24 10:16:45,911 - app.core.prediction_pipeline - INFO - 🔄 앙상블 평균 시작...
+2025-11-24 10:16:45,913 - app.core.postprocess - INFO - 🔄 앙상블 평균 시작: 2025-11-02 23:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:45,913 - app.core.postprocess - INFO -    A동: 24개 시퀀스, shape=(24, 24)
+2025-11-24 10:16:45,914 - app.core.postprocess - INFO -    역정규화 완료: (24, 24)
+2025-11-24 10:16:45,937 - app.core.postprocess - INFO - ✅ A동 앙상블 완료: 24개 시간대, 평균 134.66
+2025-11-24 10:16:45,938 - app.core.postprocess - INFO -    B동: 24개 시퀀스, shape=(24, 24)
+2025-11-24 10:16:45,938 - app.core.postprocess - INFO -    역정규화 완료: (24, 24)
+2025-11-24 10:16:45,962 - app.core.postprocess - INFO - ✅ B동 앙상블 완료: 24개 시간대, 평균 63.55
+2025-11-24 10:16:45,962 - app.core.postprocess - INFO -    C동: 24개 시퀀스, shape=(24, 24)
+2025-11-24 10:16:45,962 - app.core.postprocess - INFO -    역정규화 완료: (24, 24)
+2025-11-24 10:16:45,986 - app.core.postprocess - INFO - ✅ C동 앙상블 완료: 24개 시간대, 평균 66.52
+2025-11-24 10:16:45,986 - app.core.postprocess - INFO - ✅ 앙상블 평균 완료
+2025-11-24 10:16:45,986 - app.core.prediction_pipeline - INFO - ✅ 3개 공장, 앙상블 예측 완료
+2025-11-24 10:16:45,986 - app.core.prediction_pipeline - INFO - 💾 예측 결과 데이터베이스 저장 시작...
+2025-11-24 10:16:45,987 - app.core.db_saver - INFO - 💾 시간별 예측 결과 저장 시작...
+2025-11-24 10:16:45,987 - app.core.db_saver - INFO - 📊 저장 테이블: tb_solar_hour
+2025-11-24 10:16:45,987 - app.core.db_saver - INFO - 📊 ID 매핑: {'FactoryA': 1, 'A': 1, 'FactoryB': 13, 'B': 13, 'FactoryC': 16, 'C': 16}
+2025-11-24 10:16:45,987 - app.core.db_saver - INFO - 📊 등록 시간 (reg_dt): 2025-11-24 10:16:45.987925
+2025-11-24 10:16:45,987 - app.core.db_saver - INFO - 📊 A 데이터: 시간 24개, 예측값 24개
+2025-11-24 10:16:45,995 - app.core.db_saver - INFO - 📊 레코드 생성 완료: 24건 (ID=1)
+2025-11-24 10:16:46,127 - app.core.db_saver - INFO - ✅ A: 24건 UPSERT 완료 (ID=1)
+2025-11-24 10:16:46,127 - app.core.db_saver - INFO - 📊 B 데이터: 시간 24개, 예측값 24개
+2025-11-24 10:16:46,135 - app.core.db_saver - INFO - 📊 레코드 생성 완료: 24건 (ID=13)
+2025-11-24 10:16:46,267 - app.core.db_saver - INFO - ✅ B: 24건 UPSERT 완료 (ID=13)
+2025-11-24 10:16:46,267 - app.core.db_saver - INFO - 📊 C 데이터: 시간 24개, 예측값 24개
+2025-11-24 10:16:46,275 - app.core.db_saver - INFO - 📊 레코드 생성 완료: 24건 (ID=16)
+2025-11-24 10:16:46,408 - app.core.db_saver - INFO - ✅ C: 24건 UPSERT 완료 (ID=16)
+2025-11-24 10:16:46,408 - app.core.db_saver - INFO - 📊 시간별 전체 저장 완료: 72건 (공장별: {'A': 24, 'B': 24, 'C': 24})
+2025-11-24 10:16:46,408 - app.core.prediction_pipeline - INFO - ✅ 시간별 데이터 저장 완료: {'A': 24, 'B': 24, 'C': 24}
+2025-11-24 10:16:46,408 - app.core.prediction_pipeline - INFO - 💾 일간 합계 tb_solar_day 저장 시작...
+2025-11-24 10:16:46,408 - app.core.db_saver - INFO - 📊 일간 합계 계산 시작...
+2025-11-24 10:16:46,408 - app.core.db_saver - INFO - 📊 저장 테이블: tb_solar_day
+2025-11-24 10:16:46,408 - app.core.db_saver - INFO - 📊 ID 매핑: {'FactoryA': 1, 'A': 1, 'FactoryB': 13, 'B': 13, 'FactoryC': 16, 'C': 16}
+2025-11-24 10:16:46,409 - app.core.db_saver - INFO - 📊 기준 날짜: 2025-11-03 00:00:00
+2025-11-24 10:16:46,409 - app.core.db_saver - INFO - 📊 등록 시간 (reg_dt): 2025-11-24 10:16:46.409486
+2025-11-24 10:16:46,410 - app.core.db_saver - INFO - 📊 레코드 생성: ID=1, ymdhms=2025-11-03 00:00:00, YEAR=2025, forecast_quantity=3231.87, reg_dt=2025-11-24 10:16:46.409486
+2025-11-24 10:16:46,410 - app.core.db_saver - INFO - 📊 레코드 생성: ID=13, ymdhms=2025-11-03 00:00:00, YEAR=2025, forecast_quantity=1525.27, reg_dt=2025-11-24 10:16:46.409486
+2025-11-24 10:16:46,410 - app.core.db_saver - INFO - 📊 레코드 생성: ID=16, ymdhms=2025-11-03 00:00:00, YEAR=2025, forecast_quantity=1596.54, reg_dt=2025-11-24 10:16:46.409486
+2025-11-24 10:16:46,539 - app.core.db_saver - INFO - ✅ 일간 합계 저장 완료: 3건 @ 2025-11-03 00:00:00 | reg_dt: 2025-11-24 10:16:46.409486
+2025-11-24 10:16:46,540 - app.core.prediction_pipeline - INFO - ✅ 일간 합계 저장 완료: {'A': 3231.87, 'B': 1525.27, 'C': 1596.54}
+2025-11-24 10:16:46,541 - app.core.prediction_pipeline - INFO - ✅ 앙상블 태양광 발전량 예측 완료
+2025-11-24 10:16:46,542 - __main__ - INFO - ✅ 예측 실행 성공!
+2025-11-24 10:16:46,542 - __main__ - INFO - 📊 예측 날짜: 2025-11-02 00:00:00
+2025-11-24 10:16:46,542 - __main__ - INFO - 📊 예측 범위: 2025-11-02 23:00:00 ~ 2025-11-03 22:00:00
+2025-11-24 10:16:46,542 - __main__ - INFO - 💾 시간별 데이터 저장: 72건
+2025-11-24 10:16:46,542 - __main__ - INFO -    - A: 24건
+2025-11-24 10:16:46,542 - __main__ - INFO -    - B: 24건
+2025-11-24 10:16:46,542 - __main__ - INFO -    - C: 24건
+2025-11-24 10:16:46,542 - __main__ - INFO - 💾 일간 합계 저장:
+2025-11-24 10:16:46,542 - __main__ - INFO -    - A: 3231.87
+2025-11-24 10:16:46,542 - __main__ - INFO -    - B: 1525.27
+2025-11-24 10:16:46,542 - __main__ - INFO -    - C: 1596.54
+2025-11-24 10:16:46,542 - __main__ - INFO - ================================================================================
+2025-11-24 10:16:46,543 - __main__ - INFO - 🎉 예측 완료 및 데이터베이스 저장 성공!
+2025-11-24 10:16:46,543 - __main__ - INFO - ================================================================================
+2025-11-24 10:16:46,543 - __main__ - INFO - ================================================================================
+2025-11-24 10:16:46,543 - __main__ - INFO - Solar Prediction Scheduler Completed Successfully
+2025-11-24 10:16:46,543 - __main__ - INFO - ================================================================================

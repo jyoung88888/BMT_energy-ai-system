@@ -1,0 +1,26 @@
+{
+    "split_date": "2025-10-22",
+    "solar_features": [
+        "generate_gap",
+        "PV_Amp"
+    ],
+    "weather_features": [
+        "summer_peak",
+        "hour_cos",
+        "peak_hours",
+        "1시간기온",
+        "강수확률",
+        "습도",
+        "풍속",
+        "하늘상태",
+        "apparent_elevation",
+        "is_daylight",
+        "morning_hours",
+        "evening_hours"
+    ],
+    "target": "generate_gap",
+    "past_history": 168,
+    "future_target": 24,
+    "epochs": 500,
+    "batch_size": 8
+}
