@@ -1,0 +1,223 @@
+2025-11-24 09:34:13 - INFO - ==================================================
+2025-11-24 09:34:13 - INFO - 기상청 단기예보 데이터 수집 및 DB 저장
+2025-11-24 09:34:13 - INFO - ==================================================
+2025-11-24 09:34:13 - INFO - 기준 날짜: 20251123
+2025-11-24 09:34:13 - INFO - 기준 시각: 2300
+2025-11-24 09:34:13 - INFO - 좌표: nx=97, ny=74
+2025-11-24 09:34:13 - INFO - 태양 위치 좌표: 위도=35.24, 경도=129.22
+2025-11-24 09:34:13 - INFO - 단기예보 데이터 수집 시작: 20251123 2300
+2025-11-24 09:34:15 - INFO - API 응답 코드: 00, 메시지: NORMAL_SERVICE
+2025-11-24 09:34:15 - INFO - 수집된 데이터 개수: 980
+2025-11-24 09:34:15 - INFO - DataFrame 생성 완료: 24행
+2025-11-24 09:34:15 - INFO - 컬럼명 매핑 완료: ['tm', 'pcp', 'pop', 'pty', 'reh', 'sky', 'sno', 'tmn', 'tmp', 'tmx', 'uuu', 'vec', 'vvv', 'wav', 'wsd']
+2025-11-24 09:34:15 - INFO - 날씨 데이터 수집 완료: 24건
+2025-11-24 09:34:15 - INFO - 태양 위치 데이터 계산 시작: 2025-11-23
+2025-11-24 09:34:15 - INFO - 태양 위치 DataFrame 생성 완료: 24행
+2025-11-24 09:34:15 - INFO - 태양 위치 데이터 수집 완료: 24건
+2025-11-24 09:34:15 - INFO - 날씨 데이터와 태양 위치 데이터 병합 중...
+2025-11-24 09:34:15 - INFO - 병합 완료: 24건
+2025-11-24 09:34:15 - INFO - MariaDB 연결 시작...
+2025-11-24 09:34:15 - INFO - PK 컬럼: tm
+2025-11-24 09:34:15 - INFO - 등록 시각(reg_dt): 2025-11-24 09:34:15.081823
+2025-11-24 09:34:15 - INFO - 테이블 'tb_weather_info'에 데이터 적재 시작...
+2025-11-24 09:34:15 - INFO - 데이터 적재 완료
+2025-11-24 09:34:15 - INFO - 신규 INSERT: 0건
+2025-11-24 09:34:15 - INFO - 기존 UPDATE: 24건
+2025-11-24 09:34:15 - INFO - DB 연결 종료
+2025-11-24 09:34:15 - INFO - ==================================================
+2025-11-24 09:34:15 - INFO - 작업 완료
+2025-11-24 09:34:15 - INFO - ==================================================
+2025-11-24 09:36:56 - INFO - ==================================================
+2025-11-24 09:36:56 - INFO - 기상청 단기예보 데이터 수집 및 DB 저장
+2025-11-24 09:36:56 - INFO - ==================================================
+2025-11-24 09:36:56 - INFO - 기준 날짜: 20251123
+2025-11-24 09:36:56 - INFO - 기준 시각: 2300
+2025-11-24 09:36:56 - INFO - 좌표: nx=97, ny=74
+2025-11-24 09:36:56 - INFO - 태양 위치 좌표: 위도=35.24, 경도=129.22
+2025-11-24 09:36:56 - INFO - 단기예보 데이터 수집 시작: 20251123 2300
+2025-11-24 09:37:16 - ERROR - API 요청 오류: HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeout=20)
+Traceback (most recent call last):
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\urllib3\connection.py", line 565, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\http\client.py", line 1428, in getresponse
+    response.begin()
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\http\client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\socket.py", line 707, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\urllib3\connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeout=20)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\2.프로젝트\[BMT] 수요 맞춤형AI\project\weather\weather_getVilageFcst.py", line 115, in fetch_vilagefcst_data
+    response = requests.get(API_URL, params=params, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\anaconda3\envs\bmt_solar\Lib\site-packages\requests\adapters.py", line 690, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeout=20)
+2025-11-24 09:37:16 - ERROR - 날씨 데이터 수집 실패
+2025-11-24 09:42:23 - INFO - ==================================================
+2025-11-24 09:42:23 - INFO - 기상청 단기예보 데이터 수집 및 DB 저장
+2025-11-24 09:42:23 - INFO - ==================================================
+2025-11-24 09:42:24 - INFO - 기준 날짜: 20251123
+2025-11-24 09:42:24 - INFO - 기준 시각: 2300
+2025-11-24 09:42:24 - INFO - 좌표: nx=97, ny=74
+2025-11-24 09:42:24 - INFO - 태양 위치 좌표: 위도=35.24, 경도=129.22
+2025-11-24 09:42:24 - INFO - 단기예보 데이터 수집 시작: 20251123 2300
+2025-11-24 09:42:26 - INFO - API 응답 코드: 00, 메시지: NORMAL_SERVICE
+2025-11-24 09:42:26 - INFO - 수집된 데이터 개수: 980
+2025-11-24 09:42:26 - INFO - DataFrame 생성 완료: 24행
+2025-11-24 09:42:26 - INFO - 컬럼명 매핑 완료: ['tm', 'pcp', 'pop', 'pty', 'reh', 'sky', 'sno', 'tmn', 'tmp', 'tmx', 'uuu', 'vec', 'vvv', 'wav', 'wsd']
+2025-11-24 09:42:26 - INFO - 날씨 데이터 수집 완료: 24건
+2025-11-24 09:42:26 - INFO - 태양 위치 데이터 계산 시작: 2025-11-23
+2025-11-24 09:42:26 - INFO - 태양 위치 DataFrame 생성 완료: 24행
+2025-11-24 09:42:26 - INFO - 태양 위치 데이터 수집 완료: 24건
+2025-11-24 09:42:26 - INFO - 날씨 데이터와 태양 위치 데이터 병합 중...
+2025-11-24 09:42:26 - INFO - 병합 완료: 24건
+2025-11-24 09:42:26 - INFO - MariaDB 연결 시작...
+2025-11-24 09:42:26 - INFO - PK 컬럼: tm
+2025-11-24 09:42:26 - INFO - 등록 시각(reg_dt): 2025-11-24 09:42:26.351542
+2025-11-24 09:42:26 - INFO - 테이블 'tb_weather_info'에 데이터 적재 시작...
+2025-11-24 09:42:26 - INFO - 데이터 적재 완료
+2025-11-24 09:42:26 - INFO - 신규 INSERT: 0건
+2025-11-24 09:42:26 - INFO - 기존 UPDATE: 24건
+2025-11-24 09:42:26 - INFO - DB 연결 종료
+2025-11-24 09:42:26 - INFO - ==================================================
+2025-11-24 09:42:26 - INFO - 작업 완료
+2025-11-24 09:42:26 - INFO - ==================================================
+2025-11-24 09:43:55 - INFO - ==================================================
+2025-11-24 09:43:55 - INFO - 기상청 단기예보 데이터 수집 및 DB 저장
+2025-11-24 09:43:55 - INFO - ==================================================
+2025-11-24 09:43:55 - INFO - 기준 날짜: 20251123
+2025-11-24 09:43:55 - INFO - 기준 시각: 2300
+2025-11-24 09:43:55 - INFO - 좌표: nx=97, ny=74
+2025-11-24 09:43:55 - INFO - 태양 위치 좌표: 위도=35.24, 경도=129.22
+2025-11-24 09:43:55 - INFO - 단기예보 데이터 수집 시작: 20251123 2300
+2025-11-24 09:43:57 - INFO - API 응답 코드: 00, 메시지: NORMAL_SERVICE
+2025-11-24 09:43:57 - INFO - 수집된 데이터 개수: 980
+2025-11-24 09:43:57 - INFO - DataFrame 생성 완료: 24행
+2025-11-24 09:43:57 - INFO - 컬럼명 매핑 완료: ['tm', 'pcp', 'pop', 'pty', 'reh', 'sky', 'sno', 'tmn', 'tmp', 'tmx', 'uuu', 'vec', 'vvv', 'wav', 'wsd']
+2025-11-24 09:43:57 - INFO - 날씨 데이터 수집 완료: 24건
+2025-11-24 09:43:57 - INFO - 태양 위치 데이터 계산 시작: 2025-11-23
+2025-11-24 09:43:57 - INFO - 태양 위치 DataFrame 생성 완료: 24행
+2025-11-24 09:43:57 - INFO - 태양 위치 데이터 수집 완료: 24건
+2025-11-24 09:43:57 - INFO - 날씨 데이터와 태양 위치 데이터 병합 중...
+2025-11-24 09:43:57 - INFO - 병합 완료: 24건
+2025-11-24 09:43:57 - INFO - MariaDB 연결 시작...
+2025-11-24 09:43:57 - INFO - PK 컬럼: tm
+2025-11-24 09:43:57 - INFO - 등록 시각(reg_dt): 2025-11-24 09:43:57.966036
+2025-11-24 09:43:58 - INFO - 테이블 'tb_weather_info'에 데이터 적재 시작...
+2025-11-24 09:43:58 - INFO - 데이터 적재 완료
+2025-11-24 09:43:58 - INFO - 신규 INSERT: 0건
+2025-11-24 09:43:58 - INFO - 기존 UPDATE: 24건
+2025-11-24 09:43:58 - INFO - DB 연결 종료
+2025-11-24 09:43:58 - INFO - ==================================================
+2025-11-24 09:43:58 - INFO - 작업 완료
+2025-11-24 09:43:58 - INFO - ==================================================
+2025-11-24 09:48:05 - INFO - ==================================================
+2025-11-24 09:48:05 - INFO - 기상청 단기예보 데이터 수집 및 DB 저장
+2025-11-24 09:48:05 - INFO - ==================================================
+2025-11-24 09:48:05 - INFO - 📅 [날짜 설정] 입력된 날짜: 2025-11-22
+2025-11-24 09:48:05 - INFO - 📅 [날짜 설정] 적용 날짜 (입력 - 1일): 2025-11-21
+2025-11-24 09:48:05 - INFO - 기준 날짜: 20251121
+2025-11-24 09:48:05 - INFO - 기준 시각: 2300
+2025-11-24 09:48:05 - INFO - 좌표: nx=97, ny=74
+2025-11-24 09:48:05 - INFO - 태양 위치 좌표: 위도=35.24, 경도=129.22
+2025-11-24 09:48:05 - INFO - 단기예보 데이터 수집 시작: 20251121 2300
+2025-11-24 09:48:08 - INFO - API 응답 코드: 00, 메시지: NORMAL_SERVICE
+2025-11-24 09:48:08 - INFO - 수집된 데이터 개수: 980
+2025-11-24 09:48:08 - INFO - DataFrame 생성 완료: 24행
+2025-11-24 09:48:08 - INFO - 컬럼명 매핑 완료: ['tm', 'pcp', 'pop', 'pty', 'reh', 'sky', 'sno', 'tmn', 'tmp', 'tmx', 'uuu', 'vec', 'vvv', 'wav', 'wsd']
+2025-11-24 09:48:08 - INFO - 날씨 데이터 수집 완료: 24건
+2025-11-24 09:48:08 - INFO - 태양 위치 데이터 계산 시작: 2025-11-21
+2025-11-24 09:48:08 - INFO - 태양 위치 DataFrame 생성 완료: 24행
+2025-11-24 09:48:08 - INFO - 태양 위치 데이터 수집 완료: 24건
+2025-11-24 09:48:08 - INFO - 날씨 데이터와 태양 위치 데이터 병합 중...
+2025-11-24 09:48:08 - INFO - 병합 완료: 24건
+2025-11-24 09:48:08 - INFO - MariaDB 연결 시작...
+2025-11-24 09:48:08 - INFO - PK 컬럼: tm
+2025-11-24 09:48:08 - INFO - 등록 시각(reg_dt): 2025-11-24 09:48:08.822387
+2025-11-24 09:48:08 - INFO - 테이블 'tb_weather_info'에 데이터 적재 시작...
+2025-11-24 09:48:09 - INFO - 데이터 적재 완료
+2025-11-24 09:48:09 - INFO - 신규 INSERT: 0건
+2025-11-24 09:48:09 - INFO - 기존 UPDATE: 24건
+2025-11-24 09:48:09 - INFO - DB 연결 종료
+2025-11-24 09:48:09 - INFO - ==================================================
+2025-11-24 09:48:09 - INFO - 작업 완료
+2025-11-24 09:48:09 - INFO - ==================================================
+2025-11-24 09:48:28 - INFO - ==================================================
+2025-11-24 09:48:28 - INFO - 기상청 단기예보 데이터 수집 및 DB 저장
+2025-11-24 09:48:28 - INFO - ==================================================
+2025-11-24 09:48:28 - INFO - 📅 [날짜 설정] 입력된 날짜: 2025-11-23
+2025-11-24 09:48:28 - INFO - 📅 [날짜 설정] 적용 날짜 (입력 - 1일): 2025-11-22
+2025-11-24 09:48:28 - INFO - 기준 날짜: 20251122
+2025-11-24 09:48:28 - INFO - 기준 시각: 2300
+2025-11-24 09:48:28 - INFO - 좌표: nx=97, ny=74
+2025-11-24 09:48:28 - INFO - 태양 위치 좌표: 위도=35.24, 경도=129.22
+2025-11-24 09:48:28 - INFO - 단기예보 데이터 수집 시작: 20251122 2300
+2025-11-24 09:48:29 - INFO - API 응답 코드: 00, 메시지: NORMAL_SERVICE
+2025-11-24 09:48:29 - INFO - 수집된 데이터 개수: 980
+2025-11-24 09:48:29 - INFO - DataFrame 생성 완료: 24행
+2025-11-24 09:48:29 - INFO - 컬럼명 매핑 완료: ['tm', 'pcp', 'pop', 'pty', 'reh', 'sky', 'sno', 'tmn', 'tmp', 'tmx', 'uuu', 'vec', 'vvv', 'wav', 'wsd']
+2025-11-24 09:48:29 - INFO - 날씨 데이터 수집 완료: 24건
+2025-11-24 09:48:29 - INFO - 태양 위치 데이터 계산 시작: 2025-11-22
+2025-11-24 09:48:29 - INFO - 태양 위치 DataFrame 생성 완료: 24행
+2025-11-24 09:48:29 - INFO - 태양 위치 데이터 수집 완료: 24건
+2025-11-24 09:48:29 - INFO - 날씨 데이터와 태양 위치 데이터 병합 중...
+2025-11-24 09:48:29 - INFO - 병합 완료: 24건
+2025-11-24 09:48:29 - INFO - MariaDB 연결 시작...
+2025-11-24 09:48:29 - INFO - PK 컬럼: tm
+2025-11-24 09:48:29 - INFO - 등록 시각(reg_dt): 2025-11-24 09:48:29.803832
+2025-11-24 09:48:29 - INFO - 테이블 'tb_weather_info'에 데이터 적재 시작...
+2025-11-24 09:48:30 - INFO - 데이터 적재 완료
+2025-11-24 09:48:30 - INFO - 신규 INSERT: 0건
+2025-11-24 09:48:30 - INFO - 기존 UPDATE: 24건
+2025-11-24 09:48:30 - INFO - DB 연결 종료
+2025-11-24 09:48:30 - INFO - ==================================================
+2025-11-24 09:48:30 - INFO - 작업 완료
+2025-11-24 09:48:30 - INFO - ==================================================
