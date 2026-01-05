@@ -1,0 +1,33 @@
+{
+    "python.defaultInterpreterPath": "C:\\Users\\user\\anaconda3\\python.exe",
+    "python.pythonPath": "C:\\Users\\user\\anaconda3\\python.exe",
+    "python.condaPath": "C:\\Users\\user\\anaconda3\\Scripts\\conda.exe",
+    "python.venvPath": "C:\\Users\\user\\anaconda3\\envs",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}"
+    ],
+    "python.terminal.activateEnvironment": true,
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "jupyter.jupyterServerType": "local",
+    "jupyter.defaultKernel": "base",
+    "jupyter.kernels.filter": [],
+    "jupyter.kernels.trusted": [
+        "base",
+        "python3"
+    ],
+    "jupyter.kernelSpecRootPath": "C:\\Users\\user\\AppData\\Roaming\\jupyter\\kernels",
+    "jupyter.alwaysTrustNotebooks": true,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.widgetScriptSources": [],
+    "jupyter.useNotebookEditor": true,
+    "jupyter.experimental.enableNativeInteractiveWindow": false,
+    "notebook.defaultFormatter": "ms-python.python",
+    "notebook.formatOnSave.enabled": true,
+    "notebook.kernelProviderAssociations": [],
+    "files.associations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "jupyter.interactiveWindow.textEditor.executeSelection": false,
+    "jupyter.interactiveWindow.codeLens.enable": true
+}
