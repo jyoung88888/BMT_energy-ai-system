@@ -442,7 +442,7 @@ def aggregate_ess_charge(connection, target_date: str) -> Dict[str, Any]:
     logger.info(f"📊 [ESS Charge] 데이터 집계 및 적재 시작 - {target_date}")
 
     try:
-        cursor = connection.cursor()
+        cursor = connection.cursor(pymysql.cursors.DictCursor)
 
         # 집계 기간 계산
         prev_date = (datetime.strptime(target_date, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
@@ -457,6 +457,23 @@ def aggregate_ess_charge(connection, target_date: str) -> Dict[str, Any]:
 
         # Step 1a: Solar Power - pre_pwr_generation (target_date 데이터 → target_date 행)
         logger.info(f"🔄 [ESS Charge] Step 1a: pre_pwr_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)")
+
+        # 소스 데이터 확인
+        solar_pre_check_query = f"""
+        SELECT
+            sp.ymdhms,
+            sp.pre_pwr_generation
+        FROM {TABLE_NAMES['ai_solar_power']} sp
+        WHERE DATE(sp.ymdhms) = %s
+        """
+
+        cursor.execute(solar_pre_check_query, [target_date])
+        solar_pre_data = cursor.fetchone()
+
+        if solar_pre_data:
+            logger.info(f"📊 [ESS Charge] pre_pwr_generation 집계된 값:")
+            logger.info(f"   - 예측 발전량: {solar_pre_data['pre_pwr_generation']} (from {target_date})")
+
         solar_pre_query = f"""
         INSERT INTO {TABLE_NAMES['ai_ess_charge_amt']}
             (ymdhms, pre_pwr_generation, reg_dt)
@@ -478,6 +495,23 @@ def aggregate_ess_charge(connection, target_date: str) -> Dict[str, Any]:
 
         # Step 1b: Solar Power - today_generation (prev_date 데이터 → prev_date 행)
         logger.info(f"🔄 [ESS Charge] Step 1b: today_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)")
+
+        # 소스 데이터 확인
+        solar_today_check_query = f"""
+        SELECT
+            sp.ymdhms,
+            sp.today_generation
+        FROM {TABLE_NAMES['ai_solar_power']} sp
+        WHERE DATE(sp.ymdhms) = %s
+        """
+
+        cursor.execute(solar_today_check_query, [prev_date])
+        solar_today_data = cursor.fetchone()
+
+        if solar_today_data:
+            logger.info(f"📊 [ESS Charge] today_generation 집계된 값:")
+            logger.info(f"   - today_generation: {solar_today_data['today_generation']} (from {prev_date})")
+
         solar_today_query = f"""
         INSERT INTO {TABLE_NAMES['ai_ess_charge_amt']}
             (ymdhms, today_generation, reg_dt)
@@ -499,6 +533,25 @@ def aggregate_ess_charge(connection, target_date: str) -> Dict[str, Any]:
 
         # Step 2: Power Usage 데이터 (prev_date 데이터 → prev_date 행)
         logger.info(f"🔄 [ESS Charge] Step 2: Power Usage 데이터 업데이트 (tb_ai_pwr_usage → tb_ai_ess_charge_amt)")
+
+        # 소스 데이터 확인
+        usage_check_query = f"""
+        SELECT
+            pu.ymdhms,
+            pu.pwr_usage,
+            pu.AccruepowGap
+        FROM {TABLE_NAMES['ai_pwr_usage']} pu
+        WHERE DATE(pu.ymdhms) = %s
+        """
+
+        cursor.execute(usage_check_query, [prev_date])
+        usage_data = cursor.fetchone()
+
+        if usage_data:
+            logger.info(f"📊 [ESS Charge] Power Usage 집계된 값:")
+            logger.info(f"   - pwr_usage : {usage_data['pwr_usage']} (from {prev_date})")
+            logger.info(f"   - AccruepowGap : {usage_data['AccruepowGap']} (from {prev_date})")
+
         usage_query = f"""
         INSERT INTO {TABLE_NAMES['ai_ess_charge_amt']}
             (ymdhms, pwr_usage, AccruepowGap, reg_dt)
@@ -522,6 +575,23 @@ def aggregate_ess_charge(connection, target_date: str) -> Dict[str, Any]:
 
         # Step 3a: BMS - pre_charge (target_date 데이터 → target_date 행)
         logger.info(f"🔄 [ESS Charge] Step 3a: pre_charge 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)")
+
+        # 소스 데이터 확인
+        bms_pre_check_query = f"""
+        SELECT
+            STR_TO_DATE(bms.V_TIME, '%%Y%%m%%d') as ymdhms,
+            bms.forecast_quantity as pre_charge
+        FROM {TABLE_NAMES['bms_daily_stat']} bms
+        WHERE DATE(STR_TO_DATE(bms.V_TIME, '%%Y%%m%%d')) = %s
+        """
+
+        cursor.execute(bms_pre_check_query, [target_date])
+        bms_pre_data = cursor.fetchone()
+
+        if bms_pre_data:
+            logger.info(f"📊 [ESS Charge] pre_charge 집계된 값:")
+            logger.info(f"   - pre_charge: {bms_pre_data['pre_charge']} (from {target_date})")
+
         bms_pre_query = f"""
         INSERT INTO {TABLE_NAMES['ai_ess_charge_amt']}
             (ymdhms, pre_charge, reg_dt)
@@ -543,6 +613,23 @@ def aggregate_ess_charge(connection, target_date: str) -> Dict[str, Any]:
 
         # Step 3b: BMS - charge_amount (prev_date 데이터 → prev_date 행)
         logger.info(f"🔄 [ESS Charge] Step 3b: charge_amount 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)")
+
+        # 소스 데이터 확인
+        bms_charge_check_query = f"""
+        SELECT
+            STR_TO_DATE(bms.V_TIME, '%%Y%%m%%d') as ymdhms,
+            bms.CHARGE_AMOUNT as charge_amount
+        FROM {TABLE_NAMES['bms_daily_stat']} bms
+        WHERE DATE(STR_TO_DATE(bms.V_TIME, '%%Y%%m%%d')) = %s
+        """
+
+        cursor.execute(bms_charge_check_query, [prev_date])
+        bms_charge_data = cursor.fetchone()
+
+        if bms_charge_data:
+            logger.info(f"📊 [ESS Charge] charge_amount 집계된 값:")
+            logger.info(f"   - charge_amount: {bms_charge_data['charge_amount']} (from {prev_date})")
+
         bms_charge_query = f"""
         INSERT INTO {TABLE_NAMES['ai_ess_charge_amt']}
             (ymdhms, charge_amount, reg_dt)
@@ -691,16 +778,16 @@ if __name__ == "__main__":
             description='AI 로그 테이블 데이터 집계 스케줄러',
             formatter_class=argparse.RawDescriptionHelpFormatter,
             epilog="""
-사용 예시:
-  python schedule_AI_log_table.py                    # 오늘 날짜 자동 계산
-  python schedule_AI_log_table.py --date 2025-01-01  # 2025-01-01 기준 집계
-  python schedule_AI_log_table.py -d 2025-01-01      # 축약형
+    사용 예시:
+    python schedule_AI_log_table.py                    # 오늘 날짜 자동 계산
+    python schedule_AI_log_table.py --date 2025-01-01  # 2025-01-01 기준 집계
+    python schedule_AI_log_table.py -d 2025-01-01      # 축약형
 
-집계 항목:
-  - Solar Power: tb_ai_solar_power 테이블
-  - Power Usage: tb_ai_pwr_usage 테이블
-  - ESS Charge: tb_ai_ess_charge_amt 테이블
-            """
+    집계 항목:
+    - Solar Power: tb_ai_solar_power 테이블
+    - Power Usage: tb_ai_pwr_usage 테이블
+    - ESS Charge: tb_ai_ess_charge_amt 테이블
+                """
         )
         parser.add_argument(
             '--date',

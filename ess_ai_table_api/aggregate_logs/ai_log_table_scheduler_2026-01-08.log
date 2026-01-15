@@ -1,0 +1,585 @@
+2026-01-08 09:35:24,188 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:24,188 - __main__ - INFO - AI Log Table Data Aggregation Scheduler Started
+2026-01-08 09:35:24,188 - __main__ - INFO - Execution Time: 2026-01-08 09:35:24
+2026-01-08 09:35:24,188 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:24,195 - __main__ - INFO - 📅 [날짜 설정] 입력된 날짜: 2026-01-03
+2026-01-08 09:35:24,195 - __main__ - INFO - 📊 [통합 집계] 모든 데이터 집계 시작
+2026-01-08 09:35:24,195 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:24,195 - __main__ - INFO - 📅 [통합 집계] 시작 - 대상 날짜: 2026-01-03
+2026-01-08 09:35:24,195 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:24,284 - __main__ - INFO - ✅ 데이터베이스 연결 성공
+2026-01-08 09:35:24,285 - __main__ - INFO - 📊 [Solar Power] 데이터 집계 및 적재 시작 - 2026-01-03
+2026-01-08 09:35:24,285 - __main__ - INFO - 📅 [Solar Power] pre_pwr_generation 집계 기간: 2026-01-03 00:00:00 ~ 23:59:59
+2026-01-08 09:35:24,285 - __main__ - INFO - 📅 [Solar Power] today_generation, accum_generation 집계 기간: 2026-01-02 00:00:00 ~ 23:59:59
+2026-01-08 09:35:24,285 - __main__ - INFO - 📅 [Solar Power] tmn, tmx, ics 집계 기간: 2026-01-03 00:00:00 ~ 23:59:59
+2026-01-08 09:35:24,285 - __main__ - INFO - 📂 [Solar Power] 소스 테이블: tb_solar_day, tb_weather_info
+2026-01-08 09:35:24,285 - __main__ - INFO - 📂 [Solar Power] 타겟 테이블: tb_ai_solar_power
+2026-01-08 09:35:24,311 - __main__ - INFO - 📊 [Solar Power] pre_pwr_generation 집계된 값:
+2026-01-08 09:35:24,311 - __main__ - INFO -    - 예측 발전량 합계: 0.0 (from 2026-01-03)
+2026-01-08 09:35:24,340 - __main__ - INFO - ✅ [Solar Power] pre_pwr_generation 적재 완료 (ymdhms=2026-01-03)
+2026-01-08 09:35:24,363 - __main__ - INFO - 📊 [Solar Power] today_generation, accum_generation 집계된 값:
+2026-01-08 09:35:24,364 - __main__ - INFO -    - 실제 발전량 합계: 3851.0 (from 2026-01-02)
+2026-01-08 09:35:24,364 - __main__ - INFO -    - 누적 발전량 합계: 4708.4339599609375 (from 2026-01-02)
+2026-01-08 09:35:24,393 - __main__ - INFO - ✅ [Solar Power] today_generation, accum_generation 적재 완료 (ymdhms=2026-01-02)
+2026-01-08 09:35:24,410 - __main__ - INFO - 📊 [Solar Power] Weather 집계된 값:
+2026-01-08 09:35:24,410 - __main__ - INFO -    - 최저 기온 (tmn): None (from 2026-01-03)
+2026-01-08 09:35:24,410 - __main__ - INFO -    - 최고 기온 (tmx): None (from 2026-01-03)
+2026-01-08 09:35:24,410 - __main__ - INFO -    - 일사량 합계 (ics): None (from 2026-01-03)
+2026-01-08 09:35:24,427 - __main__ - INFO - ✅ [Solar Power] Weather 데이터 적재 완료 (ymdhms=2026-01-03)
+2026-01-08 09:35:24,443 - __main__ - INFO - ✅ [Solar Power] tb_ai_solar_power 테이블에 데이터 적재 완료
+2026-01-08 09:35:24,443 - __main__ - INFO -    - pre_pwr_generation, tmn, tmx, ics: 2026-01-03 행에 저장
+2026-01-08 09:35:24,443 - __main__ - INFO -    - today_generation, accum_generation: 2026-01-02 행에 저장
+2026-01-08 09:35:24,443 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:24.285376
+2026-01-08 09:35:24,443 - __main__ - INFO - 📊 [Power Usage] 데이터 집계 및 적재 시작 - 2026-01-03
+2026-01-08 09:35:24,443 - __main__ - INFO - 📅 [Power Usage] pwr_usage 집계 기간: 2026-01-02
+2026-01-08 09:35:24,444 - __main__ - INFO - 📅 [Power Usage] pwr_forecase 집계 기간: 2026-01-03
+2026-01-08 09:35:24,444 - __main__ - INFO - 📂 [Power Usage] 소스 테이블: tb_aggregate_smarteye_day
+2026-01-08 09:35:24,444 - __main__ - INFO - 📂 [Power Usage] 타겟 테이블: tb_ai_pwr_usage
+2026-01-08 09:35:24,444 - __main__ - INFO - 🔄 [Power Usage] Step 1: pwr_usage 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:35:24,460 - __main__ - INFO - 🔍 [Power Usage] pwr_usage 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:35:24,460 - __main__ - INFO - 📊 [Power Usage] pwr_usage 집계된 값 (from 2026-01-02):
+2026-01-08 09:35:24,460 - __main__ - INFO -    - 전력 사용량 합계: 23843.16015625
+2026-01-08 09:35:24,461 - __main__ - INFO -    - 시간 범위: 2026-01-02 00:00:00 ~ 2026-01-02 00:00:00
+2026-01-08 09:35:24,480 - __main__ - INFO -   ✅ Step 1 완료: pwr_usage 적재 (from 2026-01-02 → ymdhms=2026-01-02)
+2026-01-08 09:35:24,480 - __main__ - INFO - 🔄 [Power Usage] Step 2: pwr_forecase 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:35:24,498 - __main__ - INFO - 🔍 [Power Usage] pwr_forecase 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:35:24,498 - __main__ - INFO - 📊 [Power Usage] pwr_forecase 집계된 값 (from 2026-01-03):
+2026-01-08 09:35:24,498 - __main__ - INFO -    - 전력 예측 합계: 8727.3134765625
+2026-01-08 09:35:24,498 - __main__ - INFO -    - 시간 범위: 2026-01-03 00:00:00 ~ 2026-01-03 00:00:00
+2026-01-08 09:35:24,515 - __main__ - INFO -   ✅ Step 2 완료: pwr_forecase 적재 (from 2026-01-03 → ymdhms=2026-01-03)
+2026-01-08 09:35:24,531 - __main__ - INFO - ✅ [Power Usage] tb_ai_pwr_usage 테이블에 데이터 적재 완료 (2단계)
+2026-01-08 09:35:24,531 - __main__ - INFO -    - pwr_usage: 2026-01-02 행에 저장 (1건)
+2026-01-08 09:35:24,531 - __main__ - INFO -    - pwr_forecase: 2026-01-03 행에 저장 (1건)
+2026-01-08 09:35:24,531 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:24.444333
+2026-01-08 09:35:24,531 - __main__ - INFO - 📊 [ESS Charge] 데이터 집계 및 적재 시작 - 2026-01-03
+2026-01-08 09:35:24,532 - __main__ - INFO - 📅 [ESS Charge] 예측값 집계 기간: 2026-01-03
+2026-01-08 09:35:24,532 - __main__ - INFO - 📅 [ESS Charge] 실제값 집계 기간: 2026-01-02
+2026-01-08 09:35:24,532 - __main__ - INFO - 📂 [ESS Charge] 소스 테이블: tb_ai_solar_power, tb_ai_pwr_usage, tb_nrt_bms_daily_stat
+2026-01-08 09:35:24,532 - __main__ - INFO - 📂 [ESS Charge] 타겟 테이블: tb_ai_ess_charge_amt
+2026-01-08 09:35:24,532 - __main__ - INFO - 🔄 [ESS Charge] Step 1a: pre_pwr_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:35:24,548 - __main__ - INFO -   ✅ Step 1a 완료: pre_pwr_generation 적재 (from 2026-01-03 → ymdhms=2026-01-03)
+2026-01-08 09:35:24,548 - __main__ - INFO - 🔄 [ESS Charge] Step 1b: today_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:35:24,567 - __main__ - INFO -   ✅ Step 1b 완료: today_generation 적재 (from 2026-01-02 → ymdhms=2026-01-02)
+2026-01-08 09:35:24,567 - __main__ - INFO - 🔄 [ESS Charge] Step 2: Power Usage 데이터 업데이트 (tb_ai_pwr_usage → tb_ai_ess_charge_amt)
+2026-01-08 09:35:24,584 - __main__ - INFO -   ✅ Step 2 완료: pwr_usage, AccruepowGap 적재 (from 2026-01-02 → ymdhms=2026-01-02)
+2026-01-08 09:35:24,584 - __main__ - INFO - 🔄 [ESS Charge] Step 3a: pre_charge 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:35:24,602 - __main__ - INFO -   ✅ Step 3a 완료: pre_charge 적재 (from 2026-01-03 → ymdhms=2026-01-03)
+2026-01-08 09:35:24,602 - __main__ - INFO - 🔄 [ESS Charge] Step 3b: charge_amount 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:35:24,618 - __main__ - INFO -   ✅ Step 3b 완료: charge_amount 적재 (from 2026-01-02 → ymdhms=2026-01-02)
+2026-01-08 09:35:24,634 - __main__ - INFO - ✅ [ESS Charge] tb_ai_ess_charge_amt 테이블에 데이터 적재 완료 (5단계)
+2026-01-08 09:35:24,634 - __main__ - INFO -    - 예측값 (pre_pwr_generation, pre_charge): 2026-01-03 행에 저장
+2026-01-08 09:35:24,634 - __main__ - INFO -    - 실제값 (today_generation, pwr_usage, AccruepowGap, charge_amount): 2026-01-02 행에 저장
+2026-01-08 09:35:24,635 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:24.532546
+2026-01-08 09:35:24,635 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:24,635 - __main__ - INFO - 📊 [통합 집계] 완료 - 대상 날짜: 2026-01-03
+2026-01-08 09:35:24,635 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:24,635 - __main__ - INFO - ✅ 성공 [solar_power]: Solar Power 데이터 UPSERT 완료 (target: 2026-01-03, prev: 2026-01-02)
+2026-01-08 09:35:24,635 - __main__ - INFO - ✅ 성공 [power_usage]: Power Usage 데이터 UPSERT 완료 (usage: 2026-01-02, forecase: 2026-01-03)
+2026-01-08 09:35:24,635 - __main__ - INFO - ✅ 성공 [ess_charge]: ESS Charge 데이터 UPSERT 완료 (target: 2026-01-03, prev: 2026-01-02)
+2026-01-08 09:35:24,636 - __main__ - INFO - 🔌 데이터베이스 연결 종료
+2026-01-08 09:35:24,636 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:24,636 - __main__ - INFO - 🎉 AI Log Table Data Aggregation Scheduler Completed Successfully
+2026-01-08 09:35:24,636 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:37,688 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:37,688 - __main__ - INFO - AI Log Table Data Aggregation Scheduler Started
+2026-01-08 09:35:37,688 - __main__ - INFO - Execution Time: 2026-01-08 09:35:37
+2026-01-08 09:35:37,688 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:37,694 - __main__ - INFO - 📅 [날짜 설정] 입력된 날짜: 2026-01-04
+2026-01-08 09:35:37,694 - __main__ - INFO - 📊 [통합 집계] 모든 데이터 집계 시작
+2026-01-08 09:35:37,694 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:37,694 - __main__ - INFO - 📅 [통합 집계] 시작 - 대상 날짜: 2026-01-04
+2026-01-08 09:35:37,694 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:37,781 - __main__ - INFO - ✅ 데이터베이스 연결 성공
+2026-01-08 09:35:37,781 - __main__ - INFO - 📊 [Solar Power] 데이터 집계 및 적재 시작 - 2026-01-04
+2026-01-08 09:35:37,781 - __main__ - INFO - 📅 [Solar Power] pre_pwr_generation 집계 기간: 2026-01-04 00:00:00 ~ 23:59:59
+2026-01-08 09:35:37,781 - __main__ - INFO - 📅 [Solar Power] today_generation, accum_generation 집계 기간: 2026-01-03 00:00:00 ~ 23:59:59
+2026-01-08 09:35:37,781 - __main__ - INFO - 📅 [Solar Power] tmn, tmx, ics 집계 기간: 2026-01-04 00:00:00 ~ 23:59:59
+2026-01-08 09:35:37,781 - __main__ - INFO - 📂 [Solar Power] 소스 테이블: tb_solar_day, tb_weather_info
+2026-01-08 09:35:37,782 - __main__ - INFO - 📂 [Solar Power] 타겟 테이블: tb_ai_solar_power
+2026-01-08 09:35:37,806 - __main__ - INFO - 📊 [Solar Power] pre_pwr_generation 집계된 값:
+2026-01-08 09:35:37,806 - __main__ - INFO -    - 예측 발전량 합계: 0.0 (from 2026-01-04)
+2026-01-08 09:35:37,834 - __main__ - INFO - ✅ [Solar Power] pre_pwr_generation 적재 완료 (ymdhms=2026-01-04)
+2026-01-08 09:35:37,860 - __main__ - INFO - 📊 [Solar Power] today_generation, accum_generation 집계된 값:
+2026-01-08 09:35:37,860 - __main__ - INFO -    - 실제 발전량 합계: 3802.0 (from 2026-01-03)
+2026-01-08 09:35:37,860 - __main__ - INFO -    - 누적 발전량 합계: 4712.133972167969 (from 2026-01-03)
+2026-01-08 09:35:37,889 - __main__ - INFO - ✅ [Solar Power] today_generation, accum_generation 적재 완료 (ymdhms=2026-01-03)
+2026-01-08 09:35:37,905 - __main__ - INFO - 📊 [Solar Power] Weather 집계된 값:
+2026-01-08 09:35:37,905 - __main__ - INFO -    - 최저 기온 (tmn): -2.0 (from 2026-01-04)
+2026-01-08 09:35:37,906 - __main__ - INFO -    - 최고 기온 (tmx): 8.0 (from 2026-01-04)
+2026-01-08 09:35:37,906 - __main__ - INFO -    - 일사량 합계 (ics): None (from 2026-01-04)
+2026-01-08 09:35:37,923 - __main__ - INFO - ✅ [Solar Power] Weather 데이터 적재 완료 (ymdhms=2026-01-04)
+2026-01-08 09:35:37,943 - __main__ - INFO - ✅ [Solar Power] tb_ai_solar_power 테이블에 데이터 적재 완료
+2026-01-08 09:35:37,943 - __main__ - INFO -    - pre_pwr_generation, tmn, tmx, ics: 2026-01-04 행에 저장
+2026-01-08 09:35:37,943 - __main__ - INFO -    - today_generation, accum_generation: 2026-01-03 행에 저장
+2026-01-08 09:35:37,943 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:37.782686
+2026-01-08 09:35:37,943 - __main__ - INFO - 📊 [Power Usage] 데이터 집계 및 적재 시작 - 2026-01-04
+2026-01-08 09:35:37,944 - __main__ - INFO - 📅 [Power Usage] pwr_usage 집계 기간: 2026-01-03
+2026-01-08 09:35:37,944 - __main__ - INFO - 📅 [Power Usage] pwr_forecase 집계 기간: 2026-01-04
+2026-01-08 09:35:37,944 - __main__ - INFO - 📂 [Power Usage] 소스 테이블: tb_aggregate_smarteye_day
+2026-01-08 09:35:37,944 - __main__ - INFO - 📂 [Power Usage] 타겟 테이블: tb_ai_pwr_usage
+2026-01-08 09:35:37,944 - __main__ - INFO - 🔄 [Power Usage] Step 1: pwr_usage 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:35:37,960 - __main__ - INFO - 🔍 [Power Usage] pwr_usage 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:35:37,960 - __main__ - INFO - 📊 [Power Usage] pwr_usage 집계된 값 (from 2026-01-03):
+2026-01-08 09:35:37,961 - __main__ - INFO -    - 전력 사용량 합계: 12655.080078125
+2026-01-08 09:35:37,961 - __main__ - INFO -    - 시간 범위: 2026-01-03 00:00:00 ~ 2026-01-03 00:00:00
+2026-01-08 09:35:37,981 - __main__ - INFO -   ✅ Step 1 완료: pwr_usage 적재 (from 2026-01-03 → ymdhms=2026-01-03)
+2026-01-08 09:35:37,981 - __main__ - INFO - 🔄 [Power Usage] Step 2: pwr_forecase 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:35:37,997 - __main__ - INFO - 🔍 [Power Usage] pwr_forecase 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:35:37,997 - __main__ - INFO - 📊 [Power Usage] pwr_forecase 집계된 값 (from 2026-01-04):
+2026-01-08 09:35:37,998 - __main__ - INFO -    - 전력 예측 합계: 3421.46875
+2026-01-08 09:35:37,998 - __main__ - INFO -    - 시간 범위: 2026-01-04 00:00:00 ~ 2026-01-04 00:00:00
+2026-01-08 09:35:38,014 - __main__ - INFO -   ✅ Step 2 완료: pwr_forecase 적재 (from 2026-01-04 → ymdhms=2026-01-04)
+2026-01-08 09:35:38,031 - __main__ - INFO - ✅ [Power Usage] tb_ai_pwr_usage 테이블에 데이터 적재 완료 (2단계)
+2026-01-08 09:35:38,031 - __main__ - INFO -    - pwr_usage: 2026-01-03 행에 저장 (1건)
+2026-01-08 09:35:38,031 - __main__ - INFO -    - pwr_forecase: 2026-01-04 행에 저장 (1건)
+2026-01-08 09:35:38,031 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:37.944198
+2026-01-08 09:35:38,031 - __main__ - INFO - 📊 [ESS Charge] 데이터 집계 및 적재 시작 - 2026-01-04
+2026-01-08 09:35:38,031 - __main__ - INFO - 📅 [ESS Charge] 예측값 집계 기간: 2026-01-04
+2026-01-08 09:35:38,031 - __main__ - INFO - 📅 [ESS Charge] 실제값 집계 기간: 2026-01-03
+2026-01-08 09:35:38,032 - __main__ - INFO - 📂 [ESS Charge] 소스 테이블: tb_ai_solar_power, tb_ai_pwr_usage, tb_nrt_bms_daily_stat
+2026-01-08 09:35:38,032 - __main__ - INFO - 📂 [ESS Charge] 타겟 테이블: tb_ai_ess_charge_amt
+2026-01-08 09:35:38,032 - __main__ - INFO - 🔄 [ESS Charge] Step 1a: pre_pwr_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:35:38,048 - __main__ - INFO -   ✅ Step 1a 완료: pre_pwr_generation 적재 (from 2026-01-04 → ymdhms=2026-01-04)
+2026-01-08 09:35:38,048 - __main__ - INFO - 🔄 [ESS Charge] Step 1b: today_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:35:38,065 - __main__ - INFO -   ✅ Step 1b 완료: today_generation 적재 (from 2026-01-03 → ymdhms=2026-01-03)
+2026-01-08 09:35:38,065 - __main__ - INFO - 🔄 [ESS Charge] Step 2: Power Usage 데이터 업데이트 (tb_ai_pwr_usage → tb_ai_ess_charge_amt)
+2026-01-08 09:35:38,082 - __main__ - INFO -   ✅ Step 2 완료: pwr_usage, AccruepowGap 적재 (from 2026-01-03 → ymdhms=2026-01-03)
+2026-01-08 09:35:38,082 - __main__ - INFO - 🔄 [ESS Charge] Step 3a: pre_charge 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:35:38,101 - __main__ - INFO -   ✅ Step 3a 완료: pre_charge 적재 (from 2026-01-04 → ymdhms=2026-01-04)
+2026-01-08 09:35:38,101 - __main__ - INFO - 🔄 [ESS Charge] Step 3b: charge_amount 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:35:38,118 - __main__ - INFO -   ✅ Step 3b 완료: charge_amount 적재 (from 2026-01-03 → ymdhms=2026-01-03)
+2026-01-08 09:35:38,133 - __main__ - INFO - ✅ [ESS Charge] tb_ai_ess_charge_amt 테이블에 데이터 적재 완료 (5단계)
+2026-01-08 09:35:38,133 - __main__ - INFO -    - 예측값 (pre_pwr_generation, pre_charge): 2026-01-04 행에 저장
+2026-01-08 09:35:38,135 - __main__ - INFO -    - 실제값 (today_generation, pwr_usage, AccruepowGap, charge_amount): 2026-01-03 행에 저장
+2026-01-08 09:35:38,135 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:38.032213
+2026-01-08 09:35:38,135 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:38,135 - __main__ - INFO - 📊 [통합 집계] 완료 - 대상 날짜: 2026-01-04
+2026-01-08 09:35:38,135 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:38,135 - __main__ - INFO - ✅ 성공 [solar_power]: Solar Power 데이터 UPSERT 완료 (target: 2026-01-04, prev: 2026-01-03)
+2026-01-08 09:35:38,135 - __main__ - INFO - ✅ 성공 [power_usage]: Power Usage 데이터 UPSERT 완료 (usage: 2026-01-03, forecase: 2026-01-04)
+2026-01-08 09:35:38,135 - __main__ - INFO - ✅ 성공 [ess_charge]: ESS Charge 데이터 UPSERT 완료 (target: 2026-01-04, prev: 2026-01-03)
+2026-01-08 09:35:38,135 - __main__ - INFO - 🔌 데이터베이스 연결 종료
+2026-01-08 09:35:38,136 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:38,136 - __main__ - INFO - 🎉 AI Log Table Data Aggregation Scheduler Completed Successfully
+2026-01-08 09:35:38,136 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:47,564 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:47,564 - __main__ - INFO - AI Log Table Data Aggregation Scheduler Started
+2026-01-08 09:35:47,565 - __main__ - INFO - Execution Time: 2026-01-08 09:35:47
+2026-01-08 09:35:47,565 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:47,570 - __main__ - INFO - 📅 [날짜 설정] 입력된 날짜: 2026-01-05
+2026-01-08 09:35:47,570 - __main__ - INFO - 📊 [통합 집계] 모든 데이터 집계 시작
+2026-01-08 09:35:47,570 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:47,570 - __main__ - INFO - 📅 [통합 집계] 시작 - 대상 날짜: 2026-01-05
+2026-01-08 09:35:47,571 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:47,658 - __main__ - INFO - ✅ 데이터베이스 연결 성공
+2026-01-08 09:35:47,658 - __main__ - INFO - 📊 [Solar Power] 데이터 집계 및 적재 시작 - 2026-01-05
+2026-01-08 09:35:47,658 - __main__ - INFO - 📅 [Solar Power] pre_pwr_generation 집계 기간: 2026-01-05 00:00:00 ~ 23:59:59
+2026-01-08 09:35:47,659 - __main__ - INFO - 📅 [Solar Power] today_generation, accum_generation 집계 기간: 2026-01-04 00:00:00 ~ 23:59:59
+2026-01-08 09:35:47,659 - __main__ - INFO - 📅 [Solar Power] tmn, tmx, ics 집계 기간: 2026-01-05 00:00:00 ~ 23:59:59
+2026-01-08 09:35:47,659 - __main__ - INFO - 📂 [Solar Power] 소스 테이블: tb_solar_day, tb_weather_info
+2026-01-08 09:35:47,659 - __main__ - INFO - 📂 [Solar Power] 타겟 테이블: tb_ai_solar_power
+2026-01-08 09:35:47,685 - __main__ - INFO - 📊 [Solar Power] pre_pwr_generation 집계된 값:
+2026-01-08 09:35:47,685 - __main__ - INFO -    - 예측 발전량 합계: 1783.873779296875 (from 2026-01-05)
+2026-01-08 09:35:47,714 - __main__ - INFO - ✅ [Solar Power] pre_pwr_generation 적재 완료 (ymdhms=2026-01-05)
+2026-01-08 09:35:47,738 - __main__ - INFO - 📊 [Solar Power] today_generation, accum_generation 집계된 값:
+2026-01-08 09:35:47,738 - __main__ - INFO -    - 실제 발전량 합계: 3517.0 (from 2026-01-04)
+2026-01-08 09:35:47,738 - __main__ - INFO -    - 누적 발전량 합계: 4715.555969238281 (from 2026-01-04)
+2026-01-08 09:35:47,769 - __main__ - INFO - ✅ [Solar Power] today_generation, accum_generation 적재 완료 (ymdhms=2026-01-04)
+2026-01-08 09:35:47,785 - __main__ - INFO - 📊 [Solar Power] Weather 집계된 값:
+2026-01-08 09:35:47,785 - __main__ - INFO -    - 최저 기온 (tmn): 1.0 (from 2026-01-05)
+2026-01-08 09:35:47,785 - __main__ - INFO -    - 최고 기온 (tmx): 8.0 (from 2026-01-05)
+2026-01-08 09:35:47,786 - __main__ - INFO -    - 일사량 합계 (ics): None (from 2026-01-05)
+2026-01-08 09:35:47,803 - __main__ - INFO - ✅ [Solar Power] Weather 데이터 적재 완료 (ymdhms=2026-01-05)
+2026-01-08 09:35:47,819 - __main__ - INFO - ✅ [Solar Power] tb_ai_solar_power 테이블에 데이터 적재 완료
+2026-01-08 09:35:47,819 - __main__ - INFO -    - pre_pwr_generation, tmn, tmx, ics: 2026-01-05 행에 저장
+2026-01-08 09:35:47,819 - __main__ - INFO -    - today_generation, accum_generation: 2026-01-04 행에 저장
+2026-01-08 09:35:47,819 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:47.659196
+2026-01-08 09:35:47,819 - __main__ - INFO - 📊 [Power Usage] 데이터 집계 및 적재 시작 - 2026-01-05
+2026-01-08 09:35:47,819 - __main__ - INFO - 📅 [Power Usage] pwr_usage 집계 기간: 2026-01-04
+2026-01-08 09:35:47,820 - __main__ - INFO - 📅 [Power Usage] pwr_forecase 집계 기간: 2026-01-05
+2026-01-08 09:35:47,820 - __main__ - INFO - 📂 [Power Usage] 소스 테이블: tb_aggregate_smarteye_day
+2026-01-08 09:35:47,820 - __main__ - INFO - 📂 [Power Usage] 타겟 테이블: tb_ai_pwr_usage
+2026-01-08 09:35:47,820 - __main__ - INFO - 🔄 [Power Usage] Step 1: pwr_usage 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:35:47,836 - __main__ - INFO - 🔍 [Power Usage] pwr_usage 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:35:47,836 - __main__ - INFO - 📊 [Power Usage] pwr_usage 집계된 값 (from 2026-01-04):
+2026-01-08 09:35:47,836 - __main__ - INFO -    - 전력 사용량 합계: 3442.320068359375
+2026-01-08 09:35:47,836 - __main__ - INFO -    - 시간 범위: 2026-01-04 00:00:00 ~ 2026-01-04 00:00:00
+2026-01-08 09:35:47,854 - __main__ - INFO -   ✅ Step 1 완료: pwr_usage 적재 (from 2026-01-04 → ymdhms=2026-01-04)
+2026-01-08 09:35:47,854 - __main__ - INFO - 🔄 [Power Usage] Step 2: pwr_forecase 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:35:47,871 - __main__ - INFO - 🔍 [Power Usage] pwr_forecase 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:35:47,872 - __main__ - INFO - 📊 [Power Usage] pwr_forecase 집계된 값 (from 2026-01-05):
+2026-01-08 09:35:47,872 - __main__ - INFO -    - 전력 예측 합계: 19799.318359375
+2026-01-08 09:35:47,872 - __main__ - INFO -    - 시간 범위: 2026-01-05 00:00:00 ~ 2026-01-05 00:00:00
+2026-01-08 09:35:47,887 - __main__ - INFO -   ✅ Step 2 완료: pwr_forecase 적재 (from 2026-01-05 → ymdhms=2026-01-05)
+2026-01-08 09:35:47,904 - __main__ - INFO - ✅ [Power Usage] tb_ai_pwr_usage 테이블에 데이터 적재 완료 (2단계)
+2026-01-08 09:35:47,904 - __main__ - INFO -    - pwr_usage: 2026-01-04 행에 저장 (1건)
+2026-01-08 09:35:47,904 - __main__ - INFO -    - pwr_forecase: 2026-01-05 행에 저장 (1건)
+2026-01-08 09:35:47,904 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:47.820766
+2026-01-08 09:35:47,904 - __main__ - INFO - 📊 [ESS Charge] 데이터 집계 및 적재 시작 - 2026-01-05
+2026-01-08 09:35:47,905 - __main__ - INFO - 📅 [ESS Charge] 예측값 집계 기간: 2026-01-05
+2026-01-08 09:35:47,905 - __main__ - INFO - 📅 [ESS Charge] 실제값 집계 기간: 2026-01-04
+2026-01-08 09:35:47,905 - __main__ - INFO - 📂 [ESS Charge] 소스 테이블: tb_ai_solar_power, tb_ai_pwr_usage, tb_nrt_bms_daily_stat
+2026-01-08 09:35:47,905 - __main__ - INFO - 📂 [ESS Charge] 타겟 테이블: tb_ai_ess_charge_amt
+2026-01-08 09:35:47,905 - __main__ - INFO - 🔄 [ESS Charge] Step 1a: pre_pwr_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:35:47,923 - __main__ - INFO -   ✅ Step 1a 완료: pre_pwr_generation 적재 (from 2026-01-05 → ymdhms=2026-01-05)
+2026-01-08 09:35:47,923 - __main__ - INFO - 🔄 [ESS Charge] Step 1b: today_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:35:47,941 - __main__ - INFO -   ✅ Step 1b 완료: today_generation 적재 (from 2026-01-04 → ymdhms=2026-01-04)
+2026-01-08 09:35:47,941 - __main__ - INFO - 🔄 [ESS Charge] Step 2: Power Usage 데이터 업데이트 (tb_ai_pwr_usage → tb_ai_ess_charge_amt)
+2026-01-08 09:35:47,958 - __main__ - INFO -   ✅ Step 2 완료: pwr_usage, AccruepowGap 적재 (from 2026-01-04 → ymdhms=2026-01-04)
+2026-01-08 09:35:47,958 - __main__ - INFO - 🔄 [ESS Charge] Step 3a: pre_charge 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:35:47,974 - __main__ - INFO -   ✅ Step 3a 완료: pre_charge 적재 (from 2026-01-05 → ymdhms=2026-01-05)
+2026-01-08 09:35:47,974 - __main__ - INFO - 🔄 [ESS Charge] Step 3b: charge_amount 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:35:47,994 - __main__ - INFO -   ✅ Step 3b 완료: charge_amount 적재 (from 2026-01-04 → ymdhms=2026-01-04)
+2026-01-08 09:35:48,011 - __main__ - INFO - ✅ [ESS Charge] tb_ai_ess_charge_amt 테이블에 데이터 적재 완료 (5단계)
+2026-01-08 09:35:48,011 - __main__ - INFO -    - 예측값 (pre_pwr_generation, pre_charge): 2026-01-05 행에 저장
+2026-01-08 09:35:48,011 - __main__ - INFO -    - 실제값 (today_generation, pwr_usage, AccruepowGap, charge_amount): 2026-01-04 행에 저장
+2026-01-08 09:35:48,011 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:35:47.905876
+2026-01-08 09:35:48,011 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:48,011 - __main__ - INFO - 📊 [통합 집계] 완료 - 대상 날짜: 2026-01-05
+2026-01-08 09:35:48,012 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:48,012 - __main__ - INFO - ✅ 성공 [solar_power]: Solar Power 데이터 UPSERT 완료 (target: 2026-01-05, prev: 2026-01-04)
+2026-01-08 09:35:48,012 - __main__ - INFO - ✅ 성공 [power_usage]: Power Usage 데이터 UPSERT 완료 (usage: 2026-01-04, forecase: 2026-01-05)
+2026-01-08 09:35:48,012 - __main__ - INFO - ✅ 성공 [ess_charge]: ESS Charge 데이터 UPSERT 완료 (target: 2026-01-05, prev: 2026-01-04)
+2026-01-08 09:35:48,012 - __main__ - INFO - 🔌 데이터베이스 연결 종료
+2026-01-08 09:35:48,012 - __main__ - INFO - ================================================================================
+2026-01-08 09:35:48,012 - __main__ - INFO - 🎉 AI Log Table Data Aggregation Scheduler Completed Successfully
+2026-01-08 09:35:48,012 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:01,459 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:01,459 - __main__ - INFO - AI Log Table Data Aggregation Scheduler Started
+2026-01-08 09:36:01,459 - __main__ - INFO - Execution Time: 2026-01-08 09:36:01
+2026-01-08 09:36:01,459 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:01,466 - __main__ - INFO - 📅 [날짜 설정] 입력된 날짜: 2026-01-06
+2026-01-08 09:36:01,466 - __main__ - INFO - 📊 [통합 집계] 모든 데이터 집계 시작
+2026-01-08 09:36:01,466 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:01,466 - __main__ - INFO - 📅 [통합 집계] 시작 - 대상 날짜: 2026-01-06
+2026-01-08 09:36:01,466 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:01,555 - __main__ - INFO - ✅ 데이터베이스 연결 성공
+2026-01-08 09:36:01,555 - __main__ - INFO - 📊 [Solar Power] 데이터 집계 및 적재 시작 - 2026-01-06
+2026-01-08 09:36:01,555 - __main__ - INFO - 📅 [Solar Power] pre_pwr_generation 집계 기간: 2026-01-06 00:00:00 ~ 23:59:59
+2026-01-08 09:36:01,555 - __main__ - INFO - 📅 [Solar Power] today_generation, accum_generation 집계 기간: 2026-01-05 00:00:00 ~ 23:59:59
+2026-01-08 09:36:01,556 - __main__ - INFO - 📅 [Solar Power] tmn, tmx, ics 집계 기간: 2026-01-06 00:00:00 ~ 23:59:59
+2026-01-08 09:36:01,556 - __main__ - INFO - 📂 [Solar Power] 소스 테이블: tb_solar_day, tb_weather_info
+2026-01-08 09:36:01,556 - __main__ - INFO - 📂 [Solar Power] 타겟 테이블: tb_ai_solar_power
+2026-01-08 09:36:01,580 - __main__ - INFO - 📊 [Solar Power] pre_pwr_generation 집계된 값:
+2026-01-08 09:36:01,580 - __main__ - INFO -    - 예측 발전량 합계: 2665.440185546875 (from 2026-01-06)
+2026-01-08 09:36:01,609 - __main__ - INFO - ✅ [Solar Power] pre_pwr_generation 적재 완료 (ymdhms=2026-01-06)
+2026-01-08 09:36:01,633 - __main__ - INFO - 📊 [Solar Power] today_generation, accum_generation 집계된 값:
+2026-01-08 09:36:01,633 - __main__ - INFO -    - 실제 발전량 합계: 3017.0 (from 2026-01-05)
+2026-01-08 09:36:01,633 - __main__ - INFO -    - 누적 발전량 합계: 4718.490966796875 (from 2026-01-05)
+2026-01-08 09:36:01,662 - __main__ - INFO - ✅ [Solar Power] today_generation, accum_generation 적재 완료 (ymdhms=2026-01-05)
+2026-01-08 09:36:01,682 - __main__ - INFO - 📊 [Solar Power] Weather 집계된 값:
+2026-01-08 09:36:01,683 - __main__ - INFO -    - 최저 기온 (tmn): -3.0 (from 2026-01-06)
+2026-01-08 09:36:01,683 - __main__ - INFO -    - 최고 기온 (tmx): 9.0 (from 2026-01-06)
+2026-01-08 09:36:01,683 - __main__ - INFO -    - 일사량 합계 (ics): None (from 2026-01-06)
+2026-01-08 09:36:01,699 - __main__ - INFO - ✅ [Solar Power] Weather 데이터 적재 완료 (ymdhms=2026-01-06)
+2026-01-08 09:36:01,716 - __main__ - INFO - ✅ [Solar Power] tb_ai_solar_power 테이블에 데이터 적재 완료
+2026-01-08 09:36:01,716 - __main__ - INFO -    - pre_pwr_generation, tmn, tmx, ics: 2026-01-06 행에 저장
+2026-01-08 09:36:01,716 - __main__ - INFO -    - today_generation, accum_generation: 2026-01-05 행에 저장
+2026-01-08 09:36:01,716 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:01.556471
+2026-01-08 09:36:01,716 - __main__ - INFO - 📊 [Power Usage] 데이터 집계 및 적재 시작 - 2026-01-06
+2026-01-08 09:36:01,717 - __main__ - INFO - 📅 [Power Usage] pwr_usage 집계 기간: 2026-01-05
+2026-01-08 09:36:01,717 - __main__ - INFO - 📅 [Power Usage] pwr_forecase 집계 기간: 2026-01-06
+2026-01-08 09:36:01,717 - __main__ - INFO - 📂 [Power Usage] 소스 테이블: tb_aggregate_smarteye_day
+2026-01-08 09:36:01,717 - __main__ - INFO - 📂 [Power Usage] 타겟 테이블: tb_ai_pwr_usage
+2026-01-08 09:36:01,717 - __main__ - INFO - 🔄 [Power Usage] Step 1: pwr_usage 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:36:01,733 - __main__ - INFO - 🔍 [Power Usage] pwr_usage 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:36:01,733 - __main__ - INFO - 📊 [Power Usage] pwr_usage 집계된 값 (from 2026-01-05):
+2026-01-08 09:36:01,733 - __main__ - INFO -    - 전력 사용량 합계: 23901.66015625
+2026-01-08 09:36:01,733 - __main__ - INFO -    - 시간 범위: 2026-01-05 00:00:00 ~ 2026-01-05 00:00:00
+2026-01-08 09:36:01,752 - __main__ - INFO -   ✅ Step 1 완료: pwr_usage 적재 (from 2026-01-05 → ymdhms=2026-01-05)
+2026-01-08 09:36:01,752 - __main__ - INFO - 🔄 [Power Usage] Step 2: pwr_forecase 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:36:01,769 - __main__ - INFO - 🔍 [Power Usage] pwr_forecase 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:36:01,769 - __main__ - INFO - 📊 [Power Usage] pwr_forecase 집계된 값 (from 2026-01-06):
+2026-01-08 09:36:01,769 - __main__ - INFO -    - 전력 예측 합계: 24345.234375
+2026-01-08 09:36:01,769 - __main__ - INFO -    - 시간 범위: 2026-01-06 00:00:00 ~ 2026-01-06 00:00:00
+2026-01-08 09:36:01,787 - __main__ - INFO -   ✅ Step 2 완료: pwr_forecase 적재 (from 2026-01-06 → ymdhms=2026-01-06)
+2026-01-08 09:36:01,803 - __main__ - INFO - ✅ [Power Usage] tb_ai_pwr_usage 테이블에 데이터 적재 완료 (2단계)
+2026-01-08 09:36:01,803 - __main__ - INFO -    - pwr_usage: 2026-01-05 행에 저장 (1건)
+2026-01-08 09:36:01,803 - __main__ - INFO -    - pwr_forecase: 2026-01-06 행에 저장 (1건)
+2026-01-08 09:36:01,803 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:01.717052
+2026-01-08 09:36:01,803 - __main__ - INFO - 📊 [ESS Charge] 데이터 집계 및 적재 시작 - 2026-01-06
+2026-01-08 09:36:01,804 - __main__ - INFO - 📅 [ESS Charge] 예측값 집계 기간: 2026-01-06
+2026-01-08 09:36:01,804 - __main__ - INFO - 📅 [ESS Charge] 실제값 집계 기간: 2026-01-05
+2026-01-08 09:36:01,804 - __main__ - INFO - 📂 [ESS Charge] 소스 테이블: tb_ai_solar_power, tb_ai_pwr_usage, tb_nrt_bms_daily_stat
+2026-01-08 09:36:01,804 - __main__ - INFO - 📂 [ESS Charge] 타겟 테이블: tb_ai_ess_charge_amt
+2026-01-08 09:36:01,804 - __main__ - INFO - 🔄 [ESS Charge] Step 1a: pre_pwr_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:36:01,821 - __main__ - INFO -   ✅ Step 1a 완료: pre_pwr_generation 적재 (from 2026-01-06 → ymdhms=2026-01-06)
+2026-01-08 09:36:01,821 - __main__ - INFO - 🔄 [ESS Charge] Step 1b: today_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:36:01,838 - __main__ - INFO -   ✅ Step 1b 완료: today_generation 적재 (from 2026-01-05 → ymdhms=2026-01-05)
+2026-01-08 09:36:01,838 - __main__ - INFO - 🔄 [ESS Charge] Step 2: Power Usage 데이터 업데이트 (tb_ai_pwr_usage → tb_ai_ess_charge_amt)
+2026-01-08 09:36:01,855 - __main__ - INFO -   ✅ Step 2 완료: pwr_usage, AccruepowGap 적재 (from 2026-01-05 → ymdhms=2026-01-05)
+2026-01-08 09:36:01,855 - __main__ - INFO - 🔄 [ESS Charge] Step 3a: pre_charge 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:36:01,874 - __main__ - INFO -   ✅ Step 3a 완료: pre_charge 적재 (from 2026-01-06 → ymdhms=2026-01-06)
+2026-01-08 09:36:01,874 - __main__ - INFO - 🔄 [ESS Charge] Step 3b: charge_amount 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:36:01,891 - __main__ - INFO -   ✅ Step 3b 완료: charge_amount 적재 (from 2026-01-05 → ymdhms=2026-01-05)
+2026-01-08 09:36:01,907 - __main__ - INFO - ✅ [ESS Charge] tb_ai_ess_charge_amt 테이블에 데이터 적재 완료 (5단계)
+2026-01-08 09:36:01,907 - __main__ - INFO -    - 예측값 (pre_pwr_generation, pre_charge): 2026-01-06 행에 저장
+2026-01-08 09:36:01,907 - __main__ - INFO -    - 실제값 (today_generation, pwr_usage, AccruepowGap, charge_amount): 2026-01-05 행에 저장
+2026-01-08 09:36:01,907 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:01.804826
+2026-01-08 09:36:01,907 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:01,907 - __main__ - INFO - 📊 [통합 집계] 완료 - 대상 날짜: 2026-01-06
+2026-01-08 09:36:01,907 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:01,908 - __main__ - INFO - ✅ 성공 [solar_power]: Solar Power 데이터 UPSERT 완료 (target: 2026-01-06, prev: 2026-01-05)
+2026-01-08 09:36:01,908 - __main__ - INFO - ✅ 성공 [power_usage]: Power Usage 데이터 UPSERT 완료 (usage: 2026-01-05, forecase: 2026-01-06)
+2026-01-08 09:36:01,908 - __main__ - INFO - ✅ 성공 [ess_charge]: ESS Charge 데이터 UPSERT 완료 (target: 2026-01-06, prev: 2026-01-05)
+2026-01-08 09:36:01,908 - __main__ - INFO - 🔌 데이터베이스 연결 종료
+2026-01-08 09:36:01,908 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:01,908 - __main__ - INFO - 🎉 AI Log Table Data Aggregation Scheduler Completed Successfully
+2026-01-08 09:36:01,908 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:06,371 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:06,372 - __main__ - INFO - AI Log Table Data Aggregation Scheduler Started
+2026-01-08 09:36:06,372 - __main__ - INFO - Execution Time: 2026-01-08 09:36:06
+2026-01-08 09:36:06,372 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:06,378 - __main__ - INFO - 📅 [날짜 설정] 입력된 날짜: 2026-01-07
+2026-01-08 09:36:06,378 - __main__ - INFO - 📊 [통합 집계] 모든 데이터 집계 시작
+2026-01-08 09:36:06,379 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:06,379 - __main__ - INFO - 📅 [통합 집계] 시작 - 대상 날짜: 2026-01-07
+2026-01-08 09:36:06,379 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:06,463 - __main__ - INFO - ✅ 데이터베이스 연결 성공
+2026-01-08 09:36:06,463 - __main__ - INFO - 📊 [Solar Power] 데이터 집계 및 적재 시작 - 2026-01-07
+2026-01-08 09:36:06,463 - __main__ - INFO - 📅 [Solar Power] pre_pwr_generation 집계 기간: 2026-01-07 00:00:00 ~ 23:59:59
+2026-01-08 09:36:06,463 - __main__ - INFO - 📅 [Solar Power] today_generation, accum_generation 집계 기간: 2026-01-06 00:00:00 ~ 23:59:59
+2026-01-08 09:36:06,463 - __main__ - INFO - 📅 [Solar Power] tmn, tmx, ics 집계 기간: 2026-01-07 00:00:00 ~ 23:59:59
+2026-01-08 09:36:06,463 - __main__ - INFO - 📂 [Solar Power] 소스 테이블: tb_solar_day, tb_weather_info
+2026-01-08 09:36:06,463 - __main__ - INFO - 📂 [Solar Power] 타겟 테이블: tb_ai_solar_power
+2026-01-08 09:36:06,488 - __main__ - INFO - 📊 [Solar Power] pre_pwr_generation 집계된 값:
+2026-01-08 09:36:06,489 - __main__ - INFO -    - 예측 발전량 합계: 2645.33154296875 (from 2026-01-07)
+2026-01-08 09:36:06,517 - __main__ - INFO - ✅ [Solar Power] pre_pwr_generation 적재 완료 (ymdhms=2026-01-07)
+2026-01-08 09:36:06,541 - __main__ - INFO - 📊 [Solar Power] today_generation, accum_generation 집계된 값:
+2026-01-08 09:36:06,541 - __main__ - INFO -    - 실제 발전량 합계: 3771.0 (from 2026-01-06)
+2026-01-08 09:36:06,541 - __main__ - INFO -    - 누적 발전량 합계: 4722.161056518555 (from 2026-01-06)
+2026-01-08 09:36:06,570 - __main__ - INFO - ✅ [Solar Power] today_generation, accum_generation 적재 완료 (ymdhms=2026-01-06)
+2026-01-08 09:36:06,587 - __main__ - INFO - 📊 [Solar Power] Weather 집계된 값:
+2026-01-08 09:36:06,587 - __main__ - INFO -    - 최저 기온 (tmn): -1.0 (from 2026-01-07)
+2026-01-08 09:36:06,587 - __main__ - INFO -    - 최고 기온 (tmx): 8.0 (from 2026-01-07)
+2026-01-08 09:36:06,587 - __main__ - INFO -    - 일사량 합계 (ics): None (from 2026-01-07)
+2026-01-08 09:36:06,604 - __main__ - INFO - ✅ [Solar Power] Weather 데이터 적재 완료 (ymdhms=2026-01-07)
+2026-01-08 09:36:06,621 - __main__ - INFO - ✅ [Solar Power] tb_ai_solar_power 테이블에 데이터 적재 완료
+2026-01-08 09:36:06,621 - __main__ - INFO -    - pre_pwr_generation, tmn, tmx, ics: 2026-01-07 행에 저장
+2026-01-08 09:36:06,621 - __main__ - INFO -    - today_generation, accum_generation: 2026-01-06 행에 저장
+2026-01-08 09:36:06,622 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:06.464973
+2026-01-08 09:36:06,622 - __main__ - INFO - 📊 [Power Usage] 데이터 집계 및 적재 시작 - 2026-01-07
+2026-01-08 09:36:06,622 - __main__ - INFO - 📅 [Power Usage] pwr_usage 집계 기간: 2026-01-06
+2026-01-08 09:36:06,622 - __main__ - INFO - 📅 [Power Usage] pwr_forecase 집계 기간: 2026-01-07
+2026-01-08 09:36:06,622 - __main__ - INFO - 📂 [Power Usage] 소스 테이블: tb_aggregate_smarteye_day
+2026-01-08 09:36:06,622 - __main__ - INFO - 📂 [Power Usage] 타겟 테이블: tb_ai_pwr_usage
+2026-01-08 09:36:06,622 - __main__ - INFO - 🔄 [Power Usage] Step 1: pwr_usage 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:36:06,639 - __main__ - INFO - 🔍 [Power Usage] pwr_usage 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:36:06,639 - __main__ - INFO - 📊 [Power Usage] pwr_usage 집계된 값 (from 2026-01-06):
+2026-01-08 09:36:06,639 - __main__ - INFO -    - 전력 사용량 합계: 27569.51953125
+2026-01-08 09:36:06,639 - __main__ - INFO -    - 시간 범위: 2026-01-06 00:00:00 ~ 2026-01-06 00:00:00
+2026-01-08 09:36:06,654 - __main__ - INFO -   ✅ Step 1 완료: pwr_usage 적재 (from 2026-01-06 → ymdhms=2026-01-06)
+2026-01-08 09:36:06,656 - __main__ - INFO - 🔄 [Power Usage] Step 2: pwr_forecase 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:36:06,671 - __main__ - INFO - 🔍 [Power Usage] pwr_forecase 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:36:06,671 - __main__ - INFO - 📊 [Power Usage] pwr_forecase 집계된 값 (from 2026-01-07):
+2026-01-08 09:36:06,672 - __main__ - INFO -    - 전력 예측 합계: 26666.30078125
+2026-01-08 09:36:06,672 - __main__ - INFO -    - 시간 범위: 2026-01-07 00:00:00 ~ 2026-01-07 00:00:00
+2026-01-08 09:36:06,691 - __main__ - INFO -   ✅ Step 2 완료: pwr_forecase 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 09:36:06,707 - __main__ - INFO - ✅ [Power Usage] tb_ai_pwr_usage 테이블에 데이터 적재 완료 (2단계)
+2026-01-08 09:36:06,707 - __main__ - INFO -    - pwr_usage: 2026-01-06 행에 저장 (1건)
+2026-01-08 09:36:06,707 - __main__ - INFO -    - pwr_forecase: 2026-01-07 행에 저장 (1건)
+2026-01-08 09:36:06,707 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:06.622832
+2026-01-08 09:36:06,707 - __main__ - INFO - 📊 [ESS Charge] 데이터 집계 및 적재 시작 - 2026-01-07
+2026-01-08 09:36:06,707 - __main__ - INFO - 📅 [ESS Charge] 예측값 집계 기간: 2026-01-07
+2026-01-08 09:36:06,708 - __main__ - INFO - 📅 [ESS Charge] 실제값 집계 기간: 2026-01-06
+2026-01-08 09:36:06,708 - __main__ - INFO - 📂 [ESS Charge] 소스 테이블: tb_ai_solar_power, tb_ai_pwr_usage, tb_nrt_bms_daily_stat
+2026-01-08 09:36:06,708 - __main__ - INFO - 📂 [ESS Charge] 타겟 테이블: tb_ai_ess_charge_amt
+2026-01-08 09:36:06,708 - __main__ - INFO - 🔄 [ESS Charge] Step 1a: pre_pwr_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:36:06,724 - __main__ - INFO -   ✅ Step 1a 완료: pre_pwr_generation 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 09:36:06,724 - __main__ - INFO - 🔄 [ESS Charge] Step 1b: today_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:36:06,740 - __main__ - INFO -   ✅ Step 1b 완료: today_generation 적재 (from 2026-01-06 → ymdhms=2026-01-06)
+2026-01-08 09:36:06,740 - __main__ - INFO - 🔄 [ESS Charge] Step 2: Power Usage 데이터 업데이트 (tb_ai_pwr_usage → tb_ai_ess_charge_amt)
+2026-01-08 09:36:06,760 - __main__ - INFO -   ✅ Step 2 완료: pwr_usage, AccruepowGap 적재 (from 2026-01-06 → ymdhms=2026-01-06)
+2026-01-08 09:36:06,760 - __main__ - INFO - 🔄 [ESS Charge] Step 3a: pre_charge 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:36:06,778 - __main__ - INFO -   ✅ Step 3a 완료: pre_charge 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 09:36:06,778 - __main__ - INFO - 🔄 [ESS Charge] Step 3b: charge_amount 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:36:06,797 - __main__ - INFO -   ✅ Step 3b 완료: charge_amount 적재 (from 2026-01-06 → ymdhms=2026-01-06)
+2026-01-08 09:36:06,812 - __main__ - INFO - ✅ [ESS Charge] tb_ai_ess_charge_amt 테이블에 데이터 적재 완료 (5단계)
+2026-01-08 09:36:06,812 - __main__ - INFO -    - 예측값 (pre_pwr_generation, pre_charge): 2026-01-07 행에 저장
+2026-01-08 09:36:06,812 - __main__ - INFO -    - 실제값 (today_generation, pwr_usage, AccruepowGap, charge_amount): 2026-01-06 행에 저장
+2026-01-08 09:36:06,812 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:06.708821
+2026-01-08 09:36:06,812 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:06,812 - __main__ - INFO - 📊 [통합 집계] 완료 - 대상 날짜: 2026-01-07
+2026-01-08 09:36:06,813 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:06,813 - __main__ - INFO - ✅ 성공 [solar_power]: Solar Power 데이터 UPSERT 완료 (target: 2026-01-07, prev: 2026-01-06)
+2026-01-08 09:36:06,813 - __main__ - INFO - ✅ 성공 [power_usage]: Power Usage 데이터 UPSERT 완료 (usage: 2026-01-06, forecase: 2026-01-07)
+2026-01-08 09:36:06,813 - __main__ - INFO - ✅ 성공 [ess_charge]: ESS Charge 데이터 UPSERT 완료 (target: 2026-01-07, prev: 2026-01-06)
+2026-01-08 09:36:06,813 - __main__ - INFO - 🔌 데이터베이스 연결 종료
+2026-01-08 09:36:06,813 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:06,813 - __main__ - INFO - 🎉 AI Log Table Data Aggregation Scheduler Completed Successfully
+2026-01-08 09:36:06,813 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:14,527 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:14,527 - __main__ - INFO - AI Log Table Data Aggregation Scheduler Started
+2026-01-08 09:36:14,527 - __main__ - INFO - Execution Time: 2026-01-08 09:36:14
+2026-01-08 09:36:14,527 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:14,533 - __main__ - INFO - 📅 [날짜 설정] 입력된 날짜: 2026-01-08
+2026-01-08 09:36:14,533 - __main__ - INFO - 📊 [통합 집계] 모든 데이터 집계 시작
+2026-01-08 09:36:14,533 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:14,534 - __main__ - INFO - 📅 [통합 집계] 시작 - 대상 날짜: 2026-01-08
+2026-01-08 09:36:14,534 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:14,621 - __main__ - INFO - ✅ 데이터베이스 연결 성공
+2026-01-08 09:36:14,621 - __main__ - INFO - 📊 [Solar Power] 데이터 집계 및 적재 시작 - 2026-01-08
+2026-01-08 09:36:14,621 - __main__ - INFO - 📅 [Solar Power] pre_pwr_generation 집계 기간: 2026-01-08 00:00:00 ~ 23:59:59
+2026-01-08 09:36:14,621 - __main__ - INFO - 📅 [Solar Power] today_generation, accum_generation 집계 기간: 2026-01-07 00:00:00 ~ 23:59:59
+2026-01-08 09:36:14,621 - __main__ - INFO - 📅 [Solar Power] tmn, tmx, ics 집계 기간: 2026-01-08 00:00:00 ~ 23:59:59
+2026-01-08 09:36:14,621 - __main__ - INFO - 📂 [Solar Power] 소스 테이블: tb_solar_day, tb_weather_info
+2026-01-08 09:36:14,621 - __main__ - INFO - 📂 [Solar Power] 타겟 테이블: tb_ai_solar_power
+2026-01-08 09:36:14,646 - __main__ - INFO - 📊 [Solar Power] pre_pwr_generation 집계된 값:
+2026-01-08 09:36:14,646 - __main__ - INFO -    - 예측 발전량 합계: 3037.751953125 (from 2026-01-08)
+2026-01-08 09:36:14,677 - __main__ - INFO - ✅ [Solar Power] pre_pwr_generation 적재 완료 (ymdhms=2026-01-08)
+2026-01-08 09:36:14,705 - __main__ - INFO - 📊 [Solar Power] today_generation, accum_generation 집계된 값:
+2026-01-08 09:36:14,705 - __main__ - INFO -    - 실제 발전량 합계: 3483.0 (from 2026-01-07)
+2026-01-08 09:36:14,705 - __main__ - INFO -    - 누적 발전량 합계: 4725.548004150391 (from 2026-01-07)
+2026-01-08 09:36:14,735 - __main__ - INFO - ✅ [Solar Power] today_generation, accum_generation 적재 완료 (ymdhms=2026-01-07)
+2026-01-08 09:36:14,751 - __main__ - INFO - 📊 [Solar Power] Weather 집계된 값:
+2026-01-08 09:36:14,751 - __main__ - INFO -    - 최저 기온 (tmn): -6.0 (from 2026-01-08)
+2026-01-08 09:36:14,751 - __main__ - INFO -    - 최고 기온 (tmx): 3.0 (from 2026-01-08)
+2026-01-08 09:36:14,751 - __main__ - INFO -    - 일사량 합계 (ics): None (from 2026-01-08)
+2026-01-08 09:36:14,771 - __main__ - INFO - ✅ [Solar Power] Weather 데이터 적재 완료 (ymdhms=2026-01-08)
+2026-01-08 09:36:14,787 - __main__ - INFO - ✅ [Solar Power] tb_ai_solar_power 테이블에 데이터 적재 완료
+2026-01-08 09:36:14,787 - __main__ - INFO -    - pre_pwr_generation, tmn, tmx, ics: 2026-01-08 행에 저장
+2026-01-08 09:36:14,787 - __main__ - INFO -    - today_generation, accum_generation: 2026-01-07 행에 저장
+2026-01-08 09:36:14,787 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:14.621739
+2026-01-08 09:36:14,787 - __main__ - INFO - 📊 [Power Usage] 데이터 집계 및 적재 시작 - 2026-01-08
+2026-01-08 09:36:14,788 - __main__ - INFO - 📅 [Power Usage] pwr_usage 집계 기간: 2026-01-07
+2026-01-08 09:36:14,788 - __main__ - INFO - 📅 [Power Usage] pwr_forecase 집계 기간: 2026-01-08
+2026-01-08 09:36:14,788 - __main__ - INFO - 📂 [Power Usage] 소스 테이블: tb_aggregate_smarteye_day
+2026-01-08 09:36:14,788 - __main__ - INFO - 📂 [Power Usage] 타겟 테이블: tb_ai_pwr_usage
+2026-01-08 09:36:14,788 - __main__ - INFO - 🔄 [Power Usage] Step 1: pwr_usage 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:36:14,805 - __main__ - INFO - 🔍 [Power Usage] pwr_usage 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:36:14,805 - __main__ - INFO - 📊 [Power Usage] pwr_usage 집계된 값 (from 2026-01-07):
+2026-01-08 09:36:14,805 - __main__ - INFO -    - 전력 사용량 합계: 27623.880859375
+2026-01-08 09:36:14,805 - __main__ - INFO -    - 시간 범위: 2026-01-07 00:00:00 ~ 2026-01-07 00:00:00
+2026-01-08 09:36:14,821 - __main__ - INFO -   ✅ Step 1 완료: pwr_usage 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 09:36:14,823 - __main__ - INFO - 🔄 [Power Usage] Step 2: pwr_forecase 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 09:36:14,838 - __main__ - INFO - 🔍 [Power Usage] pwr_forecase 소스 데이터 확인 - 건수: 1건
+2026-01-08 09:36:14,838 - __main__ - INFO - 📊 [Power Usage] pwr_forecase 집계된 값 (from 2026-01-08):
+2026-01-08 09:36:14,838 - __main__ - INFO -    - 전력 예측 합계: 25346.521484375
+2026-01-08 09:36:14,838 - __main__ - INFO -    - 시간 범위: 2026-01-08 00:00:00 ~ 2026-01-08 00:00:00
+2026-01-08 09:36:14,855 - __main__ - INFO -   ✅ Step 2 완료: pwr_forecase 적재 (from 2026-01-08 → ymdhms=2026-01-08)
+2026-01-08 09:36:14,871 - __main__ - INFO - ✅ [Power Usage] tb_ai_pwr_usage 테이블에 데이터 적재 완료 (2단계)
+2026-01-08 09:36:14,872 - __main__ - INFO -    - pwr_usage: 2026-01-07 행에 저장 (1건)
+2026-01-08 09:36:14,872 - __main__ - INFO -    - pwr_forecase: 2026-01-08 행에 저장 (1건)
+2026-01-08 09:36:14,872 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:14.788092
+2026-01-08 09:36:14,872 - __main__ - INFO - 📊 [ESS Charge] 데이터 집계 및 적재 시작 - 2026-01-08
+2026-01-08 09:36:14,872 - __main__ - INFO - 📅 [ESS Charge] 예측값 집계 기간: 2026-01-08
+2026-01-08 09:36:14,873 - __main__ - INFO - 📅 [ESS Charge] 실제값 집계 기간: 2026-01-07
+2026-01-08 09:36:14,873 - __main__ - INFO - 📂 [ESS Charge] 소스 테이블: tb_ai_solar_power, tb_ai_pwr_usage, tb_nrt_bms_daily_stat
+2026-01-08 09:36:14,873 - __main__ - INFO - 📂 [ESS Charge] 타겟 테이블: tb_ai_ess_charge_amt
+2026-01-08 09:36:14,873 - __main__ - INFO - 🔄 [ESS Charge] Step 1a: pre_pwr_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:36:14,891 - __main__ - INFO -   ✅ Step 1a 완료: pre_pwr_generation 적재 (from 2026-01-08 → ymdhms=2026-01-08)
+2026-01-08 09:36:14,891 - __main__ - INFO - 🔄 [ESS Charge] Step 1b: today_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 09:36:14,907 - __main__ - INFO -   ✅ Step 1b 완료: today_generation 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 09:36:14,907 - __main__ - INFO - 🔄 [ESS Charge] Step 2: Power Usage 데이터 업데이트 (tb_ai_pwr_usage → tb_ai_ess_charge_amt)
+2026-01-08 09:36:14,924 - __main__ - INFO -   ✅ Step 2 완료: pwr_usage, AccruepowGap 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 09:36:14,924 - __main__ - INFO - 🔄 [ESS Charge] Step 3a: pre_charge 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:36:14,941 - __main__ - INFO -   ✅ Step 3a 완료: pre_charge 적재 (from 2026-01-08 → ymdhms=2026-01-08)
+2026-01-08 09:36:14,941 - __main__ - INFO - 🔄 [ESS Charge] Step 3b: charge_amount 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 09:36:14,961 - __main__ - INFO -   ✅ Step 3b 완료: charge_amount 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 09:36:14,976 - __main__ - INFO - ✅ [ESS Charge] tb_ai_ess_charge_amt 테이블에 데이터 적재 완료 (5단계)
+2026-01-08 09:36:14,977 - __main__ - INFO -    - 예측값 (pre_pwr_generation, pre_charge): 2026-01-08 행에 저장
+2026-01-08 09:36:14,977 - __main__ - INFO -    - 실제값 (today_generation, pwr_usage, AccruepowGap, charge_amount): 2026-01-07 행에 저장
+2026-01-08 09:36:14,977 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 09:36:14.873461
+2026-01-08 09:36:14,977 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:14,977 - __main__ - INFO - 📊 [통합 집계] 완료 - 대상 날짜: 2026-01-08
+2026-01-08 09:36:14,977 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:14,977 - __main__ - INFO - ✅ 성공 [solar_power]: Solar Power 데이터 UPSERT 완료 (target: 2026-01-08, prev: 2026-01-07)
+2026-01-08 09:36:14,978 - __main__ - INFO - ✅ 성공 [power_usage]: Power Usage 데이터 UPSERT 완료 (usage: 2026-01-07, forecase: 2026-01-08)
+2026-01-08 09:36:14,978 - __main__ - INFO - ✅ 성공 [ess_charge]: ESS Charge 데이터 UPSERT 완료 (target: 2026-01-08, prev: 2026-01-07)
+2026-01-08 09:36:14,978 - __main__ - INFO - 🔌 데이터베이스 연결 종료
+2026-01-08 09:36:14,978 - __main__ - INFO - ================================================================================
+2026-01-08 09:36:14,978 - __main__ - INFO - 🎉 AI Log Table Data Aggregation Scheduler Completed Successfully
+2026-01-08 09:36:14,978 - __main__ - INFO - ================================================================================
+2026-01-08 10:20:12,474 - __main__ - INFO - ================================================================================
+2026-01-08 10:20:12,475 - __main__ - INFO - AI Log Table Data Aggregation Scheduler Started
+2026-01-08 10:20:12,475 - __main__ - INFO - Execution Time: 2026-01-08 10:20:12
+2026-01-08 10:20:12,475 - __main__ - INFO - ================================================================================
+2026-01-08 10:20:12,480 - __main__ - INFO - 📅 [날짜 설정] 입력된 날짜: 2026-01-08
+2026-01-08 10:20:12,480 - __main__ - INFO - 📊 [통합 집계] 모든 데이터 집계 시작
+2026-01-08 10:20:12,480 - __main__ - INFO - ================================================================================
+2026-01-08 10:20:12,480 - __main__ - INFO - 📅 [통합 집계] 시작 - 대상 날짜: 2026-01-08
+2026-01-08 10:20:12,480 - __main__ - INFO - ================================================================================
+2026-01-08 10:20:12,565 - __main__ - INFO - ✅ 데이터베이스 연결 성공
+2026-01-08 10:20:12,565 - __main__ - INFO - 📊 [Solar Power] 데이터 집계 및 적재 시작 - 2026-01-08
+2026-01-08 10:20:12,565 - __main__ - INFO - 📅 [Solar Power] pre_pwr_generation 집계 기간: 2026-01-08 00:00:00 ~ 23:59:59
+2026-01-08 10:20:12,565 - __main__ - INFO - 📅 [Solar Power] today_generation, accum_generation 집계 기간: 2026-01-07 00:00:00 ~ 23:59:59
+2026-01-08 10:20:12,565 - __main__ - INFO - 📅 [Solar Power] tmn, tmx, ics 집계 기간: 2026-01-08 00:00:00 ~ 23:59:59
+2026-01-08 10:20:12,565 - __main__ - INFO - 📂 [Solar Power] 소스 테이블: tb_solar_day, tb_weather_info
+2026-01-08 10:20:12,566 - __main__ - INFO - 📂 [Solar Power] 타겟 테이블: tb_ai_solar_power
+2026-01-08 10:20:12,590 - __main__ - INFO - 📊 [Solar Power] pre_pwr_generation 집계된 값:
+2026-01-08 10:20:12,590 - __main__ - INFO -    - 예측 발전량 합계: 3037.751953125 (from 2026-01-08)
+2026-01-08 10:20:12,619 - __main__ - INFO - ✅ [Solar Power] pre_pwr_generation 적재 완료 (ymdhms=2026-01-08)
+2026-01-08 10:20:12,643 - __main__ - INFO - 📊 [Solar Power] today_generation, accum_generation 집계된 값:
+2026-01-08 10:20:12,643 - __main__ - INFO -    - 실제 발전량 합계: 3483.0 (from 2026-01-07)
+2026-01-08 10:20:12,643 - __main__ - INFO -    - 누적 발전량 합계: 4725.548004150391 (from 2026-01-07)
+2026-01-08 10:20:12,672 - __main__ - INFO - ✅ [Solar Power] today_generation, accum_generation 적재 완료 (ymdhms=2026-01-07)
+2026-01-08 10:20:12,688 - __main__ - INFO - 📊 [Solar Power] Weather 집계된 값:
+2026-01-08 10:20:12,688 - __main__ - INFO -    - 최저 기온 (tmn): -6.0 (from 2026-01-08)
+2026-01-08 10:20:12,688 - __main__ - INFO -    - 최고 기온 (tmx): 3.0 (from 2026-01-08)
+2026-01-08 10:20:12,688 - __main__ - INFO -    - 일사량 합계 (ics): None (from 2026-01-08)
+2026-01-08 10:20:12,705 - __main__ - INFO - ✅ [Solar Power] Weather 데이터 적재 완료 (ymdhms=2026-01-08)
+2026-01-08 10:20:12,721 - __main__ - INFO - ✅ [Solar Power] tb_ai_solar_power 테이블에 데이터 적재 완료
+2026-01-08 10:20:12,721 - __main__ - INFO -    - pre_pwr_generation, tmn, tmx, ics: 2026-01-08 행에 저장
+2026-01-08 10:20:12,721 - __main__ - INFO -    - today_generation, accum_generation: 2026-01-07 행에 저장
+2026-01-08 10:20:12,721 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 10:20:12.566630
+2026-01-08 10:20:12,721 - __main__ - INFO - 📊 [Power Usage] 데이터 집계 및 적재 시작 - 2026-01-08
+2026-01-08 10:20:12,721 - __main__ - INFO - 📅 [Power Usage] pwr_usage 집계 기간: 2026-01-07
+2026-01-08 10:20:12,721 - __main__ - INFO - 📅 [Power Usage] pwr_forecase 집계 기간: 2026-01-08
+2026-01-08 10:20:12,721 - __main__ - INFO - 📂 [Power Usage] 소스 테이블: tb_aggregate_smarteye_day
+2026-01-08 10:20:12,721 - __main__ - INFO - 📂 [Power Usage] 타겟 테이블: tb_ai_pwr_usage
+2026-01-08 10:20:12,721 - __main__ - INFO - 🔄 [Power Usage] Step 1: pwr_usage 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 10:20:12,738 - __main__ - INFO - 🔍 [Power Usage] pwr_usage 소스 데이터 확인 - 건수: 1건
+2026-01-08 10:20:12,739 - __main__ - INFO - 📊 [Power Usage] pwr_usage 집계된 값 (from 2026-01-07):
+2026-01-08 10:20:12,739 - __main__ - INFO -    - 전력 사용량 합계: 27623.880859375
+2026-01-08 10:20:12,739 - __main__ - INFO -    - 시간 범위: 2026-01-07 00:00:00 ~ 2026-01-07 00:00:00
+2026-01-08 10:20:12,755 - __main__ - INFO -   ✅ Step 1 완료: pwr_usage 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 10:20:12,755 - __main__ - INFO - 🔄 [Power Usage] Step 2: pwr_forecase 업데이트 (tb_aggregate_smarteye_day → tb_ai_pwr_usage)
+2026-01-08 10:20:12,772 - __main__ - INFO - 🔍 [Power Usage] pwr_forecase 소스 데이터 확인 - 건수: 1건
+2026-01-08 10:20:12,772 - __main__ - INFO - 📊 [Power Usage] pwr_forecase 집계된 값 (from 2026-01-08):
+2026-01-08 10:20:12,773 - __main__ - INFO -    - 전력 예측 합계: 25346.521484375
+2026-01-08 10:20:12,773 - __main__ - INFO -    - 시간 범위: 2026-01-08 00:00:00 ~ 2026-01-08 00:00:00
+2026-01-08 10:20:12,789 - __main__ - INFO -   ✅ Step 2 완료: pwr_forecase 적재 (from 2026-01-08 → ymdhms=2026-01-08)
+2026-01-08 10:20:12,804 - __main__ - INFO - ✅ [Power Usage] tb_ai_pwr_usage 테이블에 데이터 적재 완료 (2단계)
+2026-01-08 10:20:12,804 - __main__ - INFO -    - pwr_usage: 2026-01-07 행에 저장 (1건)
+2026-01-08 10:20:12,804 - __main__ - INFO -    - pwr_forecase: 2026-01-08 행에 저장 (1건)
+2026-01-08 10:20:12,804 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 10:20:12.721932
+2026-01-08 10:20:12,804 - __main__ - INFO - 📊 [ESS Charge] 데이터 집계 및 적재 시작 - 2026-01-08
+2026-01-08 10:20:12,805 - __main__ - INFO - 📅 [ESS Charge] 예측값 집계 기간: 2026-01-08
+2026-01-08 10:20:12,805 - __main__ - INFO - 📅 [ESS Charge] 실제값 집계 기간: 2026-01-07
+2026-01-08 10:20:12,805 - __main__ - INFO - 📂 [ESS Charge] 소스 테이블: tb_ai_solar_power, tb_ai_pwr_usage, tb_nrt_bms_daily_stat
+2026-01-08 10:20:12,805 - __main__ - INFO - 📂 [ESS Charge] 타겟 테이블: tb_ai_ess_charge_amt
+2026-01-08 10:20:12,805 - __main__ - INFO - 🔄 [ESS Charge] Step 1a: pre_pwr_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 10:20:12,822 - __main__ - INFO - 📊 [ESS Charge] pre_pwr_generation 집계된 값:
+2026-01-08 10:20:12,822 - __main__ - INFO -    - 예측 발전량: 3037.75 (from 2026-01-08)
+2026-01-08 10:20:12,839 - __main__ - INFO -   ✅ Step 1a 완료: pre_pwr_generation 적재 (from 2026-01-08 → ymdhms=2026-01-08)
+2026-01-08 10:20:12,840 - __main__ - INFO - 🔄 [ESS Charge] Step 1b: today_generation 업데이트 (tb_ai_solar_power → tb_ai_ess_charge_amt)
+2026-01-08 10:20:12,855 - __main__ - INFO - 📊 [ESS Charge] today_generation 집계된 값:
+2026-01-08 10:20:12,855 - __main__ - INFO -    - 실제 발전량: 3483.0 (from 2026-01-07)
+2026-01-08 10:20:12,872 - __main__ - INFO -   ✅ Step 1b 완료: today_generation 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 10:20:12,872 - __main__ - INFO - 🔄 [ESS Charge] Step 2: Power Usage 데이터 업데이트 (tb_ai_pwr_usage → tb_ai_ess_charge_amt)
+2026-01-08 10:20:12,888 - __main__ - INFO - 📊 [ESS Charge] Power Usage 집계된 값:
+2026-01-08 10:20:12,888 - __main__ - INFO -    - 전력 사용량: 27623.9 (from 2026-01-07)
+2026-01-08 10:20:12,888 - __main__ - INFO -    - 누적 전력 차이: 10931.2 (from 2026-01-07)
+2026-01-08 10:20:12,905 - __main__ - INFO -   ✅ Step 2 완료: pwr_usage, AccruepowGap 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 10:20:12,905 - __main__ - INFO - 🔄 [ESS Charge] Step 3a: pre_charge 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 10:20:12,923 - __main__ - INFO - 📊 [ESS Charge] pre_charge 집계된 값:
+2026-01-08 10:20:12,923 - __main__ - INFO -    - 예측 충전량: 3320.0 (from 2026-01-08)
+2026-01-08 10:20:12,940 - __main__ - INFO -   ✅ Step 3a 완료: pre_charge 적재 (from 2026-01-08 → ymdhms=2026-01-08)
+2026-01-08 10:20:12,940 - __main__ - INFO - 🔄 [ESS Charge] Step 3b: charge_amount 업데이트 (tb_nrt_bms_daily_stat → tb_ai_ess_charge_amt)
+2026-01-08 10:20:12,957 - __main__ - INFO - 📊 [ESS Charge] charge_amount 집계된 값:
+2026-01-08 10:20:12,957 - __main__ - INFO -    - 실제 충전량: 3237.78 (from 2026-01-07)
+2026-01-08 10:20:12,974 - __main__ - INFO -   ✅ Step 3b 완료: charge_amount 적재 (from 2026-01-07 → ymdhms=2026-01-07)
+2026-01-08 10:20:12,990 - __main__ - INFO - ✅ [ESS Charge] tb_ai_ess_charge_amt 테이블에 데이터 적재 완료 (5단계)
+2026-01-08 10:20:12,990 - __main__ - INFO -    - 예측값 (pre_pwr_generation, pre_charge): 2026-01-08 행에 저장
+2026-01-08 10:20:12,990 - __main__ - INFO -    - 실제값 (today_generation, pwr_usage, AccruepowGap, charge_amount): 2026-01-07 행에 저장
+2026-01-08 10:20:12,990 - __main__ - INFO -    - 등록 시간 (reg_dt): 2026-01-08 10:20:12.805725
+2026-01-08 10:20:12,991 - __main__ - INFO - ================================================================================
+2026-01-08 10:20:12,991 - __main__ - INFO - 📊 [통합 집계] 완료 - 대상 날짜: 2026-01-08
+2026-01-08 10:20:12,991 - __main__ - INFO - ================================================================================
+2026-01-08 10:20:12,991 - __main__ - INFO - ✅ 성공 [solar_power]: Solar Power 데이터 UPSERT 완료 (target: 2026-01-08, prev: 2026-01-07)
+2026-01-08 10:20:12,991 - __main__ - INFO - ✅ 성공 [power_usage]: Power Usage 데이터 UPSERT 완료 (usage: 2026-01-07, forecase: 2026-01-08)
+2026-01-08 10:20:12,991 - __main__ - INFO - ✅ 성공 [ess_charge]: ESS Charge 데이터 UPSERT 완료 (target: 2026-01-08, prev: 2026-01-07)
+2026-01-08 10:20:12,991 - __main__ - INFO - 🔌 데이터베이스 연결 종료
+2026-01-08 10:20:12,991 - __main__ - INFO - ================================================================================
+2026-01-08 10:20:12,991 - __main__ - INFO - 🎉 AI Log Table Data Aggregation Scheduler Completed Successfully
+2026-01-08 10:20:12,991 - __main__ - INFO - ================================================================================
