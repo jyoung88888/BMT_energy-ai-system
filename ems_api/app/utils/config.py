@@ -1,19 +1,23 @@
 import os
+import sys
 import json
 from dotenv import load_dotenv
+from pathlib import Path
 from typing import Dict, Any
 load_dotenv()
 
+# 공통 DB 설정 import
+GIT_ROOT = str(Path(__file__).parent.parent.parent.parent)
+if GIT_ROOT not in sys.path:
+    sys.path.insert(0, GIT_ROOT)
+from db_config import DB_CONFIG as COMMON_DB_CONFIG
+
 class Config:
 
-    # Database configuration - 환경변수 또는 기본값 사용
+    # Database configuration - 공통 db_config.py에서 로드
     database_config: Dict[str, Any] = {
-        'host': os.getenv("DB_HOST", "192.168.213.250"),
+        **COMMON_DB_CONFIG,
         'port': int(os.getenv("DB_PORT", 3306)),
-        'user': os.getenv("DB_USER", "root"),
-        'password': os.getenv("DB_PASSWORD", "OnDemand%Ai"),
-        'charset': 'utf8mb4',
-        'database': os.getenv("DB_NAME", "db_energy")
     }
 
     # 테이블명 설정

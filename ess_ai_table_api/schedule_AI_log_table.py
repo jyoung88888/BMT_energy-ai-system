@@ -29,6 +29,12 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
+# 공통 DB 설정 import
+GIT_ROOT = os.path.join(BASE_DIR, '..')
+if GIT_ROOT not in sys.path:
+    sys.path.insert(0, GIT_ROOT)
+from db_config import DB_CONFIG
+
 def setup_logging():
     """로깅 설정 (날짜별 분리)"""
     log_dir = Path(BASE_DIR) / "aggregate_logs"
@@ -55,14 +61,6 @@ logger = None
 # ============================================================
 # 설정
 # ============================================================
-
-DB_CONFIG = {
-    'host': '192.168.213.250',
-    'user': 'root',
-    'password': 'OnDemand%Ai',
-    'charset': 'utf8mb4',
-    'database': 'db_energy'
-}
 
 TABLE_NAMES = {
     # 소스 테이블 - 태양광

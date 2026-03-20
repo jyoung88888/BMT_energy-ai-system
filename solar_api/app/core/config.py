@@ -1,10 +1,17 @@
 import os
+import sys
 import json
 import logging
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 from pydantic import Field
 from pydantic_settings import BaseSettings
+
+# 공통 DB 설정 import
+GIT_ROOT = str(Path(__file__).parent.parent.parent.parent)
+if GIT_ROOT not in sys.path:
+    sys.path.insert(0, GIT_ROOT)
+from db_config import DB_CONFIG as COMMON_DB_CONFIG
 
 logger = logging.getLogger(__name__)
 
@@ -45,23 +52,17 @@ class Settings(BaseSettings):
     API_VERSION: str = "2.0.0"
     API_DESCRIPTION: str = "태양광 발전량 예측 API 서비스"
 
-    # 데이터베이스 설정 (환경변수 지원)
-    DB_HOST: str = os.getenv('DB_HOST', '192.168.213.250')
-    DB_USER: str = os.getenv('DB_USER', 'root')
-    DB_PASSWORD: str = os.getenv('DB_PASSWORD', 'OnDemand%Ai')
-    DB_NAME: str = os.getenv('DB_NAME', 'db_energy')
-    DB_CHARSET: str = os.getenv('DB_CHARSET', 'utf8mb4')
+    # 데이터베이스 설정 (공통 db_config.py에서 로드)
+    DB_HOST: str = COMMON_DB_CONFIG['host']
+    DB_USER: str = COMMON_DB_CONFIG['user']
+    DB_PASSWORD: str = COMMON_DB_CONFIG['password']
+    DB_NAME: str = COMMON_DB_CONFIG['database']
+    DB_CHARSET: str = COMMON_DB_CONFIG['charset']
 
     @property
     def database_config(self) -> Dict[str, Any]:
         """데이터베이스 설정을 딕셔너리로 반환"""
-        return {
-            'host': self.DB_HOST,
-            'user': self.DB_USER,
-            'password': self.DB_PASSWORD,
-            'database': self.DB_NAME,
-            'charset': self.DB_CHARSET
-        }
+        return COMMON_DB_CONFIG.copy()
 
     # 테이블명 설정
     table_names: Dict[str, str] = {

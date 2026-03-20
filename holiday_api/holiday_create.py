@@ -3,9 +3,14 @@
 API 서버를 실행하지 않고 바로 DB에 공휴일 데이터를 적재합니다.
 """
 from datetime import date
+import sys
+import os
 import holidays
 import pymysql
-from config import DB_CONFIG
+
+# 공통 DB 설정 import
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+from db_config import DB_CONFIG
 
 
 def get_db_connection():
