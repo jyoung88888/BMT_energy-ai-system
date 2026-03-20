@@ -29,6 +29,9 @@
 - MariaDB/MySQL 데이터베이스 연동
 - 자동화된 스케줄링 및 배치 처리
 - UPSERT 방식의 효율적인 데이터 저장
+- 공통 DB 설정 중앙 관리 (`db_config.py`)
+- Open API 호출 재시도 및 에러 분류 로직
+- AI 파이프라인 통합 배치 실행 (`run_all_AI_pipeline.bat`)
 
 ### 운영 방식
 - **EMS/Solar**: FastAPI로 구성되어 있으나, 실제 운영 환경에서는 스케줄러 스크립트(`schedule_*.py`)를 통해 예측 로직을 직접 실행
@@ -80,7 +83,7 @@
 ┌─────────────────────────────────────────────────────────────┐
 │                    Aggregation Layer                         │
 │  ┌──────────────────────────────────────────────────┐      │
-│  │       schedule_ess_AI / ess_ai_table_api         │      │
+│  │       schedule_ess_AI / ess_api         │      │
 │  │  (Solar + Power + ESS 통합 집계)                 │      │
 │  │  - Hourly Aggregation                            │      │
 │  │  - Daily Aggregation                             │      │
@@ -109,6 +112,9 @@
 
 ```
 git/
+├── db_config.py                # ★ 공통 DB 설정 (전 스크립트에서 import) ★
+├── run_all_AI_pipeline.bat     # ★ AI 파이프라인 통합 배치 실행 ★
+│
 ├── ems_api/                    # 전력 사용량 예측 (FastAPI 구조)
 │   ├── app/
 │   │   ├── main.py            # FastAPI 애플리케이션 (개발용)
@@ -129,31 +135,35 @@ git/
 │   ├── run_README.md
 │   └── sch_README.md
 │
-├── ess_ai_table_api/          # 예측 데이터 통합 집계 API
+├── ess_api/                    # ESS 예측 및 데이터 통합 집계
 │   ├── app/
 │   │   ├── main.py            # FastAPI 애플리케이션
 │   │   ├── api/               # API 엔드포인트
 │   │   └── core/              # 집계 로직
 │   ├── run.py                 # API 서버 실행 (운영 환경)
-│   ├── schedule_AI_log_table.py
-│   └── schedule_ess_AI.py     # 스케줄러 스크립트
+│   ├── schedule_ess_AI.py     # ★ ESS 충전량 예측 스크립트 ★
+│   └── schedule_AI_log_table.py  # ★ AI 종합 테이블 집계 스크립트 ★
 │
 ├── holiday_api/                # 공휴일 데이터 관리
-│   ├── holiday_create.py      # 공휴일 DB 등록 스크립트
-│   └── config.py              # DB 설정
+│   └── holiday_create.py      # 공휴일 DB 등록 스크립트
 │
-├── weather/                    # 기상 데이터 수집
-│   ├── weather_getVilageFcst.py  # 기상청 API 데이터 수집 스크립트
-│   └── logs/                  # 로그 파일
+├── weather/                    # 기상 데이터 수집 (API 재시도 로직 포함)
+│   ├── weather_getVilageFcst.py     # 기상청 단기예보 API 수집
+│   ├── weather_getSrQtyPredcInfo.py # 에너지공단 일사량 예측 API 수집
+│   └── logs/                        # 로그 파일
 │
 └── README.md                   # 본 문서
 
 ★ 주요 실행 파일:
-  - schedule_ems_AI.py: 전력 예측 실행 (FastAPI 서버 없이 내부 로직 직접 호출)
-  - schedule_solar_AI.py: 태양광 예측 실행 (FastAPI 서버 없이 내부 로직 직접 호출)
-  - schedule_ess_AI.py: 데이터 집계 실행
-  - weather_getVilageFcst.py: 기상 데이터 수집
+  - run_all_AI_pipeline.bat: AI 예측 4단계 통합 배치 실행
+  - schedule_solar_AI.py: 태양광 예측 실행
+  - schedule_ems_AI.py: 전력 예측 실행
+  - schedule_ess_AI.py: ESS 충전량 예측 실행
+  - schedule_AI_log_table.py: AI 종합 테이블 집계
+  - weather_getVilageFcst.py: 기상청 단기예보 수집
+  - weather_getSrQtyPredcInfo.py: 에너지공단 일사량 예측 수집
   - holiday_create.py: 공휴일 등록
+  - db_config.py: 공통 DB 접속 설정
 ```
 
 ---
@@ -262,19 +272,23 @@ python holiday_create.py
 **실행 방식**: 스크립트 (스케줄러로 자동 실행)
 
 #### 주요 기능
-- 기상청 단기예보 API 연동
+- 기상청 단기예보 API 연동 (`weather_getVilageFcst.py`)
+- 에너지공단 일사량 예측 API 연동 (`weather_getSrQtyPredcInfo.py`)
 - 기상 데이터 + 태양 위치 정보 통합
-- 1시간 간격 예보 데이터 수집
+- API 호출 재시도 로직 (1분/3분/5분 대기, 최대 3회)
+- 에러 유형별 분류 로깅 (타임아웃/연결실패/HTTP에러/영구실패)
 - MariaDB 자동 저장 (INSERT/UPDATE)
 
 #### 수집 데이터
 - 기상: 기온(TMP), 습도(REH), 하늘상태(SKY), 강수확률(POP) 등
 - 태양: apparent_zenith, apparent_elevation, azimuth
+- 일사량: 1시간 평균 일사량 예측 데이터
 
 #### 실행 방법
 ```bash
 cd weather
-python weather_getVilageFcst.py
+python weather_getVilageFcst.py        # 기상청 단기예보 (1일 1회)
+python weather_getSrQtyPredcInfo.py    # 일사량 예측 (매 1시간)
 ```
 
 #### 테이블
@@ -308,22 +322,24 @@ cd ../solar_api
 pip install -r requirements.txt
 
 # ESS AI Table API
-cd ../ess_ai_table_api
+cd ../ess_api
 pip install -r requirements.txt
 
 # Weather & Holiday (공통)
 pip install pymysql pandas requests holidays pvlib
 ```
 
-3. **환경 변수 설정**
+3. **DB 설정**
 
-각 API 디렉토리에 `.env` 파일 생성:
-```env
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=your_username
-DB_PASSWORD=your_password
-DB_NAME=solar_mokup
+`git/db_config.py`에서 공통 DB 접속 정보를 관리합니다:
+```python
+DB_CONFIG = {
+    'host': '192.168.213.250',
+    'user': 'root',
+    'password': '****',
+    'database': 'db_energy',
+    'charset': 'utf8mb4'
+}
 ```
 
 4. **서비스 실행**
@@ -341,7 +357,7 @@ cd solar_api
 python schedule_solar_AI.py
 
 # 데이터 통합 집계 (ESS AI Table) - API 서버 방식
-cd ess_ai_table_api
+cd ess_api
 python run.py  # 포트 8080
 ```
 
@@ -366,27 +382,12 @@ python run.py
 
 | 서비스 | 실행 방식 | 스크립트 | 설명 |
 |--------|----------|---------|------|
-| EMS | 스케줄러 스크립트 | `schedule_ems_AI.py` | 전력 사용량 예측 (직접 실행) |
-| Solar | 스케줄러 스크립트 | `schedule_solar_AI.py` | 태양광 발전량 예측 (직접 실행) |
+| EMS | 스케줄러 스크립트 | `schedule_ems_AI.py` | 전력 사용량 예측  |
+| Solar | 스케줄러 스크립트 | `schedule_solar_AI.py` | 태양광 발전량 예측 |
 | ESS AI Table | API 서버 (포트 8080) | `run.py` | 통합 데이터 집계 |
 
 **참고**: EMS API와 Solar API는 FastAPI로 구성되어 있지만, 실제 운영 환경에서는 스케줄러 스크립트를 통해 내부 코드를 직접 호출하는 방식으로 사용됩니다.
 
-### API 엔드포인트 (개발/테스트용)
-
-FastAPI 서버를 실행할 경우 사용 가능한 엔드포인트:
-
-| 서비스 | 포트 | 주요 엔드포인트 | 설명 |
-|--------|------|-----------------|------|
-| EMS API | 8000 | `POST /api/igns/v1/smarteye/predict` | 전력 사용량 예측 |
-| Solar API | 8001 | `POST /api/igns/v1/solar/predict` | 태양광 발전량 예측 |
-| ESS AI Table API | 8080 | `POST /api/igns/v1/ESS/aggregate` | 통합 데이터 집계 |
-
-### API 문서 (Swagger UI - 개발/테스트용)
-FastAPI 서버를 실행한 경우 다음 주소에서 인터랙티브 API 문서 확인 가능:
-- EMS API: http://localhost:8000/docs
-- Solar API: http://localhost:8001/docs
-- ESS AI Table API: http://localhost:8080/docs
 
 ---
 
@@ -395,31 +396,25 @@ FastAPI 서버를 실행한 경우 다음 주소에서 인터랙티브 API 문�
 ### 일일 실행 프로세스
 
 ```
-1. 기상 데이터 수집 (매일 20:00)
-   └─> weather/weather_getVilageFcst.py (스크립트 직접 실행)
-       └─> tb_weather_info 업데이트
+1. 기상 데이터 수집
+   ├─> weather/weather_getVilageFcst.py (매일 20:03, 1회)
+   │   └─> tb_weather_info 업데이트 (기상청 단기예보)
+   └─> weather/weather_getSrQtyPredcInfo.py (매 1시간)
+       └─> tb_weather_info 업데이트 (일사량 예측)
 
-2. 공휴일 업데이트 (매년 1월 1일)
-   └─> holiday_api/holiday_create.py (스크립트 직접 실행)
+2. 공휴일 업데이트 (매일 00:00)
+   └─> holiday_api/holiday_create.py
        └─> tb_holiday 업데이트
 
-3. 전력 사용량 예측 (매일 자동)
-   └─> ems_api/schedule_ems_AI.py (스크립트 직접 실행)
-       └─> 내부적으로 예측 로직 호출
-           └─> tb_aggregate_smarteye_hour/day 저장
-
-4. 태양광 발전량 예측 (매일 자동)
-   └─> solar_api/schedule_solar_AI.py (스크립트 직접 실행)
-       └─> 내부적으로 예측 로직 호출
-           └─> 각 공장별 예측 결과 저장
-
-5. 통합 데이터 집계 (매일 자동)
-   └─> ess_ai_table_api/schedule_ess_AI.py (스크립트 직접 실행)
-       └─> 내부적으로 집계 로직 호출
-           └─> 통합 집계 테이블 업데이트
+3. AI 예측 파이프라인 (run_all_AI_pipeline.bat로 통합 실행 가능)
+   ├─> [1단계] solar_api/schedule_solar_AI.py (21:00) - 태양광 예측
+   ├─> [2단계] ems_api/schedule_ems_AI.py (21:50) - 전력 사용량 예측
+   ├─> [3단계] ess_api/schedule_ess_AI.py (21:55) - ESS 충전량 예측
+   └─> [4단계] ess_api/schedule_AI_log_table.py (익일 07:20) - AI 종합 집계
 ```
 
-**참고**: EMS와 Solar는 FastAPI 구조를 가지고 있지만, 운영 환경에서는 API 서버를 띄우지 않고 스케줄러 스크립트가 내부 코드를 직접 호출합니다.
+**참고**: `--date`로 지정한 날짜의 **다음날** 예측값이 생성됩니다.
+예) `run_all_AI_pipeline.bat 2025-02-05` → 2025-02-06 예측값 저장
 
 ### 스케줄러 설정
 
@@ -439,7 +434,7 @@ FastAPI 서버를 실행한 경우 다음 주소에서 인터랙티브 API 문�
 30 21 * * * cd /path/to/solar_api && python schedule_solar_AI.py
 
 # 매일 22:00 데이터 집계
-0 22 * * * cd /path/to/ess_ai_table_api && python schedule_ess_AI.py
+0 22 * * * cd /path/to/ess_api && python schedule_ess_AI.py
 ```
 
 ---
@@ -466,61 +461,16 @@ FastAPI 서버를 실행한 경우 다음 주소에서 인터랙티브 API 문�
 ## 모니터링 및 로깅
 
 ### 로그 파일 위치
-- `ems_api/ems_api.log` - EMS API 로그
+- `ems_api/logs/` - EMS API 로그
 - `ems_api/logs/` - EMS 상세 로그
 - `solar_api/logs/` - Solar API 로그
 - `weather/logs/` - 기상 데이터 수집 로그
 - `holiday_api/holiday_create_log.txt` - 공휴일 등록 로그
 
-### 헬스 체크
-
-운영 환경에서는 스케줄러 스크립트 실행 결과 및 로그 파일을 모니터링합니다.
-
-개발/테스트 환경에서 FastAPI 서버를 실행한 경우:
-```bash
-# EMS API (개발 환경에서만)
-curl http://localhost:8000/api/health
-
-# Solar API (개발 환경에서만)
-curl http://localhost:8001/api/health
-
-# ESS AI Table API (운영 환경)
-curl http://localhost:8080/health
-```
-
----
-
-## 문제 해결
-
-### 공통 이슈
-
-#### 1. 데이터베이스 연결 실패
-- `.env` 파일의 DB 설정 확인
-- MariaDB/MySQL 서버 실행 상태 확인
-- 방화벽 설정 확인
-
-#### 2. 모델 로딩 실패
-- `weights/` 디렉토리에 모델 파일 존재 확인
-- 경로 설정 확인
-
-#### 3. 스케줄러 스크립트 실행 실패
-- 로그 파일 확인 (각 디렉토리의 `logs/` 폴더)
-- Python 가상환경 활성화 여부 확인
-- 의존성 패키지 설치 확인
-- DB 연결 정보 확인
-
-#### 4. API 응답 없음 (개발 환경)
-- 포트 충돌 확인 (8000, 8001, 8080)
-- 로그 파일 확인
-- **참고**: 운영 환경에서는 EMS/Solar API 서버를 실행하지 않음
 
 ---
 
 ## 기술 스택
-
-### Backend
-- **FastAPI** - 고성능 비동기 웹 프레임워크
-- **Uvicorn** - ASGI 서버
 
 ### AI/ML
 - **PyTorch** - 딥러닝 프레임워크
@@ -548,6 +498,14 @@ curl http://localhost:8080/health
 ---
 
 ## 업데이트 이력
+
+### 2026-03-20
+- DB 설정 중앙화: `db_config.py` 공통 파일로 통합 (각 스크립트 하드코딩 제거)
+- Open API 재시도 로직 추가: weather 스크립트에 1분/3분/5분 대기 재시도 및 에러 분류
+- AI 파이프라인 통합 배치 파일 추가: `run_all_AI_pipeline.bat`
+- `ess_ai_table_api/` → `ess_api/`로 폴더명 변경
+- `weather_getSrQtyPredcInfo.py` 프로젝트 구조에 반영
+- `holiday_api/config.py` 제거 (공통 `db_config.py` 사용)
 
 ### 2026-01-05
 - 통합 README 작성

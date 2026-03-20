@@ -27,8 +27,8 @@ SERVICE_KEY = "B/eXbaY8RqfKO7WugqO+4aw4PSnN+daAUt32w5EhZBKoYp58GGEyQ115JS7vTenW6
 API_URL = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'
 
 # 좌표 설정 (서울 기준 - 필요시 변경)
-NX = 97
-NY = 74
+NX = 101
+NY = 79
 
 # 테이블명
 TABLE_NAME = 'tb_weather_info'
